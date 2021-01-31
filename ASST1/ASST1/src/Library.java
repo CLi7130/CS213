@@ -24,15 +24,22 @@ TODO / NOTES
     Methods included in this class allow users to find books, add and remove books from the library, as well as check out and return books.  The library also includes several different functionalities for printing the current catalogue, including printing by date, and by book number.
     @author Craig Li, Prerak Patel
  */
+
 public class Library {
 	private Book[] books; // array-based implementation of the bag data structure
 	private int numBooks; // the number of books currently in the bag
+	
 	
 	public Library() {
 		Book[] books = new Book[4];
 		numBooks = 0;
 	} //default constructor to create an empty bag
 	
+	/**
+    Finds where a book is in the bag
+    @param book that you want to find
+    @return the index of the book otherwise -1 if not found
+    */
 	private int find(Book book) {
 		for(int i=0; i <= numBooks; i++) {
 			if(books[i].equals(book)) {
@@ -40,18 +47,24 @@ public class Library {
 			}
 		}
 		return -1; 
-	} // helper method to find a book in the bag
+	}
+	
+	/**
+     * Returns the array of Books with size 4 greater
+     * @return books array with size 4 greater 
+     */
 	private void grow() { 
 		Book[] grow = new Book[numBooks + 4];
 		for(int i=0; i <= numBooks; i++) {
 			books[i] = grow[i];
 		}
 		books = grow;
-	} // helper method to grow the capacity by 4
+	}
 	
 	public void add(Book book) {
 		int serialNum = 10000;
 		// Check if there is room to add a book
+		// if not enough room then grow
 		if(numBooks >= books.length) {
 			grow();
 		}
@@ -92,7 +105,16 @@ public class Library {
 		}
 		return true;
 	}
-	public void print() { } //print the list of books in the bag
+	public void print() {
+		for(int i=0; i <= numBooks; i++) {
+			System.out.println(books[i].toString());
+		}
+	} //print the list of books in the bag
 	public void printByDate() { } //print the list of books by datePublished (ascending)
 	public void printByNumber() { } //print the list of books by number (ascending)
+	
+	//test driver, delete when making final formatting pass
+	public static void main(String[] args){
+		
+	}
 }
