@@ -1,6 +1,8 @@
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
+
+
 /*
 TODO / NOTES 
      ** delete this section before submission**
@@ -11,21 +13,78 @@ TODO / NOTES
         - follow ground rules and programming style.
 */
 public class Kiosk {
+	
+	public static String delims = " ,\t*+-/()[]";
 
     public void run(){
-    	System.out.print("Library Kiosk running ");
+    	System.out.println("Library Kiosk running ");
         String firstToken = "";
 
         while(!firstToken.contentEquals("Q")) {
             Scanner input = new Scanner(System.in);
             String stringInput = input.nextLine();
-            StringTokenizer string = new StringTokenizer(stringInput);
+    		StringTokenizer string = new StringTokenizer(stringInput, delims, true);
             firstToken = string.nextToken();
-            System.out.println(firstToken);
-
+            if(firstToken.contentEquals("A")) {
+            	while (input.hasNext() == true ) {
+                    String s1 = input.next();
+                    System.out.println(s1);
+                }
+                System.out.println(firstToken);
+            }
+            else if(firstToken.contentEquals("R")) {
+            	while (input.hasNext() == true ) {
+                    String s1 = input.next();
+                    System.out.println(s1);
+                }
+                System.out.println(firstToken);
+            }
+            else if(firstToken.contentEquals("O")) {
+            	while (input.hasNext() == true ) {
+                    String s1 = input.next();
+                    System.out.println(s1);
+                }
+                System.out.println(firstToken);
+            }
+            else if(firstToken.contentEquals("I")) {
+            	while (input.hasNext() == true ) {
+                    String s1 = input.next();
+                    System.out.println(s1);
+                }
+                System.out.println(firstToken);
+            }
+            else if(firstToken.contentEquals("PA")) {
+            	while (input.hasNext() == true ) {
+                    String s1 = input.next();
+                    System.out.println(s1);
+                }
+                System.out.println(firstToken);
+            }
+            else if(firstToken.contentEquals("PD")) {
+            	while (input.hasNext() == true ) {
+                    String s1 = input.next();
+                    System.out.println(s1);
+                }
+                System.out.println(firstToken);
+            }
+            else if(firstToken.contentEquals("PN")) {
+            	while (input.hasNext() == true ) {
+                    String s1 = input.next();
+                    System.out.println(s1);
+                }
+                System.out.println(firstToken);
+            }
+            else if(firstToken.contentEquals("Q")) {
+                System.out.println(firstToken);
+            }
+            else {
+                System.out.println("Invalid Command!");
+            }
+            
         }
-    	
-    	
+    	System.out.println("Kiosk session ended.");
+
+
     }
 
 }
