@@ -83,6 +83,19 @@ public class Library {
 	}
 	
 	/**
+	Sorts the bag by the dates ascending order
+	 */
+	private void sortDate() {
+		
+	}
+	
+	/**
+	Sorts the bag by the serial numbers ascending order
+	 */
+	private void sortNumber() {
+		
+	}
+	/**
     Adds a book to the end of the bag
     @param A book from the Book class
     */
@@ -155,14 +168,16 @@ public class Library {
 	Print the list of books by datePublished (ascending)
     */
 	public void printByDate() {
-		
+		sortDate();
+		print();
 	}
 	
 	/**
 	Print the list of books by number (ascending)
 	*/
 	public void printByNumber() {
-		
+		sortNumber();
+		print();
 	} 
 	
 	//test driver, delete when making final formatting pass

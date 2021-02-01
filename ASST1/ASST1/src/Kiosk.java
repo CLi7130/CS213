@@ -18,57 +18,57 @@ public class Kiosk {
 
     public void run(){
     	System.out.println("Library Kiosk running ");
-        String firstToken = "";
+        String action = "";
 
         while(true) {
             Scanner input = new Scanner(System.in);
             String stringInput = input.nextLine();
     		StringTokenizer string = new StringTokenizer(stringInput, delims, true);
-            firstToken = string.nextToken();
-            if(firstToken.contentEquals("A")) {
+            action = string.nextToken();
+            if(action.contentEquals("A")) {
                 while (string.hasMoreElements()) {
                     System.out.println(string.nextElement());
                 }
-                System.out.println(firstToken);
+                System.out.println(action);
             }
-            else if(firstToken.contentEquals("R")) {
+            else if(action.contentEquals("R")) {
                 while (string.hasMoreElements()) {
                     System.out.println(string.nextElement());
                 }
-                System.out.println(firstToken);
+                System.out.println(action);
             }
-            else if(firstToken.contentEquals("O")) {
+            else if(action.contentEquals("O")) {
                 while (string.hasMoreElements()) {
                     System.out.println(string.nextElement());
                 }
-                System.out.println(firstToken);
+                System.out.println(action);
             }
-            else if(firstToken.contentEquals("I")) {
+            else if(action.contentEquals("I")) {
                 while (string.hasMoreElements()) {
                     System.out.println(string.nextElement());
                 }
-                System.out.println(firstToken);
+                System.out.println(action);
             }
-            else if(firstToken.contentEquals("PA")) {
+            else if(action.contentEquals("PA")) {
                 while (string.hasMoreElements()) {
                     System.out.println(string.nextElement());
                 }
-                System.out.println(firstToken);
+                System.out.println(action);
             }
-            else if(firstToken.contentEquals("PD")) {
+            else if(action.contentEquals("PD")) {
                 while (string.hasMoreElements()) {
                     System.out.println(string.nextElement());
                 }
-                System.out.println(firstToken);
+                System.out.println(action);
             }
-            else if(firstToken.contentEquals("PN")) {
+            else if(action.contentEquals("PN")) {
                 while (string.hasMoreElements()) {
                     System.out.println(string.nextElement());
                 }
-                System.out.println(firstToken);
+                System.out.println(action);
             }
-            else if(firstToken.contentEquals("Q")) {
-                System.out.println(firstToken);
+            else if(action.contentEquals("Q")) {
+                System.out.println(action);
                 break;
             }
             else {
