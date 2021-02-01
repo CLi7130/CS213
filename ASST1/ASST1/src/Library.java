@@ -28,10 +28,11 @@ TODO / NOTES
 public class Library {
 	private Book[] books; // array-based implementation of the bag data structure
 	private int numBooks; // the number of books currently in the bag
-	
+	private int serialNum = 10000; // serial number for books
+	//private int grows = 1; // the amount of times the bag has had to have grown
 	
 	public Library() {
-		Book[] books = new Book[4];
+		books = new Book[4];
 		numBooks = 0;
 	} //default constructor to create an empty bag
 	
@@ -41,8 +42,8 @@ public class Library {
     @return the index of the book otherwise -1 if not found
     */
 	private int find(Book book) {
-		for(int i=0; i <= numBooks; i++) {
-			if(books[i].equals(book)) {
+		for(int i=0; i < books.length; i++) {
+			if(books[i] == book) {
 				return i;
 			}
 		}
@@ -54,37 +55,53 @@ public class Library {
      * @return books array with size 4 greater 
      */
 	private void grow() { 
-		Book[] grow = new Book[numBooks + 4];
-		for(int i=0; i <= numBooks; i++) {
-			books[i] = grow[i];
+		Book[] grow = new Book[books.length + 4];
+		for(int i=0; i < books.length; i++) {
+			grow[i] = books[i];
 		}
 		books = grow;
 	}
 	
+	private void trimArray() {
+		Book[] trim = new Book[books.length];
+		int count = 0;
+		for(int i=0; i < books.length; i++) {
+			if(books[i] != null) {
+				trim[count] = books[i];
+			}
+			else {
+				count--;
+			}
+			count++;
+		}
+		books = trim;
+	}
+	
+	
 	public void add(Book book) {
-		int serialNum = 10000;
+		
 		// Check if there is room to add a book
 		// if not enough room then grow
-		if(numBooks >= books.length) {
-			grow();
-		}
+
 		// Check valid date
 		
 		// instantiate book
 		serialNum++;
 		book.setNumber(serialNum+"");
 		book.setCheckedOut(false);
-		
-		for(int i=0; i <= numBooks; i++) {
-			if(books[i] == null) {
-				books[i] = book;
-			}
+		numBooks++;
+		if(numBooks > books.length) {
+			grow();
 		}
+		trimArray();
+		books[numBooks-1] = book;
 	}
+	
 	public boolean remove(Book book) { 
 		int index = find(book);
 		if(index>0) {
 			books[index] = null;
+			numBooks--;
 			return true;
 		}
 		return false;
@@ -106,7 +123,10 @@ public class Library {
 		return true;
 	}
 	public void print() {
-		for(int i=0; i <= numBooks; i++) {
+		for(int i=0; i < books.length; i++) {
+			if(books[i] == null) { 
+				continue;
+			}	
 			System.out.println(books[i].toString());
 		}
 	} //print the list of books in the bag
@@ -114,7 +134,38 @@ public class Library {
 	public void printByNumber() { } //print the list of books by number (ascending)
 	
 	//test driver, delete when making final formatting pass
-	public static void main(String[] args){
-		
+	public void main(){
+		Book testBook = new Book();
+	    Book testBook2 = new Book();
+	    Book testBook3 = new Book();
+	    Book testBook4 = new Book();
+	    Book testBook5 = new Book();
+	    Book testBook6 = new Book();
+
+	    testBook.setName("Born a Crime");
+	    testBook.setDatePublished(new Date("11/15/2016"));
+	    testBook2.setName("Is it too late to say sorry");
+	    testBook2.setDatePublished(new Date("11/15/2017"));
+	    testBook3.setName("Boom Boom Pow");
+	    testBook3.setDatePublished(new Date("11/15/2018"));
+	    testBook4.setName("Bow Chica Wow Wow");
+	    testBook4.setDatePublished(new Date("11/15/2019"));
+	    testBook5.setName("The Home Depot");
+	    testBook5.setDatePublished(new Date("11/15/2020"));
+	    testBook6.setName("Megalodon");
+	    testBook6.setDatePublished(new Date("11/25/2021"));
+	    
+	    add(testBook);
+	    add(testBook2);
+	    add(testBook3);
+	    add(testBook4);
+	    add(testBook5);
+	    add(testBook6);
+	    remove(testBook2);
+	    trimArray();
+	    System.out.println(find(testBook)+" :expected value = 0");
+	    System.out.println(find(testBook2)+" :expected value = -1");
+
+	    print();
 	}
 }
