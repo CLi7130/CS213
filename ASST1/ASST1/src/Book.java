@@ -100,13 +100,18 @@ public class Book {
     @Override
     public String toString(){
         String formattedBookInfo = new String("Book#");
-        formattedBookInfo = formattedBookInfo + this.number;
-        formattedBookInfo = formattedBookInfo + "::";
-        formattedBookInfo = formattedBookInfo + this.name;
-        formattedBookInfo = formattedBookInfo + "::";
-        formattedBookInfo = formattedBookInfo + this.datePublished;
+        String formatSplitter = new String("::");
+
+        formattedBookInfo += this.number;
+        formattedBookInfo += formatSplitter;
+
+        formattedBookInfo += this.name;
+        formattedBookInfo += formatSplitter;
+        
+        formattedBookInfo += this.datePublished;
         //this.datePublished - need to reformat so it prints date object
-        formattedBookInfo = formattedBookInfo + "::";
+        formattedBookInfo += formatSplitter;
+
         if(!checkedOut){
             formattedBookInfo = formattedBookInfo + "is available.";
         }

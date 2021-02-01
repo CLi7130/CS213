@@ -85,19 +85,137 @@ public class Date {
         this.setYear(currDate.get(Calendar.YEAR));
 
     }
-    public boolean isValid(){
+    private boolean isLeapYear(int testYear){
+        int QUADRENNIAL = 4;
+        int CENTENNIAL = 100;
+        int QUATERCENTENNIAL = 400;
+
+        if(testYear % QUADRENNIAL == 0){
+            if(testYear % CENTENNIAL == 0){
+                if(testYear % QUATERCENTENNIAL != 0){
+                    return false;
+                }
+                return true;
+            }
+            return true;
+        }
         return false;
-        
+    }
+    public boolean isValid(){
+        int monthMax = 12;
+        int yearMin = 1900;
+        int yearMax = Calendar.getInstance().get(Calendar.YEAR);
+        int daysPerMonthMax = 0;
+        int testMonth = this.getMonth();
+        int testYear = this.getYear();
+        int testDay = this.getDay();
+        boolean isLeapYear = false;
+
+        if(testMonth < 1 || testMonth > monthMax){
+            return false;
+        }
+        if(testYear < yearMin || testYear > yearMax){
+            return false;
+        }
+
+        int[] monthsWith31Days = {1,3,4,7,8,10,12};
+        int[] monthsWith30Days = {4,6,9,11};
+        int FEBRUARY = 2;
+
+        if(testMonth == FEBRUARY){
+            isLeapYear = isLeapYear(testYear);
+
+            if(isLeapYear){
+                daysPerMonthMax = 29;
+            }
+            else{
+                daysPerMonthMax = 28;
+            }
+        }
+
+        for(int i = 0; i < monthsWith31Days.length; i++){
+            if(testMonth == monthsWith31Days[i]){
+                daysPerMonthMax = 31;
+                break;
+            }
+        }
+        for(int i = 0; i < monthsWith30Days.length; i++){
+            if(testMonth == monthsWith30Days[i]){
+                daysPerMonthMax = 30;
+                break;
+            }
+        }
+
+        if(testDay < 1 || testDay > daysPerMonthMax){
+            return false;
+        }
+
+        return true;
     }
 
 
-/*
+
 //test driver, delete before submitting
 public static void main(String[] args){
     Date testDate = new Date();
-    System.out.print(testDate.month + "/");
-    System.out.print(testDate.day + "/");
-    System.out.print(testDate.year);
+
+    String currDate = new String("");
+    currDate = currDate + testDate.month + "/" + testDate.day + "/" + testDate.year;
+
+    String testDate1 = new String("13/1/2000");
+    String testDate2 = new String("1/32/2000");
+    String testDate3 = new String("1/1/1899");
+
+    String leapYear1 = new String("2/29/1988");
+    String leapYear2 = new String("2/29/2000");
+
+    String invalidLeap1 = new String("2/29/1989");
+    String invalidLeap2 = new String("2/29/1900");
+
+    Date monthCheck = new Date(testDate1);
+    Date dayCheck = new Date(testDate2);
+    Date yearCheck = new Date(testDate3);
+
+    Date validLeapCheck1 = new Date(leapYear1);
+    Date validLeapCheck2 = new Date(leapYear2);
+
+    Date invalidLeapCheck1 = new Date(invalidLeap1);
+    Date invalidLeapCheck2 = new Date(invalidLeap2);
+
+    System.out.println("Current Date: " + currDate);
+    System.out.println("Current Date Valid: " + testDate.isValid() + ", Expected: true");
+    System.out.println();
+
+    System.out.println("monthCheck: " + testDate1);
+    System.out.println("monthCheck Valid: " + monthCheck.isValid() + ", Expected: False");
+    System.out.println();
+
+    System.out.println("dayCheck: " + testDate2);
+    System.out.println("dayCheck Valid: " + dayCheck.isValid() + ", Expected: False");
+    System.out.println();
+
+    System.out.println("yearCheck: " + testDate3);
+    System.out.println("yearCheck valid: " + yearCheck.isValid() + ", Expected: False");
+    System.out.println();
+
+    System.out.println("leap1: " + leapYear1);
+    System.out.println("leap1 valid: " + validLeapCheck1.isValid() + ", Expected: True");
+    System.out.println();
+
+    System.out.println("leap2: " + leapYear2);
+    System.out.println("leap2 valid: " + validLeapCheck2.isValid() + ", Expected: True");
+    System.out.println();
+
+    System.out.println("invalidLeap1: " + invalidLeap1);
+    System.out.println("invalidLeap1 valid: " + invalidLeapCheck1.isValid() + ", Expected: False");
+    System.out.println();
+
+    System.out.println("invalidLeap2: " + invalidLeap2);
+    System.out.println("invalidLeap2 valid: " + invalidLeapCheck2.isValid() + ", Expected: False");
+    System.out.println();
+
+
+
 }
-*/
+
 }
