@@ -108,7 +108,13 @@ public class Book {
         formattedBookInfo += this.name;
         formattedBookInfo += formatSplitter;
         
-        formattedBookInfo += this.datePublished;
+        formattedBookInfo += String.valueOf(this.datePublished.getMonth());
+        formattedBookInfo += "/";
+
+        formattedBookInfo += String.valueOf(this.datePublished.getDay());
+        formattedBookInfo += "/";
+
+        formattedBookInfo += String.valueOf(this.datePublished.getYear());
         //this.datePublished - need to reformat so it prints date object
         formattedBookInfo += formatSplitter;
 
