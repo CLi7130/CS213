@@ -124,6 +124,7 @@ public class Book {
 
 
 //test driver, delete when making final formatting pass
+    
 public static void main(String[] args){
     Book testBook = new Book();
     Book testBook2 = new Book();
@@ -142,5 +143,7 @@ public static void main(String[] args){
     System.out.println(testBook.toString());
     System.out.println(testBook.equals(testBook2)+ " :expected true");
     System.out.println(testBook.equals(testBook3)+ " :expected false");
+    new Library().main();
 }
+
 }
