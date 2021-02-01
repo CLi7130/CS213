@@ -118,7 +118,7 @@ public class Date {
             return false;
         }
 
-        int[] monthsWith31Days = {1,3,4,7,8,10,12};
+        int[] monthsWith31Days = {1,3,5,7,8,10,12};
         int[] monthsWith30Days = {4,6,9,11};
         int FEBRUARY = 2;
 
