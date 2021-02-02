@@ -115,7 +115,6 @@ public class Book {
         formattedBookInfo += "/";
 
         formattedBookInfo += String.valueOf(this.datePublished.getYear());
-        //this.datePublished - need to reformat so it prints date object
         formattedBookInfo += formatSplitter;
 
         if(!checkedOut){
@@ -137,9 +136,7 @@ public static void main(String[] args){
     Book testBook3 = new Book();
     testBook.name = "Born a Crime";
     testBook.datePublished = new Date("11/15/2016");
-    System.out.println(String.valueOf(testBook.datePublished));
-    //need to write date class for this to work - current implementation doesn't
-        //print date correctly
+
     testBook.number = "10001";
     testBook.checkedOut = false;
     testBook2.number = "10001";

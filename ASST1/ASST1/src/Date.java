@@ -10,29 +10,7 @@ TODO / NOTES
         public static final int QUADRENNIAL = 4;
         public static final int CENTENNIAL = 100;
         public static final int QUATERCENTENNIAL;
-    isValid():
-        - dates with a year less than 1900, or beyond today's date are invalid
-        - Months with 31 days:
-            - Jan, Mar, May, Jul, Aug, Oct, Dec
-        - Months with 30 days:
-            - Apr, Jun, Sept, Nov
-        - February has 28 days in a normal year, and 29 days in a leap year
-            - only need to check for leap year if month is feb/02
-    Leap year guidelines:
-        1. If year % 4 = 0
-                - go to step 2
-            else
-                - go to step 5
-        2. if year % 100
-                - go to step 3
-            else
-                - go to step 4
-        3. If year % 400
-                - go to step 4
-            else
-                - go to step 5
-        4. This is a leap year
-        5. This is not a leap year
+
     potential edge cases for leap year testing: 1900
     - test cases for isValid are worth 10 points, follow test specification section in software development ground rules.
     TODO:
@@ -95,7 +73,6 @@ public class Date {
                 if(testYear % QUATERCENTENNIAL != 0){
                     return false;
                 }
-                return true;
             }
             return true;
         }
