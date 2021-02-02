@@ -47,32 +47,60 @@ public class Book {
 	private String number; //a 5-digit serial number unique to the book
 	private String name;
 	private boolean checkedOut;
-	private Date datePublished;
-	
+    private Date datePublished;
+    
+	/**
+    Gets specified Book's serial number.
+    @return returns book serial number
+     */
 	public String getNumber() {
 		return number;
-	}
+    }
+    /**
+    Sets specified Book's serial number.
+    @param number : desired serial number for a book object.
+     */
 	public void setNumber(String number) {
 		this.number = number;
 	}
-	
+	/**
+    Gets specified book object's title.
+    @return returns a string containing the book's title.
+     */
 	public String getName() {
 		return name;
-	}
+    }
+    /**
+    Sets book object's name to a specified string.
+     */
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+	/**
+    Checks whether a book is checked out of the library.
+     * @return true if checkedOut, false if otherwise.
+     */
 	public boolean isCheckedOut() {
 		return checkedOut;
-	}
+    }
+    /**
+    Sets book object's status to either checked In or Out.
+    @param checkedOut : if true, book is listed as checked out in system, if   false, listed as not checked out.
+     */
 	public void setCheckedOut(boolean checkedOut) {
 		this.checkedOut = checkedOut;
 	}
-	
+	/**
+    Gets book's publishing date.
+    @return returns date Object containing publishing date.
+     */
 	public Date getDatePublished() {
 		return datePublished;
-	}
+    }
+    /**
+    Sets datePublished for a specific book to specified date.
+    @param datePublished : specified date of publishing
+     */
 	public void setDatePublished(Date datePublished) {
         this.datePublished = datePublished;	
 	}

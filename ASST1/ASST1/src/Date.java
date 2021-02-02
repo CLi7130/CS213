@@ -28,24 +28,52 @@ public class Date {
     private int month;
     private int day;
 
+    /**
+    Gets day book was published.
+    @return : int containing day book was published.
+     */
     public int getDay() {
 		return day;
-	}
+    }
+    /**
+    Sets day published to input value.
+     * @param day : specified day book was published.
+     */
 	public void setDay(int day) {
 		this.day = day;
-	}
+    }
+    /**
+    Gets month book was published.
+    @return : int containing month book was published.
+     */
 	public int getMonth() {
 		return month;
-	}
+    }
+    /**
+    Sets month that book was published to specified input.
+    @param month : specified month book was published.
+     */
 	public void setMonth(int month) {
 		this.month = month;
-	}
+    }
+    /**
+    Gets year book was published.
+    @return : int containing year book was published.
+     */
 	public int getYear() {
 		return year;
-	}
+    }
+    /**
+    Sets year that book was published to specified input.
+    @param year : specified year book was published.
+     */
 	public void setYear(int year) {
 		this.year = year;
-	}
+    }
+    /**
+    Function splits an input string of format MM/DD/YYYY and sets each respective date component.
+    @param date : selected/provided publishing date in format MM/DD/YYYY
+     */
 	public Date(String date){
         //taking mm/dd/yyy and creating a date object
         //assumes correct input, need to use isValid() before using constructor
@@ -55,14 +83,20 @@ public class Date {
         this.setDay(Integer.parseInt(splitDateInput[1]));
         this.setYear(Integer.parseInt(splitDateInput[2]));
     }
+    /**
+    Initializes date to current date, sets year, month, day accordingly.
+     */
     public Date(){
-        //today's date
         Calendar currDate = Calendar.getInstance();
         this.setMonth(currDate.get(Calendar.MONTH) + 1);
         this.setDay(currDate.get(Calendar.DAY_OF_MONTH));
         this.setYear(currDate.get(Calendar.YEAR));
-
     }
+    /**
+    Determines whether a provided year (testYear) is a leap year.
+    @param testYear : possible leap year
+    @return Returns True if testYear is a leap year, false otherwise.
+     */
     private boolean isLeapYear(int testYear){
         int QUADRENNIAL = 4;
         int CENTENNIAL = 100;
@@ -78,6 +112,10 @@ public class Date {
         }
         return false;
     }
+    /**
+    Checks if a provided date is valid based off of the Gregorian Calendar.
+    @return Returns true if date is valid, false otherwise.
+     */
     public boolean isValid(){
         int monthMax = 12;
         int yearMin = 1900;
