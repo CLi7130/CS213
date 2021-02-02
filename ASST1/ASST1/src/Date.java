@@ -82,7 +82,13 @@ public class Date {
         int monthMax = 12;
         int yearMin = 1900;
         int yearMax = Calendar.getInstance().get(Calendar.YEAR);
+
         int daysPerMonthMax = 0;
+        int thirtyOneDays = 31;
+        int thirtyDays = 30;
+        int twentyEightDays = 28;
+        int twentyNineDays = 29;
+
         int testMonth = this.getMonth();
         int testYear = this.getYear();
         int testDay = this.getDay();
@@ -95,30 +101,43 @@ public class Date {
             return false;
         }
 
-        int[] monthsWith31Days = {1,3,5,7,8,10,12};
-        int[] monthsWith30Days = {4,6,9,11};
-        int FEBRUARY = 2;
+        int JAN, FEB, MAR, APR, MAY, JUN, JUL, AUG, SEP, OCT, NOV, DEC;
+        JAN = 1;
+        FEB = 2;
+        MAR = 3;
+        APR = 4;
+        MAY = 5;
+        JUN = 6;
+        JUL = 7;
+        AUG = 8;
+        SEP = 9;
+        OCT = 10;
+        NOV = 11;
+        DEC = 12;
 
-        if(testMonth == FEBRUARY){
+        int[] monthsWith31Days = {JAN, MAR, MAY, JUL, AUG, OCT, DEC};
+        int[] monthsWith30Days = {APR, JUN, SEP, NOV};
+
+        if(testMonth == FEB){
             isLeapYear = isLeapYear(testYear);
 
             if(isLeapYear){
-                daysPerMonthMax = 29;
+                daysPerMonthMax = twentyNineDays;
             }
             else{
-                daysPerMonthMax = 28;
+                daysPerMonthMax = twentyEightDays;
             }
         }
 
         for(int i = 0; i < monthsWith31Days.length; i++){
             if(testMonth == monthsWith31Days[i]){
-                daysPerMonthMax = 31;
+                daysPerMonthMax = thirtyOneDays;
                 break;
             }
         }
         for(int i = 0; i < monthsWith30Days.length; i++){
             if(testMonth == monthsWith30Days[i]){
-                daysPerMonthMax = 30;
+                daysPerMonthMax = thirtyDays;
                 break;
             }
         }

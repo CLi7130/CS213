@@ -268,7 +268,7 @@ public class Library {
 	    testBook5.setName("The Home Depot");
 	    testBook5.setDatePublished(new Date("4/8/1900"));
 	    testBook6.setName("Megalodon");
-        testBook6.setDatePublished(new Date("11/25/2021"));
+        testBook6.setDatePublished(new Date("1/2/1900"));
         testBook7.setName("TitleGoesHere");
         testBook7.setDatePublished(new Date("1/1/1900"));
 	    
