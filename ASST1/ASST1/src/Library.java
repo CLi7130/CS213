@@ -28,7 +28,7 @@ TODO / NOTES
 public class Library {
 	private Book[] books; // array-based implementation of the bag data structure
 	private int numBooks; // the number of books currently in the bag
-	private int serialNum = 10000; // serial number for books
+	private int serialNum = 10001; // serial number for books
 	//private int grows = 1; // the amount of times the bag has had to have grown
 	
 	//default constructor to create an empty bag
@@ -44,7 +44,7 @@ public class Library {
     */
 	private int find(Book book) {
 		for(int i=0; i < books.length; i++) {
-			if(books[i] == book) {
+			if(books[i].equals(book)) {
 				return i;
 			}
 		}
@@ -117,7 +117,7 @@ public class Library {
     */
 	public boolean remove(Book book) { 
 		int index = find(book);
-		if(index>0) {
+		if(index>=0) {
 			books[index] = null;
 			numBooks--;
 			return true;

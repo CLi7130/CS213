@@ -52,16 +52,19 @@ public class Kiosk {
             	else {
                 	System.out.println("Invalid Date!");
             	}
-            	library.print();
-                //System.out.println(action);
-                //System.out.println(book);
-                //System.out.println(date);
             }
             else if(action.contentEquals("R")) {
-                while (string.hasMoreElements()) {
-                    System.out.println(string.nextElement());
-                }
-                System.out.println(action);
+            	string.nextToken();
+            	Book remove = new Book();
+            	remove.setNumber(string.nextToken().trim());
+            	boolean removed = library.remove(remove);
+            	if(removed) {
+            		System.out.println("Book# " + remove.getNumber() + "removed.");
+            	}
+            	else {
+            		System.out.println("Unable to remove, the library does not have this book.");
+            	}
+            	
             }
             else if(action.contentEquals("O")) {
                 while (string.hasMoreElements()) {
@@ -76,22 +79,13 @@ public class Kiosk {
                 System.out.println(action);
             }
             else if(action.contentEquals("PA")) {
-                while (string.hasMoreElements()) {
-                    System.out.println(string.nextElement());
-                }
-                System.out.println(action);
+            	library.print();
             }
             else if(action.contentEquals("PD")) {
-                while (string.hasMoreElements()) {
-                    System.out.println(string.nextElement());
-                }
-                System.out.println(action);
+            	library.printByDate();
             }
             else if(action.contentEquals("PN")) {
-                while (string.hasMoreElements()) {
-                    System.out.println(string.nextElement());
-                }
-                System.out.println(action);
+            	library.printByNumber();
             }
             else if(action.contentEquals("Q")) {
                 System.out.println(action);
