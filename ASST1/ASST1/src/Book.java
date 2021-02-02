@@ -85,7 +85,7 @@ public class Book {
      */
 	//@Override Doesn't compile compiler wants to get rid of override
     public boolean equals(Book book){
-        if(number == book.getNumber()) {
+        if(number.contentEquals(book.getNumber())) {
         	return true;
         }
         return false;
