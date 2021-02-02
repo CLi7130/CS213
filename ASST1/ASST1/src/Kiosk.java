@@ -18,8 +18,8 @@ sensitive, which means the commands with lowercase letters are invalid. You are 
 that are not supported.
 */
 public class Kiosk {
-	
-	public static String delims = ",";
+    private static int serialNum = 10001;
+    public static String delims = ",";
 
     public void run(){
     	System.out.println("Library Kiosk running ");
@@ -30,6 +30,7 @@ public class Kiosk {
         Library library = new Library();
         Scanner input = new Scanner(System.in);
         while(true) {
+            
             String stringInput = input.nextLine();
     		StringTokenizer string = new StringTokenizer(stringInput, delims, true);
             String action = string.nextToken();
@@ -46,7 +47,9 @@ public class Kiosk {
             	boolean valid = addDate.isValid();
             	if(valid) {
             		add.setDatePublished(addDate);
-                	library.add(add);
+                    library.add(add);
+                    add.setNumber(serialNum+"");
+                    serialNum++;
                 	System.out.println(book + " added to the library!");
             	}
             	else {

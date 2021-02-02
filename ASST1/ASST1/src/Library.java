@@ -16,6 +16,7 @@ TODO / NOTES
         - System.out.print() methods are OK
     TODO:
         - implement headers for each method
+        - check if need to change implementation of serialNum
         
 */
 
@@ -28,8 +29,6 @@ TODO / NOTES
 public class Library {
 	private Book[] books; // array-based implementation of the bag data structure
 	private int numBooks; // the number of books currently in the bag
-	private int serialNum = 10001; // serial number for books
-	//private int grows = 1; // the amount of times the bag has had to have grown
 	
 	//default constructor to create an empty bag
 	public Library() {
@@ -167,9 +166,7 @@ public class Library {
     @param A book from the Book class
     */
 	public void add(Book book) {
-		book.setNumber(serialNum+"");
 		book.setCheckedOut(false);
-		serialNum++;
 		numBooks++;
 		if(numBooks > books.length) {
 			grow();
