@@ -33,7 +33,7 @@ public class Date {
     @return : int containing day book was published.
      */
     public int getDay() {
-		return day;
+		return this.day;
     }
     /**
     Sets day published to input value.
@@ -47,7 +47,7 @@ public class Date {
     @return : int containing month book was published.
      */
 	public int getMonth() {
-		return month;
+		return this.month;
     }
     /**
     Sets month that book was published to specified input.
@@ -61,7 +61,7 @@ public class Date {
     @return : int containing year book was published.
      */
 	public int getYear() {
-		return year;
+		return this.year;
     }
     /**
     Sets year that book was published to specified input.
@@ -117,9 +117,13 @@ public class Date {
     @return Returns true if date is valid, false otherwise.
      */
     public boolean isValid(){
+        Calendar currDate = Calendar.getInstance();
         int monthMax = 12;
         int yearMin = 1900;
-        int yearMax = Calendar.getInstance().get(Calendar.YEAR);
+        int yearMax = currDate.get(Calendar.YEAR);
+
+        int currMonth = currDate.get(Calendar.MONTH) + 1;
+        int currDay = currDate.get(Calendar.DAY_OF_MONTH);
 
         int daysPerMonthMax = 0;
         int thirtyOneDays = 31;
@@ -137,6 +141,16 @@ public class Date {
         }
         if(testYear < yearMin || testYear > yearMax){
             return false;
+        }
+        if(testYear == yearMax){
+            if(testMonth > currMonth){
+                return false;
+            }
+            else if(testMonth == currMonth){
+                if(testDay > currDay){
+                    return false;
+                }
+            }
         }
 
         int JAN, FEB, MAR, APR, MAY, JUN, JUL, AUG, SEP, OCT, NOV, DEC;

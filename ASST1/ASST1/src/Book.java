@@ -149,7 +149,7 @@ public class Book {
             formattedBookInfo = formattedBookInfo + "is available.";
         }
         else{
-            formattedBookInfo = formattedBookInfo + "is not available.";
+            formattedBookInfo = formattedBookInfo + "is checked out.";
         }
 
         return formattedBookInfo;

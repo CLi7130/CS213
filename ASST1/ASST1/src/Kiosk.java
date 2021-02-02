@@ -50,7 +50,7 @@ public class Kiosk {
                     library.add(add);
                     add.setNumber(serialNum+"");
                     serialNum++;
-                	System.out.println(book + " added to the library!");
+                	System.out.println(book + " added to the library.");
             	}
             	else {
                 	System.out.println("Invalid Date!");
@@ -62,7 +62,7 @@ public class Kiosk {
             	remove.setNumber(string.nextToken().trim());
             	boolean removed = library.remove(remove);
             	if(removed) {
-            		System.out.println("Book# " + remove.getNumber() + "removed.");
+            		System.out.println("Book# " + remove.getNumber() + " removed.");
             	}
             	else {
             		System.out.println("Unable to remove, the library does not have this book.");
@@ -70,25 +70,62 @@ public class Kiosk {
             	
             }
             else if(action.contentEquals("O")) {
-                while (string.hasMoreElements()) {
-                    System.out.println(string.nextElement());
+                string.nextToken();
+                Book bookToCheckOut = new Book();
+                bookToCheckOut.setNumber(string.nextToken().trim());
+                
+                boolean checkedIn = library.checkOut(bookToCheckOut);
+
+                if(checkedIn){
+                    System.out.println("You've checked out Book#" + bookToCheckOut.getNumber() + ". Enjoy!");
                 }
-                System.out.println(action);
+                else{
+                    System.out.println("Book#" + bookToCheckOut.getNumber() + " is not available.");
+                }
             }
-            else if(action.contentEquals("I")) {
-                while (string.hasMoreElements()) {
-                    System.out.println(string.nextElement());
+            else if(action.contentEquals("I")) {//fix
+                string.nextToken();
+                Book bookToBeReturned = new Book();
+                bookToBeReturned.setNumber(string.nextToken().trim());
+                
+                boolean returnPossible = library.returns(bookToBeReturned);
+
+                if(returnPossible){
+                    System.out.println("Book#" + bookToBeReturned.getNumber() + " return has completed. Thanks!");
                 }
-                System.out.println(action);
+                else{
+                    System.out.println("Unable to return Book#" + bookToBeReturned.getNumber() + ".");
+                }
             }
             else if(action.contentEquals("PA")) {
-            	library.print();
+                if(library.getNumBooks() == 0){
+                    System.out.println("Library catalog is empty!");
+                }
+                else{
+                    System.out.println("**List of books in the library.");
+                    library.print();
+                    System.out.println("**End of list");
+                }
             }
             else if(action.contentEquals("PD")) {
-            	library.printByDate();
+                if(library.getNumBooks() == 0){
+                    System.out.println("Bookshelf is empty!");
+                }
+                else{
+                    System.out.println("**List of books by the dates published.");
+                    library.printByDate();
+                    System.out.println("**End of list");
+                }
             }
             else if(action.contentEquals("PN")) {
-            	library.printByNumber();
+                if(library.getNumBooks() == 0){
+                    System.out.println("Bookshelf is empty!");
+                }
+                else{
+                    System.out.println("**List of books List of books by the book numbers.");
+                    library.printByNumber();
+                    System.out.println("**End of list");
+                }
             }
             else if(action.contentEquals("Q")) {
                 System.out.println(action);

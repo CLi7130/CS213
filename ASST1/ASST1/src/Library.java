@@ -30,19 +30,31 @@ public class Library {
 	private Book[] books; // array-based implementation of the bag data structure
 	private int numBooks; // the number of books currently in the bag
 	
-	//default constructor to create an empty bag
+	/**
+    Constructor for new Library Array
+     */
 	public Library() {
 		books = new Book[4];
 		numBooks = 0;
-	} 
+    } 
+    /**
+    Returns number of books currently in library
+     * @return int value containing number of Books in library.
+     */
+    public int getNumBooks(){
+        return numBooks;
+    }
 	
 	/**
     Finds where a book is in the bag
     @param book that you want to find
     @return the index of the book otherwise -1 if not found
     */
-	private int find(Book book) {
+	public int find(Book book) {
 		for(int i=0; i < books.length; i++) {
+            if(books[i] == null){
+                continue;
+            }
 			if(books[i].equals(book)) {
 				return i;
 			}
@@ -133,6 +145,17 @@ public class Library {
                 if(firstDay < secondDay){
                     return true;
                 }
+                else if(firstDay == secondDay){
+                    //sort alphabetically if exact same publishing date
+                    String firstName = first.getName();
+                    String secondName = second.getName();
+
+                    int alphabetOrder = firstName.compareTo(secondName);
+
+                    if(alphabetOrder < 0){
+                        return true;
+                    }
+                }
             }
         }
         return false;
@@ -156,6 +179,9 @@ public class Library {
             while(sortedMax>=0 && currSortedBook > key){
                 books[sortedMax+1] = books[sortedMax];
                 sortedMax--;
+                if(sortedMax < 0){
+                    break;
+                }
                 currSortedBook = Integer.parseInt(books[sortedMax].getNumber());
             }
             books[sortedMax+1] = unsortedBook;
@@ -195,11 +221,13 @@ public class Library {
     @return true if possible and false otherwise
     */
 	public boolean checkOut(Book book) {
-		if((find(book) < 0) || !book.isCheckedOut()){
+
+        int index = find(book);
+		if((find(book) < 0) || books[index].isCheckedOut()){
 			return false;
-		}
+        }
 		else {
-			book.setCheckedOut(true);
+			books[index].setCheckedOut(true);
 			return true;
 		}
 	}
@@ -210,9 +238,11 @@ public class Library {
     @return true if possible and false otherwise
     */
 	public boolean returns(Book book) {
-		if((find(book) < 0) || !book.isCheckedOut()){
+        int index = find(book);
+		if((find(book) < 0) || !books[index].isCheckedOut()){
 			return false;
-		}
+        }
+        books[index].setCheckedOut(false);
 		return true;
 	}
 	
@@ -220,6 +250,7 @@ public class Library {
    	Prints the contents of the bag
     */
 	public void print() {
+        trimArray();
 		for(int i=0; i < books.length; i++) {
 			if(books[i] == null) { 
 				continue;
