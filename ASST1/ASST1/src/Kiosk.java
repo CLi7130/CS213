@@ -27,9 +27,9 @@ public class Kiosk {
         String date = "";
         String book = "";
         Date addDate;
-    	Library library = new Library();
+        Library library = new Library();
+        Scanner input = new Scanner(System.in);
         while(true) {
-            Scanner input = new Scanner(System.in);
             String stringInput = input.nextLine();
     		StringTokenizer string = new StringTokenizer(stringInput, delims, true);
             String action = string.nextToken();
@@ -95,7 +95,8 @@ public class Kiosk {
                 System.out.println("Invalid Command!");
             }
         }
-    	System.out.println("Kiosk session ended.");
+        System.out.println("Kiosk session ended.");
+        input.close();
 
 
     }
