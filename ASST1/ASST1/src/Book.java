@@ -74,7 +74,7 @@ public class Book {
 		return datePublished;
 	}
 	public void setDatePublished(Date datePublished) {
-		this.datePublished = datePublished;
+        this.datePublished = datePublished;	
 	}
     
     /**
@@ -142,10 +142,11 @@ public static void main(String[] args){
     testBook2.number = "10001";
     testBook3.number = "10002";
 
-    //toString method tested, all fields but datePublished work
+    /*
     System.out.println(testBook.toString());
     System.out.println(testBook.equals(testBook2)+ " :expected true");
     System.out.println(testBook.equals(testBook3)+ " :expected false");
+    */
     new Library().main();
 }
 
