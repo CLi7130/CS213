@@ -1,22 +1,6 @@
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
-
-/*
-TODO / NOTES 
-     ** delete this section before submission**
-     - use RunProject1.java as a driver
-     - kiosk processes command lines from console
-        - user interface class handling input/output
-    - you can define the data members you need and define some private methods to handle the commands
-        - follow ground rules and programming style.
-        
-        
-        A command line always begins with a command and followed by a comma and some data tokens. Each data token is
-also delimited by a comma. Some examples of valid command lines are demonstrated below. All commands are case-
-sensitive, which means the commands with lowercase letters are invalid. You are required to deal with bad commands
-that are not supported.
-*/
 public class Kiosk {
     private static int serialNum = 10001;
     public static String delims = ",";
@@ -128,7 +112,6 @@ public class Kiosk {
                 }
             }
             else if(action.contentEquals("Q")) {
-                System.out.println(action);
                 break;
             }
             else {

@@ -1,22 +1,6 @@
 import java.util.Calendar;
 
 
-/*
-TODO / NOTES 
-     ** delete this section before submission**
-    - you CANNOT add other data members to this class
-    - you CANNOT use System.out in this class
-    formatting for naming for leap year constants:
-        public static final int QUADRENNIAL = 4;
-        public static final int CENTENNIAL = 100;
-        public static final int QUATERCENTENNIAL;
-
-    potential edge cases for leap year testing: 1900
-    - test cases for isValid are worth 10 points, follow test specification section in software development ground rules.
-    TODO:
-        - implement method headers for Date() and isValid()
-*/
-
 /**
     This class instantiates a Date object from a string, creating an object in 
     the format of mm/dd/yyyy.

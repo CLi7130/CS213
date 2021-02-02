@@ -1,39 +1,4 @@
-/* 
 
-TODO / Notes on Book class:
-
-    ** delete this section before submission**
-
-    - implement equals method
-        - method checks book number
-    - implement toString method
-        - format: "Book#10007::Design Patterns::5/30/1996::is available."
-                : "Book#<Book.number>::<Book.name>::<Book.datePublished>
-                    ::<is/is not available>."
-                    - for isAvailable:  - check Book.checkedOut
-                                        - check if book is in library at all
-
-    - do not add any other data members/instance variables EXCEPT static variables 
-        or constants
-    - You CANNOT read from console, or use System.out in this class
-        - always return to kiosk class-> read from console/print there?
-
-    - Book.number   
-        - starts at 10001
-        - will not exceed 5 digits per Project 1 Q&A
-        - implement counter in Kiosk class to track # of books?
-            - start counter at 10000
-            - if command is A / Add - increment bookCounter
-                - Book.number = bookCounter;
-
-    Book.name
-        - check for empty string
-
-    Book.checkedOut
-        - initialize to false
-        - make sure to change when checking books in/out
-        
-*/
 
 /** 
     This class instantiates a book object to be placed in the library bag data structure,and creates two methods useful in categorization and parsing of the given library.

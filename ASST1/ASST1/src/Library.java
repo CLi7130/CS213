@@ -1,25 +1,3 @@
-/*
-TODO / NOTES 
-    ** delete this section before submission**
-    - DO NOT ADD:
-        - other data members
-            - ONLY EXCEPTION IS CONSTANTS
-        - Do not change signatures of methods listed
-            - can add other methods if necessary(private/helper)
-    
-    - remove() method calls helper method find(), to find index of book 
-        to be removed, method must maintain the current order of books
-        in the array after removal.
-    - can use any algorithm for sorting
-    - check for bad input/commands
-    - you CANNOT use System.out in this class
-        - System.out.print() methods are OK
-    TODO:
-        - implement headers for each method
-        - check if need to change implementation of serialNum
-        
-*/
-
 /** 
     This class allows for the creation of the library object to hold all book objects that are added, as well as allowing operations to simulate a physical library.
     Methods included in this class allow users to find books, add and remove books from the library, as well as check out and return books.  The library also includes several different functionalities for printing the current catalogue, including printing by date, and by book number.
