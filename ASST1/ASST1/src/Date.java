@@ -1,44 +1,6 @@
 import java.util.Calendar;
 
 
-/*
-TODO / NOTES 
-     ** delete this section before submission**
-    - you CANNOT add other data members to this class
-    - you CANNOT use System.out in this class
-    formatting for naming for leap year constants:
-        public static final int QUADRENNIAL = 4;
-        public static final int CENTENNIAL = 100;
-        public static final int QUATERCENTENNIAL;
-    isValid():
-        - dates with a year less than 1900, or beyond today's date are invalid
-        - Months with 31 days:
-            - Jan, Mar, May, Jul, Aug, Oct, Dec
-        - Months with 30 days:
-            - Apr, Jun, Sept, Nov
-        - February has 28 days in a normal year, and 29 days in a leap year
-            - only need to check for leap year if month is feb/02
-    Leap year guidelines:
-        1. If year % 4 = 0
-                - go to step 2
-            else
-                - go to step 5
-        2. if year % 100
-                - go to step 3
-            else
-                - go to step 4
-        3. If year % 400
-                - go to step 4
-            else
-                - go to step 5
-        4. This is a leap year
-        5. This is not a leap year
-    potential edge cases for leap year testing: 1900
-    - test cases for isValid are worth 10 points, follow test specification section in software development ground rules.
-    TODO:
-        - implement method headers for Date() and isValid()
-*/
-
 /**
     This class instantiates a Date object from a string, creating an object in 
     the format of mm/dd/yyyy.
@@ -50,24 +12,52 @@ public class Date {
     private int month;
     private int day;
 
+    /**
+    Gets day book was published.
+    @return : int containing day book was published.
+     */
     public int getDay() {
-		return day;
-	}
+		return this.day;
+    }
+    /**
+    Sets day published to input value.
+     * @param day : specified day book was published.
+     */
 	public void setDay(int day) {
 		this.day = day;
-	}
+    }
+    /**
+    Gets month book was published.
+    @return : int containing month book was published.
+     */
 	public int getMonth() {
-		return month;
-	}
+		return this.month;
+    }
+    /**
+    Sets month that book was published to specified input.
+    @param month : specified month book was published.
+     */
 	public void setMonth(int month) {
 		this.month = month;
-	}
+    }
+    /**
+    Gets year book was published.
+    @return : int containing year book was published.
+     */
 	public int getYear() {
-		return year;
-	}
+		return this.year;
+    }
+    /**
+    Sets year that book was published to specified input.
+    @param year : specified year book was published.
+     */
 	public void setYear(int year) {
 		this.year = year;
-	}
+    }
+    /**
+    Function splits an input string of format MM/DD/YYYY and sets each respective date component.
+    @param date : selected/provided publishing date in format MM/DD/YYYY
+     */
 	public Date(String date){
         //taking mm/dd/yyy and creating a date object
         //assumes correct input, need to use isValid() before using constructor
@@ -77,14 +67,20 @@ public class Date {
         this.setDay(Integer.parseInt(splitDateInput[1]));
         this.setYear(Integer.parseInt(splitDateInput[2]));
     }
+    /**
+    Initializes date to current date, sets year, month, day accordingly.
+     */
     public Date(){
-        //today's date
         Calendar currDate = Calendar.getInstance();
         this.setMonth(currDate.get(Calendar.MONTH) + 1);
         this.setDay(currDate.get(Calendar.DAY_OF_MONTH));
         this.setYear(currDate.get(Calendar.YEAR));
-
     }
+    /**
+    Determines whether a provided year (testYear) is a leap year.
+    @param testYear : possible leap year
+    @return Returns True if testYear is a leap year, false otherwise.
+     */
     private boolean isLeapYear(int testYear){
         int QUADRENNIAL = 4;
         int CENTENNIAL = 100;
@@ -95,17 +91,30 @@ public class Date {
                 if(testYear % QUATERCENTENNIAL != 0){
                     return false;
                 }
-                return true;
             }
             return true;
         }
         return false;
     }
+    /**
+    Checks if a provided date is valid based off of the Gregorian Calendar.
+    @return Returns true if date is valid, false otherwise.
+     */
     public boolean isValid(){
+        Calendar currDate = Calendar.getInstance();
         int monthMax = 12;
         int yearMin = 1900;
-        int yearMax = Calendar.getInstance().get(Calendar.YEAR);
+        int yearMax = currDate.get(Calendar.YEAR);
+
+        int currMonth = currDate.get(Calendar.MONTH) + 1;
+        int currDay = currDate.get(Calendar.DAY_OF_MONTH);
+
         int daysPerMonthMax = 0;
+        int thirtyOneDays = 31;
+        int thirtyDays = 30;
+        int twentyEightDays = 28;
+        int twentyNineDays = 29;
+
         int testMonth = this.getMonth();
         int testYear = this.getYear();
         int testDay = this.getDay();
@@ -117,31 +126,54 @@ public class Date {
         if(testYear < yearMin || testYear > yearMax){
             return false;
         }
+        if(testYear == yearMax){
+            if(testMonth > currMonth){
+                return false;
+            }
+            else if(testMonth == currMonth){
+                if(testDay > currDay){
+                    return false;
+                }
+            }
+        }
 
-        int[] monthsWith31Days = {1,3,5,7,8,10,12};
-        int[] monthsWith30Days = {4,6,9,11};
-        int FEBRUARY = 2;
+        int JAN, FEB, MAR, APR, MAY, JUN, JUL, AUG, SEP, OCT, NOV, DEC;
+        JAN = 1;
+        FEB = 2;
+        MAR = 3;
+        APR = 4;
+        MAY = 5;
+        JUN = 6;
+        JUL = 7;
+        AUG = 8;
+        SEP = 9;
+        OCT = 10;
+        NOV = 11;
+        DEC = 12;
 
-        if(testMonth == FEBRUARY){
+        int[] monthsWith31Days = {JAN, MAR, MAY, JUL, AUG, OCT, DEC};
+        int[] monthsWith30Days = {APR, JUN, SEP, NOV};
+
+        if(testMonth == FEB){
             isLeapYear = isLeapYear(testYear);
 
             if(isLeapYear){
-                daysPerMonthMax = 29;
+                daysPerMonthMax = twentyNineDays;
             }
             else{
-                daysPerMonthMax = 28;
+                daysPerMonthMax = twentyEightDays;
             }
         }
 
         for(int i = 0; i < monthsWith31Days.length; i++){
             if(testMonth == monthsWith31Days[i]){
-                daysPerMonthMax = 31;
+                daysPerMonthMax = thirtyOneDays;
                 break;
             }
         }
         for(int i = 0; i < monthsWith30Days.length; i++){
             if(testMonth == monthsWith30Days[i]){
-                daysPerMonthMax = 30;
+                daysPerMonthMax = thirtyDays;
                 break;
             }
         }

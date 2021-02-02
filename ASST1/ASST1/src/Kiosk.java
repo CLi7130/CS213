@@ -1,25 +1,9 @@
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
-
-/*
-TODO / NOTES 
-     ** delete this section before submission**
-     - use RunProject1.java as a driver
-     - kiosk processes command lines from console
-        - user interface class handling input/output
-    - you can define the data members you need and define some private methods to handle the commands
-        - follow ground rules and programming style.
-        
-        
-        A command line always begins with a command and followed by a comma and some data tokens. Each data token is
-also delimited by a comma. Some examples of valid command lines are demonstrated below. All commands are case-
-sensitive, which means the commands with lowercase letters are invalid. You are required to deal with bad commands
-that are not supported.
-*/
 public class Kiosk {
-	
-	public static String delims = ",";
+    private static int serialNum = 10001;
+    public static String delims = ",";
 
     public void run(){
     	System.out.println("Library Kiosk running ");
@@ -27,9 +11,10 @@ public class Kiosk {
         String date = "";
         String book = "";
         Date addDate;
-    	Library library = new Library();
+        Library library = new Library();
+        Scanner input = new Scanner(System.in);
         while(true) {
-            Scanner input = new Scanner(System.in);
+            
             String stringInput = input.nextLine();
     		StringTokenizer string = new StringTokenizer(stringInput, delims, true);
             String action = string.nextToken();
@@ -46,8 +31,10 @@ public class Kiosk {
             	boolean valid = addDate.isValid();
             	if(valid) {
             		add.setDatePublished(addDate);
-                	library.add(add);
-                	System.out.println(book + " added to the library!");
+                    library.add(add);
+                    add.setNumber(serialNum+"");
+                    serialNum++;
+                	System.out.println(book + " added to the library.");
             	}
             	else {
                 	System.out.println("Invalid Date!");
@@ -59,7 +46,7 @@ public class Kiosk {
             	remove.setNumber(string.nextToken().trim());
             	boolean removed = library.remove(remove);
             	if(removed) {
-            		System.out.println("Book# " + remove.getNumber() + "removed.");
+            		System.out.println("Book# " + remove.getNumber() + " removed.");
             	}
             	else {
             		System.out.println("Unable to remove, the library does not have this book.");
@@ -67,35 +54,72 @@ public class Kiosk {
             	
             }
             else if(action.contentEquals("O")) {
-                while (string.hasMoreElements()) {
-                    System.out.println(string.nextElement());
+                string.nextToken();
+                Book bookToCheckOut = new Book();
+                bookToCheckOut.setNumber(string.nextToken().trim());
+                
+                boolean checkedIn = library.checkOut(bookToCheckOut);
+
+                if(checkedIn){
+                    System.out.println("You've checked out Book#" + bookToCheckOut.getNumber() + ". Enjoy!");
                 }
-                System.out.println(action);
+                else{
+                    System.out.println("Book#" + bookToCheckOut.getNumber() + " is not available.");
+                }
             }
-            else if(action.contentEquals("I")) {
-                while (string.hasMoreElements()) {
-                    System.out.println(string.nextElement());
+            else if(action.contentEquals("I")) {//fix
+                string.nextToken();
+                Book bookToBeReturned = new Book();
+                bookToBeReturned.setNumber(string.nextToken().trim());
+                
+                boolean returnPossible = library.returns(bookToBeReturned);
+
+                if(returnPossible){
+                    System.out.println("Book#" + bookToBeReturned.getNumber() + " return has completed. Thanks!");
                 }
-                System.out.println(action);
+                else{
+                    System.out.println("Unable to return Book#" + bookToBeReturned.getNumber() + ".");
+                }
             }
             else if(action.contentEquals("PA")) {
-            	library.print();
+                if(library.getNumBooks() == 0){
+                    System.out.println("Library catalog is empty!");
+                }
+                else{
+                    System.out.println("**List of books in the library.");
+                    library.print();
+                    System.out.println("**End of list");
+                }
             }
             else if(action.contentEquals("PD")) {
-            	library.printByDate();
+                if(library.getNumBooks() == 0){
+                    System.out.println("Bookshelf is empty!");
+                }
+                else{
+                    System.out.println("**List of books by the dates published.");
+                    library.printByDate();
+                    System.out.println("**End of list");
+                }
             }
             else if(action.contentEquals("PN")) {
-            	library.printByNumber();
+                if(library.getNumBooks() == 0){
+                    System.out.println("Bookshelf is empty!");
+                }
+                else{
+                    System.out.println("**List of books List of books by the book numbers.");
+                    library.printByNumber();
+                    System.out.println("**End of list");
+                }
             }
             else if(action.contentEquals("Q")) {
-                System.out.println(action);
                 break;
             }
             else {
                 System.out.println("Invalid Command!");
             }
         }
-    	System.out.println("Kiosk session ended.");
+        System.out.println("Kiosk session ended.");
+        input.close();
 
 
     }
