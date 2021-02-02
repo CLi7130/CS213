@@ -1,10 +1,22 @@
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
+/**
+This class is the Interface between the user and the program, all error messages and success messages will print from here
+Also included is a method run() which will initiate the interface. 
+@author Craig Li, Prerak Patel
+*/
+
 public class Kiosk {
     private static int serialNum = 10001;
     public static String delims = ",";
 
+    
+    /**
+	Runs the whole interface between user and library.
+	The user inputs commands either A, R, O, I, PA, 
+	PD, PN and additional inputs adn the program will respond 
+    */
     public void run(){
     	System.out.println("Library Kiosk running ");
 
