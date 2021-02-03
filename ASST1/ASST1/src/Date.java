@@ -59,8 +59,6 @@ public class Date {
     @param date : selected/provided publishing date in format MM/DD/YYYY
      */
 	public Date(String date){
-        //taking mm/dd/yyy and creating a date object
-        //assumes correct input, need to use isValid() before using constructor
         String[] splitDateInput = date.split("/");
 
         this.setMonth(Integer.parseInt(splitDateInput[0]));
@@ -97,8 +95,8 @@ public class Date {
         return false;
     }
     /**
-    Checks if a provided date is valid based off of the Gregorian Calendar.
-    @return Returns true if date is valid, false otherwise.
+    Checks if a provided date is valid based off of the Gregorian Calendar.  Also checks against current date.
+    @return Returns true if date is valid, false otherwise, or if date is  beyond current date.
      */
     public boolean isValid(){
         Calendar currDate = Calendar.getInstance();

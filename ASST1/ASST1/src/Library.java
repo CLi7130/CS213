@@ -277,6 +277,16 @@ public class Library {
         testBook6.setDatePublished(new Date("1/2/1900"));
         testBook7.setName("TitleGoesHere");
         testBook7.setDatePublished(new Date("1/1/1900"));
+<<<<<<< HEAD
+=======
+        testBook.setNumber("1");
+        testBook2.setNumber("5");
+        testBook3.setNumber("9");
+        testBook4.setNumber("7");
+        testBook5.setNumber("3");
+        testBook6.setNumber("2");
+        testBook7.setNumber("19");
+>>>>>>> 00853c335cca9d691f43faf70c7588ad3830253c
 	    
 	    add(testBook);
 	    add(testBook2);
@@ -290,12 +300,16 @@ public class Library {
 	    //System.out.println(find(testBook)+" :expected value = 0");
 	    //System.out.println(find(testBook2)+" :expected value = -1");
         
+<<<<<<< HEAD
         testBook.setNumber("1");
         testBook3.setNumber("9");
         testBook4.setNumber("7");
         testBook5.setNumber("3");
         testBook6.setNumber("2");
         testBook7.setNumber("19");
+=======
+
+>>>>>>> 00853c335cca9d691f43faf70c7588ad3830253c
         
         System.out.println("Unsorted:");
         print();
