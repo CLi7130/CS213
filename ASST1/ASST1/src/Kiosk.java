@@ -28,7 +28,8 @@ public class Kiosk {
         while(true) {
             
             String stringInput = input.nextLine();
-    		StringTokenizer string = new StringTokenizer(stringInput, delims, true);
+            StringTokenizer string = new StringTokenizer(stringInput,
+                                                         delims, true);
             String action = string.nextToken();
 
             if(action.contentEquals("A")) {
@@ -38,7 +39,6 @@ public class Kiosk {
             	string.nextToken();
             	date = string.nextToken();
             	add.setName(book);
-            	//add.setDatePublished(new Date(date));
             	addDate = new Date(date);
             	boolean valid = addDate.isValid();
             	if(valid) {
@@ -61,7 +61,8 @@ public class Kiosk {
             		System.out.println("Book# " + remove.getNumber() + " removed.");
             	}
             	else {
-            		System.out.println("Unable to remove, the library does not have this book.");
+                    System.out.println("Unable to remove, the library does"
+                                        + "not have this book.");
             	}
             	
             }
@@ -76,7 +77,8 @@ public class Kiosk {
                     System.out.println("You've checked out Book#" + bookToCheckOut.getNumber() + ". Enjoy!");
                 }
                 else{
-                    System.out.println("Book#" + bookToCheckOut.getNumber() + " is not available.");
+                    System.out.println("Book#" + bookToCheckOut.getNumber() 
+                                        + " is not available.");
                 }
             }
             else if(action.contentEquals("I")) {//fix
@@ -87,7 +89,8 @@ public class Kiosk {
                 boolean returnPossible = library.returns(bookToBeReturned);
 
                 if(returnPossible){
-                    System.out.println("Book#" + bookToBeReturned.getNumber() + " return has completed. Thanks!");
+                    System.out.println("Book#" + bookToBeReturned.getNumber() 
+                                        + " return has completed. Thanks!");
                 }
                 else{
                     System.out.println("Unable to return Book#" + bookToBeReturned.getNumber() + ".");
@@ -118,7 +121,7 @@ public class Kiosk {
                     System.out.println("Bookshelf is empty!");
                 }
                 else{
-                    System.out.println("**List of books List of books by the book numbers.");
+                    System.out.println("**List of books by the book numbers.");
                     library.printByNumber();
                     System.out.println("**End of list");
                 }

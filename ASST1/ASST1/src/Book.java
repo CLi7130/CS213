@@ -65,7 +65,7 @@ public class Book {
     /**
     Sets datePublished for a specific book to specified date.
     @param datePublished : specified date of publishing
-     */
+    */
 	public void setDatePublished(Date datePublished) {
         this.datePublished = datePublished;	
 	}
