@@ -58,19 +58,13 @@ public class Library {
     Gets rid of any spaces inside the array where we removed
     and the bag will no longer have spaces inbetween books
     */
-	private void trimArray() {
-		Book[] trim = new Book[books.length];
-		int count = 0;
+	private void shiftArray() {
 		for(int i=0; i < books.length; i++) {
-			if(books[i] != null) {
-				trim[count] = books[i];
+			if(books[i] == null && i<numBooks) {
+				books[i] = books[i+1];
+				books[i+1] = null;
 			}
-			else {
-				count--;
-			}
-			count++;
 		}
-		books = trim;
 	}
 	
     /**
@@ -179,7 +173,7 @@ public class Library {
 		if(numBooks > books.length) {
 			grow();
 		}
-		trimArray();
+		shiftArray();
 		books[numBooks-1] = book;
 	}
 	
@@ -234,7 +228,7 @@ public class Library {
    	Prints the contents of the bag
     */
 	public void print() {
-        trimArray();
+        shiftArray();
 		for(int i=0; i < books.length; i++) {
 			if(books[i] == null) { 
 				continue;
