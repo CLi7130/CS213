@@ -58,7 +58,8 @@ public class Kiosk {
             	remove.setNumber(string.nextToken().trim());
             	boolean removed = library.remove(remove);
             	if(removed) {
-            		System.out.println("Book# " + remove.getNumber() + " removed.");
+                    System.out.println("Book# " + remove.getNumber() 
+                                        + " removed.");
             	}
             	else {
                     System.out.println("Unable to remove, the library does"
