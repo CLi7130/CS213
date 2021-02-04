@@ -3,7 +3,7 @@
 /** 
     This class instantiates a book object to be placed in the library bag data structure,and creates two methods useful in categorization and parsing of the given library.
     The book class contains instance variables that encompass the identifiers of a unique book available in the library, including a unique five digit serial number (Book.number), the book's title (Book.name), whether the book is checked in or out of the library (Book.checkedOut), and the publish date 
-    (Book.datePublished). Other methods included are the equals(Object obj) method and the toString() method, which check if a given book is equivalent to another, or convert relevant information about the book into a String of format "Book#<Book.number>::<Book.name>::<Book.datePublished>::<is/is not available>.".
+    (Book.datePublished). Other methods included are the equals(Object obj) method and the toString() method, which check if a given book is equivalent to another, or convert relevant information about the book into a String of format "Book# Book.number :: Book.name :: Book.datePublished :: is/is not available .".
     @author Craig Li, Prerak Patel
  */
 public class Book {
@@ -36,6 +36,7 @@ public class Book {
     }
     /**
     Sets book object's name to a specified string.
+    @param name of the book
      */
 	public void setName(String name) {
 		this.name = name;
@@ -86,8 +87,8 @@ public class Book {
      * Returns formatted string containing book's number, name, date published,
      * and availability.
      * @return String formatted to a specific book, following the format of: 
-     *         "Book#<Book.number>::<Book.name>::<Book.datePublished>::<is/is 
-     *         not available>.".
+     *         "Book# Book.number :: Book.name :: Book.datePublished :: is/is 
+     *         not available .".
      */
     @Override
     public String toString(){
