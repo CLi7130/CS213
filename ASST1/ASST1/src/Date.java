@@ -5,7 +5,7 @@ import java.util.Calendar;
     This class instantiates a Date object from a string, creating an object in 
     the format of mm/dd/yyyy.
     Also included is a method to test whether a date is valid given a range of before the year 1900 and the current date.
-    @author Craig Li, Prerak Patel
+    @author	Craig Li, Prerak Patel
  */
 public class Date {
     private int year;
@@ -14,49 +14,55 @@ public class Date {
 
     /**
     Gets day book was published.
-    @return : int containing day book was published.
+    @return	day int containing day book was published.
      */
     public int getDay() {
 		return this.day;
     }
+    
     /**
     Sets day published to input value.
-     * @param day : specified day book was published.
+    @param	day	specified day book was published.
      */
 	public void setDay(int day) {
 		this.day = day;
     }
+	
     /**
     Gets month book was published.
-    @return : int containing month book was published.
+    @return	month	int containing month book was published.
      */
 	public int getMonth() {
 		return this.month;
     }
+	
     /**
     Sets month that book was published to specified input.
-    @param month : specified month book was published.
+    @param	month	specified month book was published.
      */
 	public void setMonth(int month) {
 		this.month = month;
     }
+	
     /**
     Gets year book was published.
-    @return : int containing year book was published.
+    @return	year	int containing year book was published.
      */
 	public int getYear() {
 		return this.year;
     }
+	
     /**
     Sets year that book was published to specified input.
-    @param year : specified year book was published.
+    @param	year	specified year book was published.
      */
 	public void setYear(int year) {
 		this.year = year;
     }
+	
     /**
     Function splits an input string of format MM/DD/YYYY and sets each respective date component.
-    @param date : selected/provided publishing date in format MM/DD/YYYY
+    @param	date	selected/provided publishing date in format MM/DD/YYYY
      */
 	public Date(String date){
         String[] splitDateInput = date.split("/");
@@ -68,6 +74,7 @@ public class Date {
         this.setDay(Integer.parseInt(splitDateInput[daySplit]));
         this.setYear(Integer.parseInt(splitDateInput[yearSplit]));
     }
+	
     /**
     Initializes date to current date, sets year, month, day accordingly.
      */
@@ -77,10 +84,11 @@ public class Date {
         this.setDay(currDate.get(Calendar.DAY_OF_MONTH));
         this.setYear(currDate.get(Calendar.YEAR));
     }
+    
     /**
     Determines whether a provided year (testYear) is a leap year.
-    @param testYear : possible leap year
-    @return Returns True if testYear is a leap year, false otherwise.
+    @param	testYear	possible leap year
+    @return	true	true if testYear is a leap year, false otherwise.
      */
     private boolean isLeapYear(int testYear){
         int QUADRENNIAL = 4;
@@ -97,9 +105,10 @@ public class Date {
         }
         return false;
     }
+    
     /**
     Checks if a provided date is valid based off of the Gregorian Calendar.  Also checks against current date.
-    @return Returns true if date is valid, false otherwise, or if date is  beyond current date.
+    @return	true	true if date is valid, false otherwise, or if date is  beyond current date.
      */
     public boolean isValid(){
         Calendar currDate = Calendar.getInstance();
@@ -185,11 +194,12 @@ public class Date {
 
         return true;
     }
+    
     /**
      * Method returns a formatted string representing a date object.
      * For use only in testbed main.
-     * @param : Date object that needs to be represented as a String.
-     * @return : returns string representation of date object input.
+     * @param	date	date object that needs to be represented as a String.
+     * @return formattedDate	string representation of date object input.
      */
     private static String toString(Date date){
         String formattedDate = "";
@@ -205,8 +215,9 @@ public class Date {
     }
 
 
-
-//testbed main as a driver to exercise isValid() method.
+    /*	
+     * testbed main as a driver to exercise isValid() method. 
+     */
 public static void main(String[] args){
     int testCounter = 1;
 
