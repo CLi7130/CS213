@@ -80,7 +80,7 @@ public class Book {
     public boolean equals(Object obj){
     	if (obj instanceof Book) {
     		Book book = (Book) obj;
-            if(number.contentEquals(((Book) obj).getNumber())) {
+            if(number.contentEquals(book.getNumber())) {
             	return true;
             }
             return false;
