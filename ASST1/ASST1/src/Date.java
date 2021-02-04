@@ -187,7 +187,8 @@ public class Date {
     }
     /**
      * Method returns a formatted string representing a date object.
-     * For use only in testbed main.
+     * For use only in testbed main. String format returned is of format
+     * MM/DD/YYYY
      * @param : Date object that needs to be represented as a String.
      * @return : returns string representation of date object input.
      */
@@ -205,6 +206,11 @@ public class Date {
     }
 
 
+/*
+    Testbed main to extensively exercise isValid() method. 
+    Comments and other print objects have been added to increase
+    readability when testbed is run.
+*/
 
 //testbed main as a driver to exercise isValid() method.
 public static void main(String[] args){
