@@ -4,7 +4,7 @@ import java.util.StringTokenizer;
 /**
 This class is the Interface between the user and the program, all error messages and success messages will print from here
 Also included is a method run() which will initiate the interface. 
-@author Craig Li, Prerak Patel
+@author	Craig Li, Prerak Patel
 */
 
 public class Kiosk {

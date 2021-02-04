@@ -1,7 +1,7 @@
 /** 
     This class allows for the creation of the library object to hold all book objects that are added, as well as allowing operations to simulate a physical library.
     Methods included in this class allow users to find books, add and remove books from the library, as well as check out and return books.  The library also includes several different functionalities for printing the current catalogue, including printing by date, and by book number.
-    @author Craig Li, Prerak Patel 
+    @author	Craig Li, Prerak Patel 
  */
 
 public class Library {
@@ -16,10 +16,11 @@ public class Library {
 	public Library() {
 		books = new Book[4];
 		numBooks = 0;
-    } 
+    }
+	
     /**
     Returns number of books currently in library
-     * @return int value containing number of Books in library.
+    @return	numBooks	int value containing number of Books in library.
      */
     public int getNumBooks(){
         return numBooks;
@@ -27,8 +28,8 @@ public class Library {
 	
 	/**
     Finds where a book is in the bag
-    @param book that you want to find
-    @return the index of the book otherwise -1 if not found
+    @param	book	The book from Book class that you want to find
+    @return	int	the index of the book otherwise -1 if not found
     */
 	public int find(Book book) {
 		for(int i=0; i < books.length; i++) {
@@ -43,7 +44,7 @@ public class Library {
 	}
 	
 	/**
-     * Returns the array of Books with size 4 greater 
+     * Returns the array of books with size 4 greater 
      */
 	private void grow() { 
 		Book[] grow = new Book[books.length + growAmount];
@@ -98,11 +99,12 @@ public class Library {
             books[i] = swap;
         }
     }
+	
     /**
      * Helper method that compares the publishing dates of two books.
-     * @param first : iterative book being compared to current oldest book.
-     * @param second : current oldest book found so far in array.
-     * @return true if first is older than second, false otherwise.
+     @param	first	iterative book being compared to current oldest book.
+     @param	second	current oldest book found so far in array.
+     @return	true	true if first is older than second, false otherwise.
      */
     private boolean isOlder(Book first, Book second){
         int firstYear = first.getDatePublished().getYear();
@@ -166,9 +168,10 @@ public class Library {
             books[sortedMax+1] = unsortedBook;
         }
 	}
+	
 	/**
     Adds a book to the end of the bag
-    @param book of object Book
+    @param	book	book of object Book to be added to the bag
     */
 	public void add(Book book) {
 		book.setCheckedOut(false);
@@ -182,8 +185,9 @@ public class Library {
 	
 	/**
     Removes a book from the bag and does not reorder the bag
-    @param a book from the Book class
-    @return true if the book was found and removed and false if the book was not found
+    Uses the find helper method to remove the book
+    @param	book	book from the book class to be removed
+    @return	true	true if the book was found and removed and false if the book was not found
     */
 	public boolean remove(Book book) { 
 		int index = find(book);
@@ -197,8 +201,8 @@ public class Library {
 	
 	/**
    	Checks the book out if possible
-    @param book from Book class
-    @return true if possible and false otherwise
+    @param	book	book from Book class to be checked out
+    @return	true	true if possible and false otherwise
     */
 	public boolean checkOut(Book book) {
 
@@ -214,8 +218,8 @@ public class Library {
 	
 	/**
    	Returns the book out if possible
-    @param book from Book class
-    @return true if possible and false otherwise
+    @param	book	book from Book class to be returned
+    @return	true	true if possible and false otherwise
     */
 	public boolean returns(Book book) {
         int index = find(book);

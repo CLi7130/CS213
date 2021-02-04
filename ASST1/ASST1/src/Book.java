@@ -1,10 +1,13 @@
-
-
-/** 
+/* 
     This class instantiates a book object to be placed in the library bag data structure,and creates two methods useful in categorization and parsing of the given library.
     The book class contains instance variables that encompass the identifiers of a unique book available in the library, including a unique five digit serial number (Book.number), the book's title (Book.name), whether the book is checked in or out of the library (Book.checkedOut), and the publish date 
+<<<<<<< HEAD
     (Book.datePublished). Other methods included are the equals(Object obj) method and the toString() method, which check if a given book is equivalent to another, or convert relevant information about the book into a String of format "Book# Book.number :: Book.name :: Book.datePublished :: is available/is checked out.".
     @author Craig Li, Prerak Patel
+=======
+    (Book.datePublished). Other methods included are the equals(Object obj) method and the toString() method, which check if a given book is equivalent to another, or convert relevant information about the book into a String of format "Book# Book.number :: Book.name :: Book.datePublished :: is/is not available .".
+    @author	Craig Li, Prerak Patel
+>>>>>>> a7e06b51af398fa9891c3badeadc2f98f4be8296
  */
 public class Book {
 
@@ -15,56 +18,63 @@ public class Book {
     
 	/**
     Gets specified Book's serial number.
-    @return returns book serial number
+    @return	number	book serial number
      */
 	public String getNumber() {
 		return number;
     }
+	
     /**
     Sets specified Book's serial number.
-    @param number : desired serial number for a book object.
+    @param	number	desired serial number for a book object.
      */
 	public void setNumber(String number) {
 		this.number = number;
 	}
+	
 	/**
     Gets specified book object's title.
-    @return returns a string containing the book's title.
+    @return	name	string containing the book's title.
      */
 	public String getName() {
 		return name;
     }
+	
     /**
     Sets book object's name to a specified string.
-    @param name of the book
+    @param	name name of the book
      */
 	public void setName(String name) {
 		this.name = name;
 	}
+	
 	/**
     Checks whether a book is checked out of the library.
-     * @return true if checkedOut, false if otherwise.
+    @return	checkedOut	true if checkedOut, false if otherwise.
      */
 	public boolean isCheckedOut() {
 		return checkedOut;
     }
+	
     /**
     Sets book object's status to either checked In or Out.
-    @param checkedOut : if true, book is listed as checked out in system, if   false, listed as not checked out.
+    @param	checkedOut	if true, book is listed as checked out in system, if false, listed as not checked out.
      */
 	public void setCheckedOut(boolean checkedOut) {
 		this.checkedOut = checkedOut;
 	}
+	
 	/**
     Gets book's publishing date.
-    @return returns date Object containing publishing date.
+    @return	datePublished	Date object containing publishing date.
      */
 	public Date getDatePublished() {
 		return datePublished;
     }
+	
     /**
     Sets datePublished for a specific book to specified date.
-    @param datePublished : specified date of publishing
+    @param	datePublished	specified date of publishing from Date class
     */
 	public void setDatePublished(Date datePublished) {
         this.datePublished = datePublished;	
@@ -72,27 +82,34 @@ public class Book {
     
     /**
      Checks if two book objects are equivalent by comparing Book name and date published.
-     @param book to compare against
-     @return true if books compared have same name and publish date, false 
+     @param	obj	book from Book class to compare against
+     @return	true	true if books compared have same name and publish date, false 
              if otherwise
      */
 	@Override
     public boolean equals(Object obj){
     	if (obj instanceof Book) {
     		Book book = (Book) obj;
-            if(number.contentEquals(((Book) obj).getNumber())) {
+            if(number.contentEquals(book.getNumber())) {
             	return true;
             }
             return false;
     	}
     	return false;
     }
+	
     /**
      * Returns formatted string containing book's number, name, date published,
      * and availability.
+<<<<<<< HEAD
      * @return String formatted to a specific book, following the format of: 
      *         "Book# Book.number :: Book.name :: Book.datePublished :: 
      *          is available/is checked out.".
+=======
+	 @return	formattedBookInfo	String formatted to a specific book, following the format of: 
+     *         "Book# Book.number :: Book.name :: Book.datePublished :: is/is 
+     *         not available .".
+>>>>>>> a7e06b51af398fa9891c3badeadc2f98f4be8296
      */
     @Override
     public String toString(){
