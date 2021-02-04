@@ -1,7 +1,7 @@
 /** 
     This class allows for the creation of the library object to hold all book objects that are added, as well as allowing operations to simulate a physical library.
     Methods included in this class allow users to find books, add and remove books from the library, as well as check out and return books.  The library also includes several different functionalities for printing the current catalogue, including printing by date, and by book number.
-    @author Craig Li, Prerak Patel
+    @author Craig Li, Prerak Patel 
  */
 
 public class Library {
