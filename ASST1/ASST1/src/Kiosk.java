@@ -62,7 +62,7 @@ public class Kiosk {
             	}
             	else {
                     System.out.println("Unable to remove, the library does"
-                                        + "not have this book.");
+                                        + " not have this book.");
             	}
             	
             }
