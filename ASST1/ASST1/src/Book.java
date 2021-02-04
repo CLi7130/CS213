@@ -76,12 +76,16 @@ public class Book {
      @return true if books compared have same name and publish date, false 
              if otherwise
      */
-	//@Override Doesn't compile compiler wants to get rid of override
-    public boolean equals(Book book){
-        if(number.contentEquals(book.getNumber())) {
-        	return true;
-        }
-        return false;
+	@Override
+    public boolean equals(Object obj){
+    	if (obj instanceof Book) {
+    		Book book = (Book) obj;
+            if(number.contentEquals(((Book) obj).getNumber())) {
+            	return true;
+            }
+            return false;
+    	}
+    	return false;
     }
     /**
      * Returns formatted string containing book's number, name, date published,
@@ -119,28 +123,5 @@ public class Book {
 
         return formattedBookInfo;
     }
-
-
-//test driver, delete when making final formatting pass
-    
-public static void main(String[] args){
-    Book testBook = new Book();
-    Book testBook2 = new Book();
-    Book testBook3 = new Book();
-    testBook.name = "Born a Crime";
-    testBook.datePublished = new Date("11/15/2016");
-
-    testBook.number = "10001";
-    testBook.checkedOut = false;
-    testBook2.number = "10001";
-    testBook3.number = "10002";
-
-    /*
-    System.out.println(testBook.toString());
-    System.out.println(testBook.equals(testBook2)+ " :expected true");
-    System.out.println(testBook.equals(testBook3)+ " :expected false");
-    */
-    new Library().main();
-}
 
 }
