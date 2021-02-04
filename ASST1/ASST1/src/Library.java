@@ -41,8 +41,7 @@ public class Library {
 	}
 	
 	/**
-     * Returns the array of Books with size 4 greater
-     * @return books array with size 4 greater 
+     * Returns the array of Books with size 4 greater 
      */
 	private void grow() { 
 		Book[] grow = new Book[books.length + 4];
@@ -167,7 +166,7 @@ public class Library {
 	}
 	/**
     Adds a book to the end of the bag
-    @param A book from the Book class
+    @param book of object Book
     */
 	public void add(Book book) {
 		book.setCheckedOut(false);
@@ -181,7 +180,8 @@ public class Library {
 	
 	/**
     Removes a book from the bag and does not reorder the bag
-    @param A book from the Book class
+    @param a book from the Book class
+    @return true if the book was found and removed and false if the book was not found
     */
 	public boolean remove(Book book) { 
 		int index = find(book);
