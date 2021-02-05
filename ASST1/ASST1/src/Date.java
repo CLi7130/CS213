@@ -198,10 +198,10 @@ public class Date {
     }
     
     /**
-     * Method returns a formatted string representing a date object.
-     * For use only in testbed main.
-     * @param	date	date object that needs to be represented as a String.
-     * @return formattedDate	string representation of date object input.
+    Method returns a formatted string representing a date object.
+    For use only in testbed main.
+    @param	date	date object that needs to be represented as a String.
+    @return formattedDate	string representation of date object input.
      */
     private static String toString(Date date){
         String formattedDate = "";
@@ -218,8 +218,8 @@ public class Date {
 
 
 /**
- * Testbed main to exercise isValid() method.
- * Comments and other print objects are added to increase readability.
+Testbed main to exercise isValid() method.
+Comments and other print objects are added to increase readability.
  */
 public static void main(String[] args){
     int testCounter = 1;
