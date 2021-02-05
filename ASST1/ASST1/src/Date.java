@@ -2,11 +2,12 @@ import java.util.Calendar;
 
 
 /**
-    This class instantiates a Date object from a string, creating an object in 
-    the format of mm/dd/yyyy.
-    Also included is a method to test whether a date is valid given a range of before the year 1900 and the current date.
-    @author	Craig Li, Prerak Patel
+This class instantiates a Date object from a string, creating an object in 
+the format of mm/dd/yyyy.
+Also included is a method to test whether a date is valid given a range of before the year 1900 and the current date.
+@author	Craig Li, Prerak Patel
  */
+
 public class Date {
     private int year;
     private int month;
@@ -162,8 +163,8 @@ public class Date {
         NOV = 11;
         DEC = 12;
 
-        int[] monthsWith31Days = {JAN, MAR, MAY, JUL, AUG, OCT, DEC};
-        int[] monthsWith30Days = {APR, JUN, SEP, NOV};
+        final int[] monthsWith31Days = {JAN, MAR, MAY, JUL, AUG, OCT, DEC};
+        final int[] monthsWith30Days = {APR, JUN, SEP, NOV};
 
         if(testMonth == FEB){
             isLeapYear = isLeapYear(testYear);

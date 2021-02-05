@@ -1,9 +1,10 @@
 /* 
-    This class instantiates a book object to be placed in the library bag data structure,and creates two methods useful in categorization and parsing of the given library.
-    The book class contains instance variables that encompass the identifiers of a unique book available in the library, including a unique five digit serial number (Book.number), the book's title (Book.name), whether the book is checked in or out of the library (Book.checkedOut), and the publish date 
-    (Book.datePublished). Other methods included are the equals(Object obj) method and the toString() method, which check if a given book is equivalent to another, or convert relevant information about the book into a String of format "Book# Book.number :: Book.name :: Book.datePublished :: is available/is checked out.".
-    @author Craig Li, Prerak Patel
+This class instantiates a book object to be placed in the library bag data structure,and creates two methods useful in categorization and parsing of the given library.
+The book class contains instance variables that encompass the identifiers of a unique book available in the library, including a unique five digit serial number (Book.number), the book's title (Book.name), whether the book is checked in or out of the library (Book.checkedOut), and the publish date 
+(Book.datePublished). Other methods included are the equals(Object obj) method and the toString() method, which check if a given book is equivalent to another, or convert relevant information about the book into a String of format "Book# Book.number :: Book.name :: Book.datePublished :: is available/is checked out.".
+@author Craig Li, Prerak Patel
  */
+
 public class Book {
 
 	private String number; //a 5-digit serial number unique to the book
@@ -14,7 +15,7 @@ public class Book {
 	/**
     Gets specified Book's serial number.
     @return	number	book serial number
-     */
+    */
 	public String getNumber() {
 		return number;
     }
@@ -30,7 +31,7 @@ public class Book {
 	/**
     Gets specified book object's title.
     @return	name	string containing the book's title.
-     */
+    */
 	public String getName() {
 		return name;
     }
@@ -38,7 +39,7 @@ public class Book {
     /**
     Sets book object's name to a specified string.
     @param	name name of the book
-     */
+    */
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -46,7 +47,7 @@ public class Book {
 	/**
     Checks whether a book is checked out of the library.
     @return	checkedOut	true if checkedOut, false if otherwise.
-     */
+    */
 	public boolean isCheckedOut() {
 		return checkedOut;
     }
@@ -54,7 +55,7 @@ public class Book {
     /**
     Sets book object's status to either checked In or Out.
     @param	checkedOut	if true, book is listed as checked out in system, if false, listed as not checked out.
-     */
+    */
 	public void setCheckedOut(boolean checkedOut) {
 		this.checkedOut = checkedOut;
 	}
@@ -62,7 +63,7 @@ public class Book {
 	/**
     Gets book's publishing date.
     @return	datePublished	Date object containing publishing date.
-     */
+    */
 	public Date getDatePublished() {
 		return datePublished;
     }
@@ -76,10 +77,10 @@ public class Book {
 	}
     
     /**
-     Checks if two book objects are equivalent by comparing Book name and date published.
-     @param	obj	book from Book class to compare against
-     @return	true	true if books compared have same name and publish date, false 
-             if otherwise
+    Checks if two book objects are equivalent by comparing Book name and date published.
+    @param	obj	book from Book class to compare against
+    @return	true	true if books compared have same name and publish date,
+                     false if otherwise
      */
 	@Override
     public boolean equals(Object obj){

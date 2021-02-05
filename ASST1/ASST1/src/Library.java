@@ -1,6 +1,7 @@
 /** 
     This class allows for the creation of the library object to hold all book objects that are added, as well as allowing operations to simulate a physical library.
-    Methods included in this class allow users to find books, add and remove books from the library, as well as check out and return books.  The library also includes several different functionalities for printing the current catalogue, including printing by date, and by book number.
+    Methods included in this class allow users to find books, add and remove books from the library, as well as check out and return books.  The library also includes several different functionalities for printing the current
+    catalogue, including printing by date, and by book number.
     @author	Craig Li, Prerak Patel 
  */
 
@@ -12,7 +13,7 @@ public class Library {
 	
 	/**
     Constructor for new Library Array
-     */
+    */
 	public Library() {
 		books = new Book[4];
 		numBooks = 0;
@@ -21,7 +22,7 @@ public class Library {
     /**
     Returns number of books currently in library
     @return	numBooks	int value containing number of Books in library.
-     */
+    */
     public int getNumBooks(){
         return numBooks;
     }
@@ -44,8 +45,8 @@ public class Library {
 	}
 	
 	/**
-     * Returns the array of books with size 4 greater 
-     */
+    Returns the array of books with size 4 greater 
+    */
 	private void grow() { 
 		Book[] grow = new Book[books.length + growAmount];
 		for(int i=0; i < books.length; i++) {
@@ -101,19 +102,19 @@ public class Library {
     }
 	
     /**
-     * Helper method that compares the publishing dates of two books.
-     @param	first	iterative book being compared to current oldest book.
-     @param	second	current oldest book found so far in array.
-     @return	true	true if first is older than second, false otherwise.
-     */
+    Helper method that compares the publishing dates of two books.
+    @param	first	iterative book being compared to current oldest book.
+    @param	second	current oldest book found so far in array.
+    @return	true	true if first is older than second, false otherwise.
+    */
     private boolean isOlder(Book first, Book second){
-        int firstYear = first.getDatePublished().getYear();
-        int firstMonth = first.getDatePublished().getMonth();
-        int firstDay = first.getDatePublished().getDay();
+        final int firstYear = first.getDatePublished().getYear();
+        final int firstMonth = first.getDatePublished().getMonth();
+        final int firstDay = first.getDatePublished().getDay();
 
-        int secondYear = second.getDatePublished().getYear();
-        int secondMonth = second.getDatePublished().getMonth();
-        int secondDay = second.getDatePublished().getDay();
+        final int secondYear = second.getDatePublished().getYear();
+        final int secondMonth = second.getDatePublished().getMonth();
+        final int secondDay = second.getDatePublished().getDay();
 
         if(firstYear < secondYear){
             return true;
@@ -128,8 +129,8 @@ public class Library {
                 }
                 else if(firstDay == secondDay){
                     //sort alphabetically if exact same publishing date
-                    String firstName = first.getName();
-                    String secondName = second.getName();
+                    final String firstName = first.getName();
+                    final String secondName = second.getName();
 
                     int alphabetOrder = firstName.compareTo(secondName);
 
@@ -144,7 +145,7 @@ public class Library {
 	
 	/**
 	Sorts the bag by the serial numbers ascending order. Implemented using insertion sort.
-	 */
+	*/
 	private void sortByNumber() {
         
         for(int i = 1; i < books.length; i++){
@@ -190,7 +191,7 @@ public class Library {
     @return	true	true if the book was found and removed and false if the book was not found
     */
 	public boolean remove(Book book) { 
-		int index = find(book);
+		final int index = find(book);
 		if(index>=0) {
 			books[index] = null;
 			numBooks--;
@@ -206,7 +207,7 @@ public class Library {
     */
 	public boolean checkOut(Book book) {
 
-        int index = find(book);
+        final int index = find(book);
 		if((find(book) < 0) || books[index].isCheckedOut()){
 			return false;
         }
@@ -222,7 +223,7 @@ public class Library {
     @return	true	true if possible and false otherwise
     */
 	public boolean returns(Book book) {
-        int index = find(book);
+        final int index = find(book);
 		if((find(book) < 0) || !books[index].isCheckedOut()){
 			return false;
         }
