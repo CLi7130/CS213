@@ -66,9 +66,9 @@ public class Date {
      */
 	public Date(String date){
         String[] splitDateInput = date.split("/");
-        int monthSplit = 0;
-        int daySplit = 1;
-        int yearSplit = 2;
+        final int monthSplit = 0;
+        final int daySplit = 1;
+        final int yearSplit = 2;
 
         this.setMonth(Integer.parseInt(splitDateInput[monthSplit]));
         this.setDay(Integer.parseInt(splitDateInput[daySplit]));
@@ -91,9 +91,9 @@ public class Date {
     @return	true	true if testYear is a leap year, false otherwise.
      */
     private boolean isLeapYear(int testYear){
-        int QUADRENNIAL = 4;
-        int CENTENNIAL = 100;
-        int QUATERCENTENNIAL = 400;
+        final int QUADRENNIAL = 4;
+        final int CENTENNIAL = 100;
+        final int QUATERCENTENNIAL = 400;
 
         if(testYear % QUADRENNIAL == 0){
             if(testYear % CENTENNIAL == 0){
@@ -108,26 +108,27 @@ public class Date {
     
     /**
     Checks if a provided date is valid based off of the Gregorian Calendar.  Also checks against current date.
-    @return	true	true if date is valid, false otherwise, or if date is  beyond current date.
+    @return	true	true if date is valid, false otherwise, or if date is
+                    beyond current date.
      */
     public boolean isValid(){
         Calendar currDate = Calendar.getInstance();
-        int monthMax = 12;
-        int yearMin = 1900;
-        int yearMax = currDate.get(Calendar.YEAR);
+        final int monthMax = 12;
+        final int yearMin = 1900;
+        final int yearMax = currDate.get(Calendar.YEAR);
 
-        int currMonth = currDate.get(Calendar.MONTH) + 1;
-        int currDay = currDate.get(Calendar.DAY_OF_MONTH);
+        final int currMonth = currDate.get(Calendar.MONTH) + 1;
+        final int currDay = currDate.get(Calendar.DAY_OF_MONTH);
 
         int daysPerMonthMax = 0;
-        int thirtyOneDays = 31;
-        int thirtyDays = 30;
-        int twentyEightDays = 28;
-        int twentyNineDays = 29;
+        final int thirtyOneDays = 31;
+        final int thirtyDays = 30;
+        final int twentyEightDays = 28;
+        final int twentyNineDays = 29;
 
-        int testMonth = this.getMonth();
-        int testYear = this.getYear();
-        int testDay = this.getDay();
+        final int testMonth = this.getMonth();
+        final int testYear = this.getYear();
+        final int testDay = this.getDay();
         boolean isLeapYear = false;
 
         if(testMonth < 1 || testMonth > monthMax){
@@ -147,7 +148,7 @@ public class Date {
             }
         }
 
-        int JAN, FEB, MAR, APR, MAY, JUN, JUL, AUG, SEP, OCT, NOV, DEC;
+        final int JAN, FEB, MAR, APR, MAY, JUN, JUL, AUG, SEP, OCT, NOV, DEC;
         JAN = 1;
         FEB = 2;
         MAR = 3;
@@ -203,7 +204,7 @@ public class Date {
      */
     private static String toString(Date date){
         String formattedDate = "";
-        String formatSpacer = "/";
+        final String formatSpacer = "/";
 
         formattedDate += Integer.toString(date.getMonth());
         formattedDate += formatSpacer;
@@ -215,9 +216,10 @@ public class Date {
     }
 
 
-    /*	
-     * testbed main as a driver to exercise isValid() method. 
-     */
+/**
+ * Testbed main to exercise isValid() method.
+ * Comments and other print objects are added to increase readability.
+ */
 public static void main(String[] args){
     int testCounter = 1;
 

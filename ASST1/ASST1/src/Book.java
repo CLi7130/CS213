@@ -103,7 +103,7 @@ public class Book {
     @Override
     public String toString(){
         String formattedBookInfo = new String("Book#");
-        String formatSplitter = new String("::");
+        final String formatSplitter = new String("::");
 
         formattedBookInfo += this.number;
         formattedBookInfo += formatSplitter;

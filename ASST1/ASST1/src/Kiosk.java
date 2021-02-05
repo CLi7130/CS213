@@ -9,7 +9,7 @@ Also included is a method run() which will initiate the interface.
 
 public class Kiosk {
     private static int serialNum = 10001;
-    public static String delims = ",";
+    public static final String delims = ",";
 
     
     /**
@@ -82,7 +82,7 @@ public class Kiosk {
                                         + " is not available.");
                 }
             }
-            else if(action.contentEquals("I")) {//fix
+            else if(action.contentEquals("I")) {
                 string.nextToken();
                 Book bookToBeReturned = new Book();
                 bookToBeReturned.setNumber(string.nextToken().trim());
@@ -112,7 +112,8 @@ public class Kiosk {
                     System.out.println("Bookshelf is empty!");
                 }
                 else{
-                    System.out.println("**List of books by the dates published.");
+                    System.out.println("**List of books by the dates "
+                                        + "published.");
                     library.printByDate();
                     System.out.println("**End of list");
                 }
