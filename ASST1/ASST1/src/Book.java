@@ -95,12 +95,12 @@ public class Book {
     }
 	
     /**
-     * Returns formatted string containing book's number, name, date published,
-     * and availability.
-     * @return String formatted to a specific book, following the format of: 
-     *         "Book# Book.number :: Book.name :: Book.datePublished :: 
-     *          is available/is checked out.".
-     */
+    Returns formatted string containing book's number, name, date published,
+    and availability.
+    @return String formatted to a specific book, following the format of: 
+            "Book# Book.number :: Book.name :: Book.datePublished :: 
+            is available/is checked out.".
+    */
     @Override
     public String toString(){
         String formattedBookInfo = new String("Book#");
