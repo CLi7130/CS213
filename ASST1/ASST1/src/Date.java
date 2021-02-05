@@ -252,7 +252,7 @@ public static void main(String[] args){
     System.out.println();
 
     Date testMonthMin = new Date("0/1/2000");
-    System.out.println("Test #" + testCounter + " - Month Minimum Edge: " 
+    System.out.println("Test #" + testCounter + " - Month Minimum: " 
                         + toString(testMonthMin));
     System.out.println("isValid() returns: " + testMonthMin.isValid());
     System.out.println("Expected: False");
@@ -260,7 +260,7 @@ public static void main(String[] args){
     testCounter++;
 
     Date testMonthMax = new Date("13/1/2000");
-    System.out.println("Test #" + testCounter + " - Month Maximum Edge: " 
+    System.out.println("Test #" + testCounter + " - Month Maximum: " 
                         + toString(testMonthMax));
     System.out.println("isValid() returns: " + testMonthMax.isValid());
     System.out.println("Expected: False");
@@ -299,6 +299,14 @@ public static void main(String[] args){
     System.out.println();
     testCounter++;
 
+    Date testJanMax = new Date("1/32/2000");
+    System.out.println("Test #" + testCounter + " - JAN maximum: " 
+                        + toString(testJanMax));
+    System.out.println("isValid() returns: " + testJanMax.isValid());
+    System.out.println("Expected: False");
+    System.out.println();
+    testCounter++;
+
     Date testJan1 = new Date("1/1/2000");
     System.out.println("Test #" + testCounter + " - JAN 1: " 
                         + toString(testJan1));
@@ -315,20 +323,20 @@ public static void main(String[] args){
     System.out.println();
     testCounter++;
 
-    Date testJanMax = new Date("1/32/2000");
-    System.out.println("Test #" + testCounter + " - JAN maximum: " 
-                        + toString(testJanMax));
-    System.out.println("isValid() returns: " + testJanMax.isValid());
-    System.out.println("Expected: False");
-    System.out.println();
-    testCounter++;
-
     //March Day Testing
     System.out.println("-------");
     Date testMarchMin = new Date("3/0/2000");
     System.out.println("Test #" + testCounter + " - MAR minimum: " 
                         + toString(testMarchMin));
     System.out.println("isValid() returns: " + testMarchMin.isValid());
+    System.out.println("Expected: False");
+    System.out.println();
+    testCounter++;
+
+    Date testMarchMax = new Date("3/32/2000");
+    System.out.println("Test #" + testCounter + " - MAR maximum: " 
+                        + toString(testMarchMax));
+    System.out.println("isValid() returns: " + testMarchMax.isValid());
     System.out.println("Expected: False");
     System.out.println();
     testCounter++;
@@ -349,20 +357,20 @@ public static void main(String[] args){
     System.out.println();
     testCounter++;
 
-    Date testMarchMax = new Date("3/32/2000");
-    System.out.println("Test #" + testCounter + " - MAR maximum: " 
-                        + toString(testMarchMax));
-    System.out.println("isValid() returns: " + testMarchMax.isValid());
-    System.out.println("Expected: False");
-    System.out.println();
-    testCounter++;
-
     //May Day Testing
     System.out.println("-------");
     Date testMayMin = new Date("5/0/2000");
     System.out.println("Test #" + testCounter + " - MAY minimum: " 
                         + toString(testMayMin));
     System.out.println("isValid() returns: " + testMayMin.isValid());
+    System.out.println("Expected: False");
+    System.out.println();
+    testCounter++;
+
+    Date testMayMax = new Date("5/32/2000");
+    System.out.println("Test #" + testCounter + " - MAY maximum: " 
+                        + toString(testMayMax));
+    System.out.println("isValid() returns: " + testMayMax.isValid());
     System.out.println("Expected: False");
     System.out.println();
     testCounter++;
@@ -383,20 +391,20 @@ public static void main(String[] args){
     System.out.println();
     testCounter++;
 
-    Date testMayMax = new Date("5/32/2000");
-    System.out.println("Test #" + testCounter + " - MAY maximum: " 
-                        + toString(testMayMax));
-    System.out.println("isValid() returns: " + testMayMax.isValid());
-    System.out.println("Expected: False");
-    System.out.println();
-    testCounter++;
-
     //July Day Testing
     System.out.println("-------");
     Date testJulMin = new Date("7/0/2000");
     System.out.println("Test #" + testCounter + " - JUL minimum: " 
                         + toString(testJulMin));
     System.out.println("isValid() returns: " + testJulMin.isValid());
+    System.out.println("Expected: False");
+    System.out.println();
+    testCounter++;
+
+    Date testJulMax = new Date("7/32/2000");
+    System.out.println("Test #" + testCounter + " - JUL maximum: " 
+                        + toString(testJulMax));
+    System.out.println("isValid() returns: " + testJulMax.isValid());
     System.out.println("Expected: False");
     System.out.println();
     testCounter++;
@@ -417,20 +425,20 @@ public static void main(String[] args){
     System.out.println();
     testCounter++;
 
-    Date testJulMax = new Date("7/32/2000");
-    System.out.println("Test #" + testCounter + " - JUL maximum: " 
-                        + toString(testJulMax));
-    System.out.println("isValid() returns: " + testJulMax.isValid());
-    System.out.println("Expected: False");
-    System.out.println();
-    testCounter++;
-
     //August Day Testing
     System.out.println("-------");
     Date testAugMin = new Date("8/0/2000");
     System.out.println("Test #" + testCounter + " - AUG minimum: " 
                         + toString(testAugMin));
     System.out.println("isValid() returns: " + testAugMin.isValid());
+    System.out.println("Expected: False");
+    System.out.println();
+    testCounter++;
+
+    Date testAugMax = new Date("8/32/2000");
+    System.out.println("Test #" + testCounter + " - AUG maximum: " 
+                        + toString(testAugMax));
+    System.out.println("isValid() returns: " + testAugMax.isValid());
     System.out.println("Expected: False");
     System.out.println();
     testCounter++;
@@ -451,20 +459,20 @@ public static void main(String[] args){
     System.out.println();
     testCounter++;
 
-    Date testAugMax = new Date("8/32/2000");
-    System.out.println("Test #" + testCounter + " - AUG maximum: " 
-                        + toString(testAugMax));
-    System.out.println("isValid() returns: " + testAugMax.isValid());
-    System.out.println("Expected: False");
-    System.out.println();
-    testCounter++;
-
     //October Day Testing
     System.out.println("-------");
     Date testOctMin = new Date("10/0/2000");
     System.out.println("Test #" + testCounter + " - OCT minimum: " 
                         + toString(testOctMin));
     System.out.println("isValid() returns: " + testOctMin.isValid());
+    System.out.println("Expected: False");
+    System.out.println();
+    testCounter++;
+
+    Date testOctMax = new Date("10/32/2000");
+    System.out.println("Test #" + testCounter + " - OCT maximum: " 
+                        + toString(testOctMax));
+    System.out.println("isValid() returns: " + testOctMax.isValid());
     System.out.println("Expected: False");
     System.out.println();
     testCounter++;
@@ -485,20 +493,20 @@ public static void main(String[] args){
     System.out.println();
     testCounter++;
 
-    Date testOctMax = new Date("10/32/2000");
-    System.out.println("Test #" + testCounter + " - OCT maximum: " 
-                        + toString(testOctMax));
-    System.out.println("isValid() returns: " + testOctMax.isValid());
-    System.out.println("Expected: False");
-    System.out.println();
-    testCounter++;
-
     //December Day Testing
     System.out.println("-------");
     Date testDecMin = new Date("12/0/2000");
     System.out.println("Test #" + testCounter + " - DEC minimum: " 
                         + toString(testDecMin));
     System.out.println("isValid() returns: " + testDecMin.isValid());
+    System.out.println("Expected: False");
+    System.out.println();
+    testCounter++;
+
+    Date testDecMax = new Date("12/32/2000");
+    System.out.println("Test #" + testCounter + " - DEC maximum: " 
+                        + toString(testDecMax));
+    System.out.println("isValid() returns: " + testDecMax.isValid());
     System.out.println("Expected: False");
     System.out.println();
     testCounter++;
@@ -519,14 +527,6 @@ public static void main(String[] args){
     System.out.println();
     testCounter++;
 
-    Date testDecMax = new Date("12/32/2000");
-    System.out.println("Test #" + testCounter + " - DEC maximum: " 
-                        + toString(testDecMax));
-    System.out.println("isValid() returns: " + testDecMax.isValid());
-    System.out.println("Expected: False");
-    System.out.println();
-    testCounter++;
-
     //**********30 Day Month Testing**********
     //APR, JUN, SEP, NOV
     System.out.println("**********************");
@@ -539,6 +539,14 @@ public static void main(String[] args){
     System.out.println("Test #" + testCounter + " - APR minimum: " 
                         + toString(testAprMin));
     System.out.println("isValid() returns: " + testAprMin.isValid());
+    System.out.println("Expected: False");
+    System.out.println();
+    testCounter++;
+
+    Date testAprMax = new Date("4/31/2000");
+    System.out.println("Test #" + testCounter + " - APR maximum: " 
+                        + toString(testAprMax));
+    System.out.println("isValid() returns: " + testAprMax.isValid());
     System.out.println("Expected: False");
     System.out.println();
     testCounter++;
@@ -559,20 +567,20 @@ public static void main(String[] args){
     System.out.println();
     testCounter++;
 
-    Date testAprMax = new Date("4/31/2000");
-    System.out.println("Test #" + testCounter + " - APR maximum: " 
-                        + toString(testAprMax));
-    System.out.println("isValid() returns: " + testAprMax.isValid());
-    System.out.println("Expected: False");
-    System.out.println();
-    testCounter++;
-
     //June Day Testing
     System.out.println("-------");
     Date testJunMin = new Date("6/0/2000");
     System.out.println("Test #" + testCounter + " - JUN minimum: " 
                         + toString(testJunMin));
     System.out.println("isValid() returns: " + testJunMin.isValid());
+    System.out.println("Expected: False");
+    System.out.println();
+    testCounter++;
+
+    Date testJunMax = new Date("6/31/2000");
+    System.out.println("Test #" + testCounter + " - JUN maximum: " 
+                        + toString(testJunMax));
+    System.out.println("isValid() returns: " + testJunMax.isValid());
     System.out.println("Expected: False");
     System.out.println();
     testCounter++;
@@ -593,20 +601,20 @@ public static void main(String[] args){
     System.out.println();
     testCounter++;
 
-    Date testJunMax = new Date("6/31/2000");
-    System.out.println("Test #" + testCounter + " - JUN maximum: " 
-                        + toString(testJunMax));
-    System.out.println("isValid() returns: " + testJunMax.isValid());
-    System.out.println("Expected: False");
-    System.out.println();
-    testCounter++;
-
     //September Day Testing
     System.out.println("-------");
     Date testSepMin = new Date("9/0/2000");
     System.out.println("Test #" + testCounter + " - SEP minimum: " 
                         + toString(testSepMin));
     System.out.println("isValid() returns: " + testSepMin.isValid());
+    System.out.println("Expected: False");
+    System.out.println();
+    testCounter++;
+
+    Date testSepMax = new Date("9/31/2000");
+    System.out.println("Test #" + testCounter + " - SEP maximum: " 
+                        + toString(testSepMax));
+    System.out.println("isValid() returns: " + testSepMax.isValid());
     System.out.println("Expected: False");
     System.out.println();
     testCounter++;
@@ -627,14 +635,6 @@ public static void main(String[] args){
     System.out.println();
     testCounter++;
 
-    Date testSepMax = new Date("9/31/2000");
-    System.out.println("Test #" + testCounter + " - SEP maximum: " 
-                        + toString(testSepMax));
-    System.out.println("isValid() returns: " + testSepMax.isValid());
-    System.out.println("Expected: False");
-    System.out.println();
-    testCounter++;
-
     //November Day Testing
     System.out.println("-------");
     Date testNovMin = new Date("11/0/2000");
@@ -643,6 +643,13 @@ public static void main(String[] args){
     System.out.println("isValid() returns: " + testNovMin.isValid());
     System.out.println("Expected: False");
     System.out.println();
+    testCounter++;
+
+    Date testNovMax = new Date("11/31/2000");
+    System.out.println("Test #" + testCounter + " - NOV maximum: " 
+                        + toString(testNovMax));
+    System.out.println("isValid() returns: " + testNovMax.isValid());
+    System.out.println("Expected: False");
     testCounter++;
 
     Date testNov1 = new Date("11/1/2000");
@@ -661,13 +668,6 @@ public static void main(String[] args){
     System.out.println();
     testCounter++;
 
-    Date testNovMax = new Date("11/31/2000");
-    System.out.println("Test #" + testCounter + " - NOV maximum: " 
-                        + toString(testNovMax));
-    System.out.println("isValid() returns: " + testNovMax.isValid());
-    System.out.println("Expected: False");
-    testCounter++;
-
     //*********Non Leap Year February TESTING*************
     System.out.println("**********************");
     System.out.println("February Non Leap Year Validity Testing:");
@@ -677,6 +677,14 @@ public static void main(String[] args){
     System.out.println("Test #" + testCounter + " - FEB minimum: " 
                         + toString(testFebMin));
     System.out.println("isValid() returns: " + testFebMin.isValid());
+    System.out.println("Expected: False");
+    System.out.println();
+    testCounter++;
+
+    Date testFebMax = new Date("2/29/1999");
+    System.out.println("Test #" + testCounter + " - FEB maximum: " 
+                        + toString(testFebMax));
+    System.out.println("isValid() returns: " + testFebMax.isValid());
     System.out.println("Expected: False");
     System.out.println();
     testCounter++;
@@ -695,13 +703,6 @@ public static void main(String[] args){
     System.out.println("isValid() returns: " + testFeb28.isValid());
     System.out.println("Expected: True");
     System.out.println();
-    testCounter++;
-
-    Date testFebMax = new Date("2/29/1999");
-    System.out.println("Test #" + testCounter + " - FEB maximum: " 
-                        + toString(testFebMax));
-    System.out.println("isValid() returns: " + testFebMax.isValid());
-    System.out.println("Expected: False");
     testCounter++;
 
     //*********February LEAP YEAR TESTING*************
@@ -778,6 +779,15 @@ public static void main(String[] args){
     System.out.println("Expected: False");
     System.out.println();
     testCounter++;
+
+    Date testFutureYear = new Date();
+    testFutureYear.setYear(testFutureYear.getYear() + 1);
+    System.out.println("Test #" + testCounter + " - Year Maximum: " 
+                        + toString(testFutureYear));
+    System.out.println("isValid() returns: " + testFutureYear.isValid());
+    System.out.println("Expected: False");
+    System.out.println();
+    testCounter++; 
     
     Date testYear1900 = new Date("1/1/1900");
     System.out.println("Test #" + testCounter + " - Year 1900: " 
@@ -795,14 +805,7 @@ public static void main(String[] args){
     System.out.println();
     testCounter++;
 
-    Date testFutureYear = new Date();
-    testFutureYear.setYear(testFutureYear.getYear() + 1);
-    System.out.println("Test #" + testCounter + " - Year Maximum: " 
-                        + toString(testFutureYear));
-    System.out.println("isValid() returns: " + testFutureYear.isValid());
-    System.out.println("Expected: False");
-    System.out.println();
-    testCounter++;   
+  
 
 }
 
