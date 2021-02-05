@@ -33,7 +33,7 @@ public class Library {
     @return	int	the index of the book otherwise -1 if not found
     */
 	public int find(Book book) {
-		for(int i=0; i < books.length; i++) {
+		for(int i = 0; i < books.length; i++) {
             if(books[i] == null){
                 continue;
             }
@@ -49,7 +49,7 @@ public class Library {
     */
 	private void grow() { 
 		Book[] grow = new Book[books.length + growAmount];
-		for(int i=0; i < books.length; i++) {
+		for(int i = 0; i < books.length; i++) {
 			grow[i] = books[i];
 		}
 		books = grow;
@@ -62,7 +62,7 @@ public class Library {
 	private void shiftArray() {
         Book [] shiftedBooks = new Book[books.length];
         int count = 0;
-		for(int i=0; i < books.length; i++) {
+		for(int i = 0; i < books.length; i++) {
 			if(books[i] != null) {
                 shiftedBooks[count] = books[i];
 			}
@@ -158,15 +158,15 @@ public class Library {
 
             int currSortedBook = Integer.parseInt(books[sortedMax].getNumber());
             
-            while(sortedMax>=0 && currSortedBook > key){
-                books[sortedMax+1] = books[sortedMax];
+            while(sortedMax >= 0 && currSortedBook > key){
+                books[sortedMax + 1] = books[sortedMax];
                 sortedMax--;
                 if(sortedMax < 0){
                     break;
                 }
                 currSortedBook = Integer.parseInt(books[sortedMax].getNumber());
             }
-            books[sortedMax+1] = unsortedBook;
+            books[sortedMax + 1] = unsortedBook;
         }
 	}
 	
@@ -181,7 +181,7 @@ public class Library {
 			grow();
 		}
 		shiftArray();
-		books[numBooks-1] = book;
+		books[numBooks - 1] = book;
 	}
 	
 	/**
@@ -192,7 +192,7 @@ public class Library {
     */
 	public boolean remove(Book book) { 
 		final int index = find(book);
-		if(index>=0) {
+		if(index >= 0) {
 			books[index] = null;
 			numBooks--;
 			return true;
@@ -236,7 +236,7 @@ public class Library {
     */
 	public void print() {
         shiftArray();
-		for(int i=0; i < books.length; i++) {
+		for(int i = 0; i < books.length; i++) {
 			if(books[i] == null) { 
 				continue;
 			}	
