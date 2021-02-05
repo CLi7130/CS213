@@ -59,12 +59,18 @@ public class Library {
     and the bag will no longer have spaces inbetween books
     */
 	private void shiftArray() {
+        Book [] shiftedBooks = new Book[books.length];
+        int count = 0;
 		for(int i=0; i < books.length; i++) {
-			if(books[i] == null && i<numBooks) {
-				books[i] = books[i+1];
-				books[i+1] = null;
+			if(books[i] != null) {
+                shiftedBooks[count] = books[i];
 			}
+            else{
+                count--;
+            }
+            count++;
 		}
+        books = shiftedBooks;
 	}
 	
     /**
