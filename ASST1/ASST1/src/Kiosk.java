@@ -94,7 +94,8 @@ public class Kiosk {
                                         + " return has completed. Thanks!");
                 }
                 else{
-                    System.out.println("Unable to return Book#" + bookToBeReturned.getNumber() + ".");
+                    System.out.println("Unable to return Book#" + 
+                                        bookToBeReturned.getNumber() + ".");
                 }
             }
             else if(action.contentEquals("PA")) {
