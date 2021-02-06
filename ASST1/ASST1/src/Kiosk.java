@@ -44,7 +44,7 @@ public class Kiosk {
             	if(valid) {
             		add.setDatePublished(addDate);
                     library.add(add);
-                    add.setNumber(serialNum+"");
+                    add.setNumber(serialNum + "");
                     serialNum++;
                 	System.out.println(book + " added to the library.");
             	}
