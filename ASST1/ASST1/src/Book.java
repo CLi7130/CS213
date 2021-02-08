@@ -7,93 +7,93 @@ The book class contains instance variables that encompass the identifiers of a u
 
 public class Book {
 
-	private String number; //a 5-digit serial number unique to the book
-	private String name;
-	private boolean checkedOut;
+    private String number; //a 5-digit serial number unique to the book
+    private String name;
+    private boolean checkedOut;
     private Date datePublished;
     
-	/**
+    /**
     Gets specified Book's serial number.
     @return	number	book serial number
     */
-	public String getNumber() {
-		return number;
+    public String getNumber() {
+        return number;
     }
-	
+
     /**
     Sets specified Book's serial number.
-    @param	number	desired serial number for a book object.
+    @param  number  desired serial number for a book object.
      */
-	public void setNumber(String number) {
-		this.number = number;
-	}
-	
-	/**
-    Gets specified book object's title.
-    @return	name	string containing the book's title.
-    */
-	public String getName() {
-		return name;
+    public void setNumber(String number) {
+        this.number = number;
     }
-	
+    
+    /**
+    Gets specified book object's title.
+    @return name    string containing the book's title.
+    */
+    public String getName() {
+        return name;
+    }
+    
     /**
     Sets book object's name to a specified string.
-    @param	name name of the book
+    @param  name    name of the book
     */
-	public void setName(String name) {
-		this.name = name;
-	}
-	
-	/**
-    Checks whether a book is checked out of the library.
-    @return	checkedOut	true if checkedOut, false if otherwise.
-    */
-	public boolean isCheckedOut() {
-		return checkedOut;
+    public void setName(String name) {
+        this.name = name;
     }
-	
+    
+    /**
+    Checks whether a book is checked out of the library.
+    @return checkedOut  true if checkedOut, false if otherwise.
+    */
+    public boolean isCheckedOut() {
+        return checkedOut;
+    }
+    
     /**
     Sets book object's status to either checked In or Out.
-    @param	checkedOut	if true, book is listed as checked out in system, if false, listed as not checked out.
+    @param  checkedOut  if true, book is listed as checked out in system, if false, listed as not checked out.
     */
-	public void setCheckedOut(boolean checkedOut) {
-		this.checkedOut = checkedOut;
-	}
-	
-	/**
-    Gets book's publishing date.
-    @return	datePublished	Date object containing publishing date.
-    */
-	public Date getDatePublished() {
-		return datePublished;
+    public void setCheckedOut(boolean checkedOut) {
+        this.checkedOut = checkedOut;
     }
-	
+    
+    /**
+    Gets book's publishing date.
+    @return datePublished   Date object containing publishing date.
+    */
+    public Date getDatePublished() {
+        return datePublished;
+    }
+    
     /**
     Sets datePublished for a specific book to specified date.
-    @param	datePublished	specified date of publishing from Date class
+    @param  datePublished   specified date of publishing from Date class
     */
-	public void setDatePublished(Date datePublished) {
+    public void setDatePublished(Date datePublished) {
         this.datePublished = datePublished;	
-	}
+    }
     
     /**
     Checks if two book objects are equivalent by comparing Book name and date published.
-    @param	obj	book from Book class to compare against
-    @return	true	true if books compared have same name and publish date,
+    @param  obj book from Book class to compare against
+    @return true    true if books compared have same name and publish date,
                      false if otherwise
      */
-	@Override
+    @Override
     public boolean equals(Object obj){
-    	if (obj instanceof Book) {
-    		Book book = (Book) obj;
+        if (obj instanceof Book) {
+            Book book = (Book) obj;
             if(number.contentEquals(book.getNumber())) {
-            	return true;
+                return true;
             }
             return false;
-    	}
-    	return false;
+        }
+        return false;
     }
-	
+    
     /**
     Returns formatted string containing book's number, name, date published,
     and availability.
