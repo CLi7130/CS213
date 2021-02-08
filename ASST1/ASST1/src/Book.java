@@ -14,7 +14,7 @@ public class Book {
     
     /**
     Gets specified Book's serial number.
-    @return	number	book serial number
+    @return number  book serial number
     */
     public String getNumber() {
         return number;
