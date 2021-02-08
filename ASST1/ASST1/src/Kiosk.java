@@ -44,7 +44,7 @@ public class Kiosk {
             	if(valid) {
             		add.setDatePublished(addDate);
                     library.add(add);
-                    add.setNumber(serialNum+"");
+                    add.setNumber(serialNum + "");
                     serialNum++;
                 	System.out.println(book + " added to the library.");
             	}
@@ -94,7 +94,8 @@ public class Kiosk {
                                         + " return has completed. Thanks!");
                 }
                 else{
-                    System.out.println("Unable to return Book#" + bookToBeReturned.getNumber() + ".");
+                    System.out.println("Unable to return Book#" + 
+                                        bookToBeReturned.getNumber() + ".");
                 }
             }
             else if(action.contentEquals("PA")) {
