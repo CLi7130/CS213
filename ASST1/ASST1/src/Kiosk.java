@@ -4,7 +4,7 @@ import java.util.StringTokenizer;
 /**
 This class is the Interface between the user and the program, all error messages and success messages will print from here
 Also included is a method run() which will initiate the interface. 
-@author	Craig Li, Prerak Patel
+@author Craig Li, Prerak Patel
 */
 
 public class Kiosk {
@@ -13,12 +13,12 @@ public class Kiosk {
 
     
     /**
-	Runs the whole interface between user and library.
-	The user inputs commands either A, R, O, I, PA, 
-	PD, PN and additional inputs adn the program will respond 
+    Runs the whole interface between user and library.
+    The user inputs commands either A, R, O, I, PA, 
+    PD, PN and additional inputs adn the program will respond 
     */
     public void run(){
-    	System.out.println("Library Kiosk running ");
+        System.out.println("Library Kiosk running ");
 
         String date = "";
         String book = "";
@@ -33,39 +33,39 @@ public class Kiosk {
             String action = string.nextToken();
 
             if(action.contentEquals("A")) {
-            	Book add = new Book();
-            	string.nextToken();
-            	book = string.nextToken();
-            	string.nextToken();
-            	date = string.nextToken();
-            	add.setName(book);
-            	addDate = new Date(date);
-            	boolean valid = addDate.isValid();
-            	if(valid) {
-            		add.setDatePublished(addDate);
+                Book add = new Book();
+                string.nextToken();
+                book = string.nextToken();
+                string.nextToken();
+                date = string.nextToken();
+                add.setName(book);
+                addDate = new Date(date);
+                boolean valid = addDate.isValid();
+                if(valid) {
+                    add.setDatePublished(addDate);
                     library.add(add);
                     add.setNumber(serialNum + "");
                     serialNum++;
-                	System.out.println(book + " added to the library.");
-            	}
-            	else {
-                	System.out.println("Invalid Date!");
-            	}
+                    System.out.println(book + " added to the library.");
+                }
+                else {
+                    System.out.println("Invalid Date!");
+                }
             }
             else if(action.contentEquals("R")) {
-            	string.nextToken();
-            	Book remove = new Book();
-            	remove.setNumber(string.nextToken().trim());
-            	boolean removed = library.remove(remove);
-            	if(removed) {
+                string.nextToken();
+                Book remove = new Book();
+                remove.setNumber(string.nextToken().trim());
+                boolean removed = library.remove(remove);
+                if(removed) {
                     System.out.println("Book# " + remove.getNumber() 
                                         + " removed.");
-            	}
-            	else {
+                }
+                else {
                     System.out.println("Unable to remove, the library does"
                                         + " not have this book.");
-            	}
-            	
+                }
+                
             }
             else if(action.contentEquals("O")) {
                 string.nextToken();

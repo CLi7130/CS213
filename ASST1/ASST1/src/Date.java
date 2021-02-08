@@ -5,7 +5,7 @@ import java.util.Calendar;
 This class instantiates a Date object from a string, creating an object in 
 the format of mm/dd/yyyy.
 Also included is a method to test whether a date is valid given a range of before the year 1900 and the current date.
-@author	Craig Li, Prerak Patel
+@author Craig Li, Prerak Patel
 */
 
 public class Date {
@@ -15,57 +15,57 @@ public class Date {
 
     /**
     Gets day book was published.
-    @return	day int containing day book was published.
+    @return day int containing day book was published.
     */
     public int getDay() {
-		return this.day;
+        return this.day;
     }
     
     /**
     Sets day published to input value.
-    @param	day	specified day book was published.
+    @param  day specified day book was published.
     */
-	public void setDay(int day) {
-		this.day = day;
+    public void setDay(int day) {
+        this.day = day;
     }
-	
+    
     /**
     Gets month book was published.
-    @return	month	int containing month book was published.
+    @return month   int containing month book was published.
     */
-	public int getMonth() {
-		return this.month;
+    public int getMonth() {
+        return this.month;
     }
-	
+    
     /**
     Sets month that book was published to specified input.
-    @param	month	specified month book was published.
+    @param  month   specified month book was published.
     */
-	public void setMonth(int month) {
-		this.month = month;
+    public void setMonth(int month) {
+        this.month = month;
     }
-	
+    
     /**
     Gets year book was published.
-    @return	year	int containing year book was published.
+    @return year    int containing year book was published.
     */
-	public int getYear() {
-		return this.year;
+    public int getYear() {
+        return this.year;
     }
-	
+    
     /**
     Sets year that book was published to specified input.
-    @param	year	specified year book was published.
+    @param  year    specified year book was published.
     */
-	public void setYear(int year) {
-		this.year = year;
+    public void setYear(int year) {
+        this.year = year;
     }
-	
+    
     /**
     Function splits an input string of format MM/DD/YYYY and sets each respective date component.
-    @param	date	selected/provided publishing date in format MM/DD/YYYY
+    @param  date    selected/provided publishing date in format MM/DD/YYYY
     */
-	public Date(String date){
+    public Date(String date){
         String[] splitDateInput = date.split("/");
         final int monthSplit = 0;
         final int daySplit = 1;
@@ -75,7 +75,7 @@ public class Date {
         this.setDay(Integer.parseInt(splitDateInput[daySplit]));
         this.setYear(Integer.parseInt(splitDateInput[yearSplit]));
     }
-	
+    
     /**
     Initializes date to current date, sets year, month, day accordingly.
     */
@@ -88,8 +88,8 @@ public class Date {
     
     /**
     Determines whether a provided year (testYear) is a leap year.
-    @param	testYear	possible leap year
-    @return	true	true if testYear is a leap year, false otherwise.
+    @param  testYear    possible leap year
+    @return true    true if testYear is a leap year, false otherwise.
     */
     private boolean isLeapYear(int testYear){
         final int QUADRENNIAL = 4;
@@ -109,7 +109,7 @@ public class Date {
     
     /**
     Checks if a provided date is valid based off of the Gregorian Calendar.  Also checks against current date.
-    @return	true	true if date is valid, false otherwise, or if date is
+    @return true    true if date is valid, false otherwise, or if date is
                     beyond current date.
     */
     public boolean isValid(){
@@ -200,8 +200,8 @@ public class Date {
     /**
     Method returns a formatted string representing a date object.
     For use only in testbed main.
-    @param	date	date object that needs to be represented as a String.
-    @return formattedDate	string representation of date object input.
+    @param  date    date object that needs to be represented as a String.
+    @return formattedDate   string representation of date object input.
     */
     private static String toString(Date date){
         String formattedDate = "";
