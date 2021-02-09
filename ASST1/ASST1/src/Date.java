@@ -127,7 +127,7 @@ public class Date {
         final int currMonth = currDate.get(Calendar.MONTH) + 1;
         final int currDay = currDate.get(Calendar.DAY_OF_MONTH);
 
-        int daysPerMONTHMAX = 0;
+        int daysPerMonthMax = 0;
 
         int testMonth = this.getMonth();
         int testYear = this.getYear();
@@ -172,27 +172,27 @@ public class Date {
             isLeapYear = isLeapYear(testYear);
 
             if(isLeapYear){
-                daysPerMONTHMAX = TWENTYNINEDAYSPERMONTH;
+                daysPerMonthMax = TWENTYNINEDAYSPERMONTH;
             }
             else{
-                daysPerMONTHMAX = TWENTYEIGHTDAYSPERMONTH;
+                daysPerMonthMax = TWENTYEIGHTDAYSPERMONTH;
             }
         }
 
         for(int i = 0; i < monthsWith31Days.length; i++){
             if(testMonth == monthsWith31Days[i]){
-                daysPerMONTHMAX = THIRTYONEDAYSPERMONTH;
+                daysPerMonthMax = THIRTYONEDAYSPERMONTH;
                 break;
             }
         }
         for(int i = 0; i < monthsWith30Days.length; i++){
             if(testMonth == monthsWith30Days[i]){
-                daysPerMONTHMAX = THIRTYDAYSPERMONTH;
+                daysPerMonthMax = THIRTYDAYSPERMONTH;
                 break;
             }
         }
 
-        if(testDay < 1 || testDay > daysPerMONTHMAX){
+        if(testDay < 1 || testDay > daysPerMonthMax){
             return false;
         }
 
