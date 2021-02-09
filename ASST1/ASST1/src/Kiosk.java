@@ -28,6 +28,11 @@ public class Kiosk {
         while(true) {
             
             String stringInput = input.nextLine();
+            if (stringInput.isEmpty()) {
+                System.out.println("Invalid Command!");
+                continue;
+            }
+            
             StringTokenizer string = new StringTokenizer(stringInput,
                                                          delims, true);
             String action = string.nextToken();
