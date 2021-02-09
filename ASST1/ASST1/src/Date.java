@@ -220,8 +220,10 @@ public class Date {
 
 
 /**
-Testbed main to exercise isValid() method.
-Comments and other print objects are added to increase readability.
+    Testbed main to exercise isValid() method.
+    Comments and other print objects are added to increase readability.
+    @param args arguments taken from console
+
  */
 public static void main(String[] args){
     int testCounter = 1;
