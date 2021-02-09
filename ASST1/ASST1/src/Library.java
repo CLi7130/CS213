@@ -8,8 +8,8 @@
 public class Library {
     private Book[] books; // array-based implementation of the bag data structure
     private int numBooks; // the number of books currently in the bag
-    private static final int growAmount = 4;
-    private static final int fail = -1;
+    private static final int GROWAMOUNT = 4;
+    private static final int FAILCONDITION = -1;
     
     /**
     Constructor for new Library Array
@@ -41,14 +41,14 @@ public class Library {
                 return i;
             }
         }
-        return fail; 
+        return FAILCONDITION; 
     }
 
     /**
     Returns the array of books with size 4 greater 
     */
     private void grow() { 
-        Book[] grow = new Book[books.length + growAmount];
+        Book[] grow = new Book[books.length + GROWAMOUNT];
         for(int i = 0; i < books.length; i++) {
             grow[i] = books[i];
         }

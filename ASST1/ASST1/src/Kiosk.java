@@ -9,7 +9,7 @@ Also included is a method run() which will initiate the interface.
 
 public class Kiosk {
     private static int serialNum = 10001;
-    public static final String delims = ",";
+    public static final String DELIMS = ",";
 
     
     /**
@@ -29,7 +29,7 @@ public class Kiosk {
             
             String stringInput = input.nextLine();
             StringTokenizer string = new StringTokenizer(stringInput,
-                                                         delims, true);
+                                                         DELIMS, true);
             String action = string.nextToken();
 
             if(action.contentEquals("A")) {
