@@ -29,7 +29,7 @@ public class Kiosk {
             
             String stringInput = input.nextLine();
             if (stringInput.isEmpty()) {
-                System.out.println("Invalid Command!");
+                //System.out.println("Invalid Command!");
                 continue;
             }
             
@@ -38,6 +38,10 @@ public class Kiosk {
             String action = string.nextToken();
 
             if(action.contentEquals("A")) {
+                if(!string.hasMoreTokens()){
+                    System.out.println("Invalid Command!");
+                    continue;
+                }
                 Book add = new Book();
                 string.nextToken();
                 book = string.nextToken();
@@ -58,6 +62,10 @@ public class Kiosk {
                 }
             }
             else if(action.contentEquals("R")) {
+                if(!string.hasMoreTokens()){
+                    System.out.println("Invalid Command!");
+                    continue;
+                }
                 string.nextToken();
                 Book remove = new Book();
                 remove.setNumber(string.nextToken().trim());
@@ -73,6 +81,10 @@ public class Kiosk {
                 
             }
             else if(action.contentEquals("O")) {
+                if(!string.hasMoreTokens()){
+                    System.out.println("Invalid Command!");
+                    continue;
+                }
                 string.nextToken();
                 Book bookToCheckOut = new Book();
                 bookToCheckOut.setNumber(string.nextToken().trim());
@@ -88,6 +100,10 @@ public class Kiosk {
                 }
             }
             else if(action.contentEquals("I")) {
+                if(!string.hasMoreTokens()){
+                    System.out.println("Invalid Command!");
+                    continue;
+                }
                 string.nextToken();
                 Book bookToBeReturned = new Book();
                 bookToBeReturned.setNumber(string.nextToken().trim());
