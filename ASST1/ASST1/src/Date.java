@@ -13,6 +13,16 @@ public class Date {
     private int month;
     private int day;
 
+    private static final int QUADRENNIAL = 4;
+    private static final int CENTENNIAL = 100;
+    private static final int QUATERCENTENNIAL = 400;
+    private static final int THIRTYONEDAYSPERMONTH = 31;
+    private static final int THIRTYDAYSPERMONTH = 30;
+    private static final int TWENTYEIGHTDAYSPERMONTH = 28;
+    private static final int TWENTYNINEDAYSPERMONTH = 29;
+    private static final int MONTHMAX = 12;
+    private static final int YEARMIN = 1900;
+
     /**
     Gets day book was published.
     @return day int containing day book was published.
@@ -92,9 +102,6 @@ public class Date {
     @return true    true if testYear is a leap year, false otherwise.
     */
     private boolean isLeapYear(int testYear){
-        final int QUADRENNIAL = 4;
-        final int CENTENNIAL = 100;
-        final int QUATERCENTENNIAL = 400;
 
         if(testYear % QUADRENNIAL == 0){
             if(testYear % CENTENNIAL == 0){
@@ -113,29 +120,24 @@ public class Date {
                     beyond current date.
     */
     public boolean isValid(){
-        Calendar currDate = Calendar.getInstance();
-        final int monthMax = 12;
-        final int yearMin = 1900;
-        final int yearMax = currDate.get(Calendar.YEAR);
 
+        Calendar currDate = Calendar.getInstance();
+
+        final int yearMax = currDate.get(Calendar.YEAR);
         final int currMonth = currDate.get(Calendar.MONTH) + 1;
         final int currDay = currDate.get(Calendar.DAY_OF_MONTH);
 
-        int daysPerMonthMax = 0;
-        final int thirtyOneDays = 31;
-        final int thirtyDays = 30;
-        final int twentyEightDays = 28;
-        final int twentyNineDays = 29;
+        int daysPerMONTHMAX = 0;
 
-        final int testMonth = this.getMonth();
-        final int testYear = this.getYear();
-        final int testDay = this.getDay();
+        int testMonth = this.getMonth();
+        int testYear = this.getYear();
+        int testDay = this.getDay();
         boolean isLeapYear = false;
 
-        if(testMonth < 1 || testMonth > monthMax){
+        if(testMonth < 1 || testMonth > MONTHMAX){
             return false;
         }
-        if(testYear < yearMin || testYear > yearMax){
+        if(testYear < YEARMIN || testYear > yearMax){
             return false;
         }
         if(testYear == yearMax){
@@ -170,27 +172,27 @@ public class Date {
             isLeapYear = isLeapYear(testYear);
 
             if(isLeapYear){
-                daysPerMonthMax = twentyNineDays;
+                daysPerMONTHMAX = TWENTYNINEDAYSPERMONTH;
             }
             else{
-                daysPerMonthMax = twentyEightDays;
+                daysPerMONTHMAX = TWENTYEIGHTDAYSPERMONTH;
             }
         }
 
         for(int i = 0; i < monthsWith31Days.length; i++){
             if(testMonth == monthsWith31Days[i]){
-                daysPerMonthMax = thirtyOneDays;
+                daysPerMONTHMAX = THIRTYONEDAYSPERMONTH;
                 break;
             }
         }
         for(int i = 0; i < monthsWith30Days.length; i++){
             if(testMonth == monthsWith30Days[i]){
-                daysPerMonthMax = thirtyDays;
+                daysPerMONTHMAX = THIRTYDAYSPERMONTH;
                 break;
             }
         }
 
-        if(testDay < 1 || testDay > daysPerMonthMax){
+        if(testDay < 1 || testDay > daysPerMONTHMAX){
             return false;
         }
 
@@ -260,10 +262,10 @@ public static void main(String[] args){
     System.out.println();
     testCounter++;
 
-    Date testMonthMax = new Date("13/1/2000");
+    Date testMONTHMAX = new Date("13/1/2000");
     System.out.println("Test #" + testCounter + " - Month Maximum: " 
-                        + toString(testMonthMax));
-    System.out.println("isValid() returns: " + testMonthMax.isValid());
+                        + toString(testMONTHMAX));
+    System.out.println("isValid() returns: " + testMONTHMAX.isValid());
     System.out.println("Expected: False");
     System.out.println();
     testCounter++;
@@ -276,10 +278,10 @@ public static void main(String[] args){
     System.out.println();
     testCounter++;
 
-    Date testValidMonthMax = new Date("12/1/2000");
+    Date testValidMONTHMAX = new Date("12/1/2000");
     System.out.println("Test #" + testCounter + " - Valid Month Maximum: " 
-                        + toString(testValidMonthMax));
-    System.out.println("isValid() returns: " + testValidMonthMax.isValid());
+                        + toString(testValidMONTHMAX));
+    System.out.println("isValid() returns: " + testValidMONTHMAX.isValid());
     System.out.println("Expected: True");
     System.out.println();
     testCounter++;
@@ -773,10 +775,10 @@ public static void main(String[] args){
     System.out.println("Non Leap Year Validity Testing:");
     System.out.println();
 
-    Date testYearMin = new Date("12/31/1899");
+    Date testYEARMIN = new Date("12/31/1899");
     System.out.println("Test #" + testCounter + " - Year Minimum: " 
-                        + toString(testYearMin));
-    System.out.println("isValid() returns: " + testYearMin.isValid());
+                        + toString(testYEARMIN));
+    System.out.println("isValid() returns: " + testYEARMIN.isValid());
     System.out.println("Expected: False");
     System.out.println();
     testCounter++;
