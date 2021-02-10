@@ -6,6 +6,8 @@
     - implement Java Interface Comparable
     
 */
+package ASST1;
+import Date.ASST1;
 
 public class Date implements Comparable<Date>{
 
@@ -13,4 +15,11 @@ public class Date implements Comparable<Date>{
     public int compareTo(Date date){
         //return 1, 0, or -1
     }
+    
+}
+
+public static void main(String[] args){
+    Date testDate = new Date();
+
+    System.out.println(testDate.toString());
 }
