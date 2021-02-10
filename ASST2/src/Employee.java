@@ -12,4 +12,23 @@
 
 public class Employee{
 
+
+    @Override
+    public String toString(){
+        String employeeInfo = new String("");
+        //placeholder
+
+        return employeeInfo;
+    }
+    @Override
+    public boolean equals(Employee employee){
+    
+        return false;
+    }
+
+
+
+
+
+
 }
