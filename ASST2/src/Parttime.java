@@ -8,7 +8,7 @@
 
 */
 
-public class Parttime{
+public class Parttime extends Employee{
     
     @Override
     public String toString(){
