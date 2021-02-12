@@ -12,13 +12,16 @@
 
 public class Employee{
 
-
+    Profile profile = new Profile();
+    public void add(Profile Profile) {
+        profile = Profile;
+    }
     @Override
     public String toString(){
         String employeeInfo = new String("");
         //placeholder
 
-        return employeeInfo;
+        return profile.getName();
     }
     @Override
     public boolean equals(Employee employee){
