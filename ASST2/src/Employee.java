@@ -11,11 +11,12 @@
 */
 
 public class Employee{
-
     Profile profile = new Profile();
-    public void add(Profile Profile) {
+    
+    public Employee(Profile Profile) {
         profile = Profile;
     }
+    
     @Override
     public String toString(){
         String employeeInfo = new String("");
@@ -24,8 +25,14 @@ public class Employee{
         return profile.getName();
     }
     @Override
-    public boolean equals(Employee employee){
-    
+    public boolean equals(Object obj){
+        if (obj instanceof Employee) {
+            Employee employee = (Employee) obj;
+            if(profile.equals(employee.profile)) {
+                return true;
+            }
+            return false;
+        }
         return false;
     }
 
