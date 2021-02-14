@@ -19,10 +19,10 @@ public class Employee{
     
     @Override
     public String toString(){
-        String employeeInfo = new String("");
+        String employeeInfo = profile.toString();
         //placeholder
 
-        return profile.getName();
+        return employeeInfo;
     }
     @Override
     public boolean equals(Object obj){
@@ -34,6 +34,11 @@ public class Employee{
             return false;
         }
         return false;
+    }
+
+    public void calculatePayment() {
+        // TODO Auto-generated method stub
+        
     }
 
 
