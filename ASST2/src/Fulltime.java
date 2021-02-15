@@ -9,15 +9,44 @@
 */
 
 public class Fulltime extends Employee{
+    private int annualSalary = 0; 
+    /**
+     * @return the annualSalary
+     */
+    public int getAnnualSalary() {
+        return annualSalary;
+    }
+
+    /**
+     * @param annualSalary the annualSalary to set
+     */
+    public void setAnnualSalary(int annualSalary) {
+        this.annualSalary = annualSalary;
+    }
+
+    public Fulltime(Profile Profile) {
+        super(Profile);
+        // TODO Auto-generated constructor stub
+    }
     
     @Override
     public String toString(){
-        //REUSE CODE FROM SUPERCLASS by calling toString() from Superclass
+        String employeeInfo = super.toString() + annualSalary;
+        return employeeInfo;
     }
+    
     @Override
-    public boolean equals(){
-        
+    public boolean equals(Object obj){
+        if (obj instanceof Fulltime) {
+            Fulltime employee = (Fulltime) obj;
+            if(profile.equals(employee.profile)) {
+                return true;
+            }
+            return false;
+        }
+        return false;
     }
+    
     @Override
     public void calculatePayment(){
         //do not change method signature

@@ -37,7 +37,6 @@ public class Employee{
     }
 
     public void calculatePayment() {
-        // TODO Auto-generated method stub
         
     }
 

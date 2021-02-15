@@ -48,6 +48,7 @@ public class Parttime extends Employee{
         }
         return false;
     }
+    
     @Override
     public void calculatePayment(){
         //do not change method signature
