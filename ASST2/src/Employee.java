@@ -9,7 +9,6 @@
         - use equals() method to check type
         
 */
-import java.text.DecimalFormat;
 
 public class Employee{
     Profile profile = new Profile();
