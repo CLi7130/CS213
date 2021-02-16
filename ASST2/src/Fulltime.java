@@ -31,7 +31,8 @@ public class Fulltime extends Employee{
     
     @Override
     public String toString(){
-        String employeeInfo = super.toString() + annualSalary;
+        String employeeInfo = super.toString() + /*payment goes here*/ 
+                            "::FULL TIME::Annual Salary $" + annualSalary;
         return employeeInfo;
     }
     

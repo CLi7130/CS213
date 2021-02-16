@@ -34,7 +34,9 @@ public class Parttime extends Employee{
     }
     @Override
     public String toString(){
-        String employeeInfo = super.toString() + hours + " " + hourlyRate;
+        String employeeInfo = super.toString() + "::PART TIME::Hourly Rate $" 
+                            + hourlyRate + "::Hours worked this period: " 
+                            + hours;
         return employeeInfo;
     }
     @Override
@@ -55,4 +57,6 @@ public class Parttime extends Employee{
         //reuse code in superclass whenever possible
 
     }
+
 }
+
