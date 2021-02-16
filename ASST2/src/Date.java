@@ -268,36 +268,6 @@ public class Date implements Comparable<Date>{
         }
         return dateOrder;
     }
-
-    public static void main(String[] args){
-        System.out.println("Testing");
-        Date testDate = new Date();
-        Date testDate2 = new Date();
-
-        Date futureDate = new Date();
-        futureDate.setDay(futureDate.getDay() + 1);
-
-        Date pastDate = new Date();
-        pastDate.setDay(pastDate.getDay() - 1);
-
-        System.out.println("same date: " + toString(testDate2) 
-                            + ", Expected: 0");
-        System.out.println("compareTo returns: " 
-                            + testDate.compareTo(testDate2));
-        System.out.println();
-
-        System.out.println("future date: " + toString(futureDate) 
-                            + ", Expected: -1");
-        System.out.println("compareTo returns: " 
-                            + testDate.compareTo(futureDate)); 
-        System.out.println();
-
-        System.out.println("past date: " + toString(pastDate) 
-                            + ", Expected: 1");
-        System.out.println("compareTo returns: " 
-                            + testDate.compareTo(pastDate));
-        System.out.println();
-    }
 }
 
 
