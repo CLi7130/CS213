@@ -7,6 +7,7 @@
 
 
 */
+import java.text.DecimalFormat;
 
 public class Fulltime extends Employee{
     private int annualSalary = 0; 
@@ -31,8 +32,10 @@ public class Fulltime extends Employee{
     
     @Override
     public String toString(){
+        DecimalFormat money = new DecimalFormat("#,###.00");
         String employeeInfo = super.toString() + /*payment goes here*/ 
-                            "::FULL TIME::Annual Salary $" + annualSalary;
+                            "::FULL TIME::Annual Salary $" 
+                            + money.format(annualSalary);
         return employeeInfo;
     }
     

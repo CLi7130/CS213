@@ -8,7 +8,10 @@
 
 */
 
+import java.text.DecimalFormat;
+
 public class Parttime extends Employee{
+    
     public Parttime(Profile Profile) {
         super(Profile);
     }
@@ -34,8 +37,10 @@ public class Parttime extends Employee{
     }
     @Override
     public String toString(){
+
+        DecimalFormat money = new DecimalFormat("#,###.00");
         String employeeInfo = super.toString() + "::PART TIME::Hourly Rate $" 
-                            + hourlyRate + "::Hours worked this period: " 
+                            + money.format(hourlyRate) + "::Hours worked this period: " 
                             + hours;
         return employeeInfo;
     }
@@ -56,6 +61,21 @@ public class Parttime extends Employee{
         //do not change method signature
         //reuse code in superclass whenever possible
 
+    }
+
+    public static void main(String[] args){
+        
+        Profile pro1 = new Profile();
+        Parttime test1 = new Parttime(pro1);
+
+        pro1.setName("testName");
+        pro1.setDepartment("CS");
+        pro1.setDateHired(new Date());
+        test1.setHourlyRate(60.75);
+        test1.setHours(20);
+
+        pro1.toString();
+        
     }
 
 }
