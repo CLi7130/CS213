@@ -49,7 +49,6 @@ public class Fulltime extends Employee{
             if(profile.equals(employee.profile)) {
                 return true;
             }
-            return false;
         }
         return false;
     }

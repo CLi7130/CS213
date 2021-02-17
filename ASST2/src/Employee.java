@@ -36,7 +36,7 @@ public class Employee{
     
     @Override
     public String toString(){
-        DecimalFormat money = new DecimalFormat("#,###.00");
+        DecimalFormat money = new DecimalFormat("#,##0.00");
         String employeeInfo = profile.toString() + "::Payment $" + 
                 money.format(payment);
         return employeeInfo;
