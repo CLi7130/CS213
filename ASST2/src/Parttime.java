@@ -43,9 +43,11 @@ public class Parttime extends Employee{
     public String toString(){
 
         DecimalFormat money = new DecimalFormat("#,###.00");
-        String employeeInfo = super.toString() + "::Payment $" + money.format(payment) +
-                            "::PART TIME::Hourly Rate $" 
-                            + money.format(hourlyRate) + "::Hours worked this period: " 
+        String employeeInfo = super.toString() + "::Payment $" 
+                            + money.format(payment) 
+                            + "::PART TIME::Hourly Rate $" 
+                            + money.format(hourlyRate) 
+                            + "::Hours worked this period: " 
                             + hours;
         return employeeInfo;
     }

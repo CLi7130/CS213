@@ -13,8 +13,7 @@ public class Fulltime extends Employee{
 
     private int annualSalary = 0; 
     private double payment = 0;
-    private static final double PAYMENTPERIOD = .0384615385;
-    
+    private static final double PAYPERIODSPERYEAR = 26;
     /**
      * @return the payment
      */
@@ -71,6 +70,6 @@ public class Fulltime extends Employee{
     
     @Override
     public void calculatePayment(){
-        payment = PAYMENTPERIOD * annualSalary;
+        payment = annualSalary / PAYPERIODSPERYEAR;
     }
 }
