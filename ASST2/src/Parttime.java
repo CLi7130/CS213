@@ -63,20 +63,5 @@ public class Parttime extends Employee{
 
     }
 
-    public static void main(String[] args){
-        
-        Profile pro1 = new Profile();
-        Parttime test1 = new Parttime(pro1);
-
-        pro1.setName("testName");
-        pro1.setDepartment("CS");
-        pro1.setDateHired(new Date());
-        test1.setHourlyRate(60.75);
-        test1.setHours(20);
-
-        pro1.toString();
-        
-    }
-
 }
 

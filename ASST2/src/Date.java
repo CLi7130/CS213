@@ -202,24 +202,6 @@ public class Date implements Comparable<Date>{
     }
     
     /**
-    Method returns a formatted string representing a date object.
-    For use only in testbed main.
-    @param  date    date object that needs to be represented as a String.
-    @return formattedDate   string representation of date object input.
-    */
-    private static String toString(Date date){
-        String formattedDate = "";
-        final String formatSpacer = "/";
-
-        formattedDate += Integer.toString(date.getMonth());
-        formattedDate += formatSpacer;
-        formattedDate += Integer.toString(date.getDay());
-        formattedDate += formatSpacer;
-        formattedDate += Integer.toString(date.getYear());
-
-        return formattedDate;
-    }
-    /**
     Method returns an integer that represents ordering between two date objects.
     If method returns a -1, the first date is before the second date, if it returns 0, the dates are equal, if it returns a 1, the first date is after the second date.
     @param  date    date object that needs to be compared to another date

@@ -9,11 +9,9 @@
         - use equals() method to check type
         
 */
-import java.text.DecimalFormat;
 
 public class Employee{
     Profile profile = new Profile();
-    DecimalFormat money = new DecimalFormat("0.00");
     
     public Employee(Profile Profile) {
         profile = Profile;
