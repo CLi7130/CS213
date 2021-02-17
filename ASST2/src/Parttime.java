@@ -17,6 +17,10 @@ public class Parttime extends Employee{
     }
     private int hours = 0;
     private double hourlyRate = 0;
+    private double payment = 0;
+    private static final int HOURSUNTILBONUS = 80;
+    private static final double BONUSRATE = 1.5;
+    
     public int getHours() {
         return hours;
     }
@@ -39,7 +43,8 @@ public class Parttime extends Employee{
     public String toString(){
 
         DecimalFormat money = new DecimalFormat("#,###.00");
-        String employeeInfo = super.toString() + "::PART TIME::Hourly Rate $" 
+        String employeeInfo = super.toString() + "::Payment $" + money.format(payment) +
+                            "::PART TIME::Hourly Rate $" 
                             + money.format(hourlyRate) + "::Hours worked this period: " 
                             + hours;
         return employeeInfo;
@@ -58,9 +63,15 @@ public class Parttime extends Employee{
     
     @Override
     public void calculatePayment(){
-        //do not change method signature
-        //reuse code in superclass whenever possible
-
+        double paymentBonus = 0;
+        if (hours > HOURSUNTILBONUS) {
+            payment = HOURSUNTILBONUS * hourlyRate;
+            paymentBonus = (hours - HOURSUNTILBONUS) * (BONUSRATE * hourlyRate);
+            payment += paymentBonus;
+        }
+        else {
+            payment = hours * hourlyRate;
+        }
     }
 
 }
