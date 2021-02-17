@@ -1,3 +1,5 @@
+import java.text.DecimalFormat;
+
 /*
     NOTES/TODO
     *****Delete upon final formatting pass*****
@@ -12,6 +14,21 @@
 
 public class Employee{
     Profile profile = new Profile();
+    private double payment = 0;
+    /**
+     * @return the payment
+     */
+    public double getPayment() {
+        return payment;
+    }
+
+    /**
+     * @param payment the payment to set
+     */
+    public void setPayment(double payment) {
+        this.payment = payment;
+    }
+    
     
     public Employee(Profile Profile) {
         profile = Profile;
@@ -19,11 +36,12 @@ public class Employee{
     
     @Override
     public String toString(){
-        String employeeInfo = profile.toString();
-        //placeholder
-
+        DecimalFormat money = new DecimalFormat("#,###.00");
+        String employeeInfo = profile.toString() + "::Payment $" + 
+                money.format(payment);
         return employeeInfo;
     }
+    
     @Override
     public boolean equals(Object obj){
         if (obj instanceof Employee) {
@@ -37,7 +55,7 @@ public class Employee{
     }
 
     public void calculatePayment() {
-        this.calculatePayment();
+        payment = 0;
     }
 
 }
