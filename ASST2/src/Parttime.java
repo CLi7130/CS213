@@ -17,7 +17,6 @@ public class Parttime extends Employee{
     }
     private int hours = 0;
     private double hourlyRate = 0;
-    private double payment = 0;
     private static final int HOURSUNTILBONUS = 80;
     private static final double BONUSRATE = 1.5;
     
@@ -43,9 +42,8 @@ public class Parttime extends Employee{
     public String toString(){
 
         DecimalFormat money = new DecimalFormat("#,###.00");
-        String employeeInfo = super.toString() + "::Payment $" 
-                            + money.format(payment) 
-                            + "::PART TIME::Hourly Rate $" 
+        String employeeInfo = super.toString() +
+                            "::PART TIME::Hourly Rate $" 
                             + money.format(hourlyRate) 
                             + "::Hours worked this period: " 
                             + hours;
@@ -67,12 +65,12 @@ public class Parttime extends Employee{
     public void calculatePayment(){
         double paymentBonus = 0;
         if (hours > HOURSUNTILBONUS) {
-            payment = HOURSUNTILBONUS * hourlyRate;
+            this.setPayment(HOURSUNTILBONUS * hourlyRate);
             paymentBonus = (hours - HOURSUNTILBONUS) * (BONUSRATE * hourlyRate);
-            payment += paymentBonus;
+            this.setPayment(this.getPayment() + paymentBonus);
         }
         else {
-            payment = hours * hourlyRate;
+            this.setPayment(hours * hourlyRate);
         }
     }
 

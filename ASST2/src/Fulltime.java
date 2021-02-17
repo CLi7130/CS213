@@ -12,21 +12,8 @@ import java.text.DecimalFormat;
 public class Fulltime extends Employee{
 
     private int annualSalary = 0; 
-    private double payment = 0;
     private static final double PAYPERIODSPERYEAR = 26;
-    /**
-     * @return the payment
-     */
-    public double getPayment() {
-        return payment;
-    }
-
-    /**
-     * @param payment the payment to set
-     */
-    public void setPayment(double payment) {
-        this.payment = payment;
-    }
+ 
     /**
      * @return the annualSalary
      */
@@ -49,8 +36,7 @@ public class Fulltime extends Employee{
     @Override
     public String toString(){
         DecimalFormat money = new DecimalFormat("#,###.00");
-        String employeeInfo = super.toString() + "::Payment $" + 
-                            money.format(payment) +
+        String employeeInfo = super.toString() +
                             "::FULL TIME::Annual Salary $" 
                             + money.format(annualSalary);
         return employeeInfo;
@@ -70,6 +56,6 @@ public class Fulltime extends Employee{
     
     @Override
     public void calculatePayment(){
-        payment = annualSalary / PAYPERIODSPERYEAR;
+        this.setPayment(annualSalary / PAYPERIODSPERYEAR);
     }
 }
