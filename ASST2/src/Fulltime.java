@@ -10,11 +10,24 @@
 import java.text.DecimalFormat;
 
 public class Fulltime extends Employee{
+
     private int annualSalary = 0; 
     private double payment = 0;
-    private static final double PAYMENTPERIOD = 1/26;
+    private static final double PAYMENTPERIOD = .0384615385;
     
-    
+    /**
+     * @return the payment
+     */
+    public double getPayment() {
+        return payment;
+    }
+
+    /**
+     * @param payment the payment to set
+     */
+    public void setPayment(double payment) {
+        this.payment = payment;
+    }
     /**
      * @return the annualSalary
      */
@@ -59,6 +72,5 @@ public class Fulltime extends Employee{
     @Override
     public void calculatePayment(){
         payment = PAYMENTPERIOD * annualSalary;
-
     }
 }
