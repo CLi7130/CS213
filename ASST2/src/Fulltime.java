@@ -11,6 +11,10 @@ import java.text.DecimalFormat;
 
 public class Fulltime extends Employee{
     private int annualSalary = 0; 
+    private double payment = 0;
+    private static final double PAYMENTPERIOD = 1/26;
+    
+    
     /**
      * @return the annualSalary
      */
@@ -33,7 +37,8 @@ public class Fulltime extends Employee{
     @Override
     public String toString(){
         DecimalFormat money = new DecimalFormat("#,###.00");
-        String employeeInfo = super.toString() + /*payment goes here*/ 
+        String employeeInfo = super.toString() + "::Payment $" + 
+                            money.format(payment) +
                             "::FULL TIME::Annual Salary $" 
                             + money.format(annualSalary);
         return employeeInfo;
@@ -53,8 +58,7 @@ public class Fulltime extends Employee{
     
     @Override
     public void calculatePayment(){
-        //do not change method signature
-        //reuse code in superclass whenever possible
+        payment = PAYMENTPERIOD * annualSalary;
 
     }
 }
