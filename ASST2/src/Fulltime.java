@@ -1,12 +1,3 @@
-/*
-    NOTES/TODO
-    *****Delete upon final formatting pass*****
-
-    - extends Employee class
-    - includes specific data and operations to Full Time employee
-
-
-*/
 import java.text.DecimalFormat;
 /**
 Extension of employee class, allows for creation of a fulltime employee.
@@ -33,6 +24,7 @@ public class Fulltime extends Employee{
     public void setAnnualSalary(int annualSalary) {
         this.annualSalary = annualSalary;
     }
+    
     /**
     Creates a new fulltime employee based on a given profile.
     @param profile provided profile object containing information about
@@ -40,8 +32,8 @@ public class Fulltime extends Employee{
     */
     public Fulltime(Profile Profile) {
         super(Profile);
-        // TODO Auto-generated constructor stub
     }
+    
     /**
     Creates a formatted string representation of a fulltime employee's information.
     */
@@ -53,6 +45,7 @@ public class Fulltime extends Employee{
                             + money.format(annualSalary);
         return employeeInfo;
     }
+    
     /**
     Checks if an object has the same profile information as a fulltime employee.
     @param obj Object being compared to a fulltime employee.
@@ -67,6 +60,7 @@ public class Fulltime extends Employee{
         }
         return false;
     }
+    
     /**
     Calculates a full time employee's payment per pay period.
     */
@@ -74,4 +68,5 @@ public class Fulltime extends Employee{
     public void calculatePayment(){
         this.setPayment(annualSalary / PAYPERIODSPERYEAR);
     }
+    
 }
