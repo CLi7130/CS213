@@ -1,3 +1,9 @@
+/**
+Parent or super class of Parttime Fulltime and Management.
+Instantiates a profile and payment
+@author Craig Li, Prerak Patel
+ */
+
 import java.text.DecimalFormat;
 
 /**
@@ -8,6 +14,7 @@ Each new employee is given a profile that defines additional characteristics.
 public class Employee{
     Profile profile = new Profile();
     private double payment = 0;
+    
     /**
     Gets the payment for an employee.
     @return the payment
@@ -32,6 +39,7 @@ public class Employee{
     public Employee(Profile Profile) {
         profile = Profile;
     }
+    
     /**
     Converts an Employee's Profile information to a formatted String.
     */
@@ -42,6 +50,7 @@ public class Employee{
                 money.format(payment);
         return employeeInfo;
     }
+    
     /**
     Checks if an Employee's prfile is the same as a given object's profile.
     @param obj    Object with a profile to be compared to an employee's profile.
