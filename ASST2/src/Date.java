@@ -1,14 +1,11 @@
-/*
-    NOTES/TODO
-    *****Delete upon final formatting pass*****
-
-    - import Date.java from ASST1
-    - implement Java Interface Comparable
-    
-*/
 
 import java.util.Calendar;
-
+/**
+This class instantiates a Date object from a string, creating an object in 
+the format of mm/dd/yyyy.
+Also included is a method to test whether a date is valid given a range of before the year 1900 and the current date.
+@author Craig Li, Prerak Patel
+*/
 public class Date implements Comparable<Date>{
 
     private int year;

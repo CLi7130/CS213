@@ -1,39 +1,35 @@
 import java.text.DecimalFormat;
 
-/*
-    NOTES/TODO
-    *****Delete upon final formatting pass*****
-
-    - defines common data and operations for all employee types;
-    - each employee has a profile that uniquely identifies employee
-
-    - DO NOT USE getClass() to check employee type.
-        - use equals() method to check type
-        
-*/
-
 public class Employee{
     Profile profile = new Profile();
     private double payment = 0;
     /**
-     * @return the payment
-     */
+    Gets the payment for an employee.
+    @return the payment
+    */
     public double getPayment() {
         return payment;
     }
 
     /**
-     * @param payment the payment to set
-     */
+    Sets payment rate for an employee.
+    @param payment the payment to set
+    */
     public void setPayment(double payment) {
         this.payment = payment;
     }
     
-    
+    /**
+    Creates a new employee based on a given profile
+    @param Profile    Profile object that contains information about an
+                      employee.
+    */
     public Employee(Profile Profile) {
         profile = Profile;
     }
-    
+    /**
+    Converts an Employee's Profile information to a formatted String.
+    */
     @Override
     public String toString(){
         DecimalFormat money = new DecimalFormat("#,##0.00");
@@ -41,7 +37,10 @@ public class Employee{
                 money.format(payment);
         return employeeInfo;
     }
-    
+    /**
+    Checks if an Employee's prfile is the same as a given object's profile.
+    @param obj    Object with a profile to be compared to an employee's profile.
+    */
     @Override
     public boolean equals(Object obj){
         if (obj instanceof Employee) {
@@ -53,7 +52,9 @@ public class Employee{
         }
         return false;
     }
-
+    /**
+    
+    */
     public void calculatePayment() {
         payment = 0;
     }
