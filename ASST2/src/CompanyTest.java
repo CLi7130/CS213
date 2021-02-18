@@ -102,13 +102,14 @@ public class CompanyTest {
         profile3.setName("Richard");
         profile3.setDepartment("ECE");
         profile3.setDateHired(date3);
+        employee3.setHours(100);
 
         list.add(employee2);
         list.add(employee3);
         assertFalse(list.setHours(employee1)); //Test Case #7 setHours for employee not in list
         assertFalse(list.setHours(employee2)); //Test Case #8 setHours for employee that is not Parttime
         assertTrue(list.setHours(employee3)); //Test Case #9 setHours for employee that is Parttime
-        
+        assertEquals(employee3.getHours(), 100); // make sure test case 9 actually worked
     }
 
 }
