@@ -1,13 +1,3 @@
-/*
-    NOTES/TODO
-    *****Delete upon final formatting pass*****
-
-    - extends Employee class
-    - includes specific data and operations to a part time employee
-
-
-*/
-
 import java.text.DecimalFormat;
 /**
 Extends the employee class and includes specific data and operations to a parttime employee.
@@ -34,6 +24,7 @@ public class Parttime extends Employee{
     public int getHours() {
         return hours;
     }
+    
     /**
     Sets the hours a parttime employee has worked during this pay period.
     @param hours provided number of hours worked by the employee.
@@ -41,6 +32,7 @@ public class Parttime extends Employee{
     public void setHours(int hours) {
         this.hours = hours;
     }
+    
     /**
     Gets the hourly wage of a parttime employee.
     @return hourlyRate the hourly pay rate of a parttime employee.
@@ -48,6 +40,7 @@ public class Parttime extends Employee{
     public double getHourlyRate() {
         return hourlyRate;
     }
+    
     /**
     Sets the parttime employee's hourly pay rate.
     @param hourlyRate the hourlyRate to set
@@ -62,8 +55,6 @@ public class Parttime extends Employee{
     */
     @Override
     public String toString(){
-
-
         DecimalFormat money = new DecimalFormat("#,##0.00");
         String employeeInfo = super.toString()
                             + "::PART TIME::Hourly Rate $" 
@@ -72,6 +63,7 @@ public class Parttime extends Employee{
                             + hours;
         return employeeInfo;
     }
+    
     /**
     Checks if an object has the same profile as a parttime employee.
     @param obj the object whose profile is being compared to a parttime
@@ -87,6 +79,7 @@ public class Parttime extends Employee{
         }
         return false;
     }
+    
     /**
     Calculates and sets the payment of a parttime employee based on hours worked and hourlyRate.
     Will provide payment at 1.5x normal rate above 80 hours per pay period.
