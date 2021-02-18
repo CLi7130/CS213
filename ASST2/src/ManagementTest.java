@@ -45,9 +45,9 @@ public class ManagementTest {
         employee1.calculatePayment();
         employee2.calculatePayment();
         employee3.calculatePayment();
-        assertEquals(employee1.getPayment(), 3461.54, 0.01); // make sure test case 9 actually worked
-        assertEquals(employee2.getPayment(), 3634.61, 0.01); // make sure test case 9 actually worked
-        assertEquals(employee3.getPayment(), 3730.77, 0.01); // make sure test case 9 actually worked
+        assertEquals(employee1.getPayment(), 3461.54, 0.01); //Test Case #1 payment for Manager
+        assertEquals(employee2.getPayment(), 3634.61, 0.01); //Test Case #2 payment for Department Head
+        assertEquals(employee3.getPayment(), 3730.77, 0.01); //Test Case #3 payment for Director
         
         
         
