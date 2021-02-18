@@ -3,7 +3,7 @@ import java.util.Calendar;
 /**
 This class instantiates a Date object from a string, creating an object in 
 the format of mm/dd/yyyy.
-Also included is a method to test whether a date is valid given a range of before the year 1900 and the current date.
+Also included is a method to test whether a date is valid given a range of before the year 1900 and the current date. Also allows comparison between two different dates.
 @author Craig Li, Prerak Patel
 */
 public class Date implements Comparable<Date>{

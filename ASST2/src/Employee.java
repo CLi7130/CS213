@@ -1,5 +1,10 @@
 import java.text.DecimalFormat;
 
+/**
+Defines common data/operations for all employee types, superclass.
+Each new employee is given a profile that defines additional characteristics.
+@author Craig Li, Prerak Patel
+*/
 public class Employee{
     Profile profile = new Profile();
     private double payment = 0;
@@ -53,10 +58,10 @@ public class Employee{
         return false;
     }
     /**
-    
+    Allows subclasses to calculate their own payments.
     */
     public void calculatePayment() {
-        payment = 0;
+        
     }
 
 }
