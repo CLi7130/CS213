@@ -1,14 +1,14 @@
 /**
  * 
  */
-package JUnitTests;
+
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
 /**
- * @author Prerak
+ * @author Craig Li, Prerak Patel
  *
  */
 public class CompanyTest {
@@ -18,6 +18,14 @@ public class CompanyTest {
      */
     @Test
     public void testAdd() {
+        Company list = new Company();
+        Profile profile = new Profile();
+        Employee employee = new Employee(profile);
+        Date date = new Date("7/1/2020");
+        profile.setName("Jemarcus");
+        profile.setDepartment("CS");
+        profile.setDateHired(date);
+        assertTrue(list.add(employee));
         //fail("Not yet implemented");
     }
 
