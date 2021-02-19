@@ -26,19 +26,19 @@ public class CompanyTest {
         profile1.setDepartment("CS");
         profile1.setDateHired(date1);
         Profile profile2 = new Profile();
-        Employee employee2 = new Employee(profile2);
+        Parttime employee2 = new Parttime(profile2);
         Date date2 = new Date("9/23/1999");
         profile2.setName("Jose");
         profile2.setDepartment("IT");
         profile2.setDateHired(date2);
         Profile profile3 = new Profile();
-        Employee employee3 = new Employee(profile3);
+        Fulltime employee3 = new Fulltime(profile3);
         Date date3 = new Date("10/5/2005");
         profile3.setName("Richard");
         profile3.setDepartment("ECE");
         profile3.setDateHired(date3);
         Profile profile4 = new Profile();
-        Employee employee4 = new Employee(profile4);
+        Management employee4 = new Management(profile4);
         Date date4 = new Date("9/15/2001");
         profile4.setName("Jack");
         profile4.setDepartment("CS");
@@ -52,10 +52,11 @@ public class CompanyTest {
         
         assertTrue(list.add(employee1)); //Test Case #1 testing add employee
         assertFalse(list.add(employee1)); //Test Case #2 testing add an existing employee
-        list.add(employee2);
-        list.add(employee3);
-        list.add(employee4);
-        assertTrue(list.add(employee5)); //Test Case #3 testing grow
+        assertTrue(list.add(employee2)); //Test Case #3 testing add a Parttime Employee
+        assertTrue(list.add(employee3));; //Test Case #4 testing add a Fulltime Employee
+        assertTrue(list.add(employee4)); //Test Case #5 testing add a Management Employee
+        assertTrue(list.add(employee5)); //Test Case #6 testing grow
+        assertFalse(list.add(null)); //Test Case #7 remove null employee
 
     }
 
@@ -71,11 +72,35 @@ public class CompanyTest {
         profile1.setName("Jemarcus");
         profile1.setDepartment("CS");
         profile1.setDateHired(date1);
+        Profile profile2 = new Profile();
+        Parttime employee2 = new Parttime(profile2);
+        Date date2 = new Date("9/23/1999");
+        profile2.setName("Jose");
+        profile2.setDepartment("IT");
+        profile2.setDateHired(date2);
+        Profile profile3 = new Profile();
+        Fulltime employee3 = new Fulltime(profile3);
+        Date date3 = new Date("10/5/2005");
+        profile3.setName("Richard");
+        profile3.setDepartment("ECE");
+        profile3.setDateHired(date3);
+        Profile profile4 = new Profile();
+        Management employee4 = new Management(profile4);
+        Date date4 = new Date("9/15/2001");
+        profile4.setName("Jack");
+        profile4.setDepartment("CS");
+        profile4.setDateHired(date4);
         
-        assertFalse(list.remove(employee1)); //Test Case #4 remove employee that is not in the list
+        assertFalse(list.remove(employee1)); //Test Case #8 remove employee that is not in the list
         list.add(employee1);
-        assertTrue(list.remove(employee1)); //Test Case #5 remove employee in the list
-        assertFalse(list.remove(null)); //Test Case #6 remove null employee
+        assertTrue(list.remove(employee1)); //Test Case #9 remove employee in the list
+        list.add(employee2);
+        assertTrue(list.remove(employee2)); //Test Case #10 remove Parttime employee in the list
+        list.add(employee3);
+        assertTrue(list.remove(employee3)); //Test Case #11 remove Fulltime employee in the list
+        list.add(employee4);
+        assertTrue(list.remove(employee4)); //Test Case #12 remove Managemnt employee in the list
+        assertFalse(list.remove(null)); //Test Case #13 remove null employee
     }
 
     /**
@@ -103,13 +128,30 @@ public class CompanyTest {
         profile3.setDepartment("ECE");
         profile3.setDateHired(date3);
         employee3.setHours(100);
+        Profile profile4 = new Profile();
+        Fulltime employee4 = new Fulltime(profile4);
+        Date date4 = new Date("9/23/1989");
+        profile4.setName("Kyle");
+        profile4.setDepartment("IT");
+        profile4.setDateHired(date4);
+        Profile profile5 = new Profile();
+        Management employee5 = new Management(profile5);
+        Date date5 = new Date("10/5/2015");
+        profile5.setName("Montgomery");
+        profile5.setDepartment("ECE");
+        profile5.setDateHired(date5);
+
 
         list.add(employee2);
         list.add(employee3);
-        assertFalse(list.setHours(employee1)); //Test Case #7 setHours for employee not in list
-        assertFalse(list.setHours(employee2)); //Test Case #8 setHours for employee that is not Parttime
-        assertTrue(list.setHours(employee3)); //Test Case #9 setHours for employee that is Parttime
+        list.add(employee4);
+        list.add(employee5);
+        assertFalse(list.setHours(employee1)); //Test Case #14 setHours for employee not in list
+        assertFalse(list.setHours(employee2)); //Test Case #15 setHours for Employee
+        assertTrue(list.setHours(employee3)); //Test Case #16 setHours for Parttime
         assertEquals(employee3.getHours(), 100); // make sure test case 9 actually worked
+        assertFalse(list.setHours(employee4)); //Test Case #17 setHours for Fulltime
+        assertFalse(list.setHours(employee5)); //Test Case #18 setHours for Management
     }
 
 }
