@@ -39,7 +39,7 @@ public class Fulltime extends Employee{
     */
     @Override
     public String toString(){
-        DecimalFormat money = new DecimalFormat("#,###.00");
+        DecimalFormat money = new DecimalFormat("#,##0.00");
         String employeeInfo = super.toString() +
                             "::FULL TIME::Annual Salary $" 
                             + money.format(annualSalary);
