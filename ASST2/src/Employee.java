@@ -6,7 +6,8 @@ Each new employee is given a profile that defines additional characteristics.
 @author Craig Li, Prerak Patel
 */
 public class Employee{
-    Profile profile = new Profile();
+
+    private Profile profile = new Profile();
     private double payment = 0;
     
     /**
@@ -16,6 +17,7 @@ public class Employee{
     public double getPayment() {
         return payment;
     }
+    
 
     /**
     Sets payment rate for an employee.
@@ -24,14 +26,20 @@ public class Employee{
     public void setPayment(double payment) {
         this.payment = payment;
     }
-    
+    /**
+    Gets profile of an employee.
+    @return Profile    Profile of an employee.
+    */
+    public Profile getProfile(){
+        return this.profile;
+    }
     /**
     Creates a new employee based on a given profile
     @param Profile    Profile object that contains information about an
                       employee.
     */
     public Employee(Profile Profile) {
-        profile = Profile;
+        this.profile = Profile;
     }
     
     /**
@@ -53,7 +61,7 @@ public class Employee{
     public boolean equals(Object obj){
         if (obj instanceof Employee) {
             Employee employee = (Employee) obj;
-            if(profile.equals(employee.profile)) {
+            if(this.getProfile().equals(employee.getProfile())) {
                 return true;
             }
         }

@@ -73,7 +73,7 @@ public class Parttime extends Employee{
     public boolean equals(Object obj){
         if (obj instanceof Parttime) {
             Parttime employee = (Parttime) obj;
-            if(profile.equals(employee.profile)) {
+            if(this.getProfile().equals(employee.getProfile())) {
                 return true;
             }
         }
