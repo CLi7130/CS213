@@ -1,9 +1,3 @@
-/**
-Parent or super class of Parttime Fulltime and Management.
-Instantiates a profile and payment
-@author Craig Li, Prerak Patel
- */
-
 import java.text.DecimalFormat;
 
 /**
@@ -17,7 +11,7 @@ public class Employee{
     
     /**
     Gets the payment for an employee.
-    @return the payment
+    @return the payment for the employee.
     */
     public double getPayment() {
         return payment;
@@ -62,12 +56,11 @@ public class Employee{
             if(profile.equals(employee.profile)) {
                 return true;
             }
-            return false;
         }
         return false;
     }
     /**
-    Allows subclasses to calculate their own payments.
+    Allows subclasses to calculate their own payments. Left empty as specified in Project 2 Q/A.
     */
     public void calculatePayment() {
         

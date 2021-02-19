@@ -12,7 +12,7 @@ public class Parttime extends Employee{
 
     /**
     Creates a new parttime employee based on a given profile.
-    @param Profile Profile containing information about a parttime employee.
+    @param Profile    Profile containing information about a parttime employee.
     */
     public Parttime(Profile Profile) {
         super(Profile);
@@ -27,7 +27,7 @@ public class Parttime extends Employee{
     
     /**
     Sets the hours a parttime employee has worked during this pay period.
-    @param hours provided number of hours worked by the employee.
+    @param hours    provided number of hours worked by the employee.
     */
     public void setHours(int hours) {
         this.hours = hours;
@@ -35,7 +35,7 @@ public class Parttime extends Employee{
     
     /**
     Gets the hourly wage of a parttime employee.
-    @return hourlyRate the hourly pay rate of a parttime employee.
+    @return hourlyRate    The hourly pay rate of a parttime employee.
     */
     public double getHourlyRate() {
         return hourlyRate;
@@ -43,7 +43,7 @@ public class Parttime extends Employee{
     
     /**
     Sets the parttime employee's hourly pay rate.
-    @param hourlyRate the hourlyRate to set
+    @param hourlyRate    the hourlyRate to set
     */
     public void setHourlyRate(double hourlyRate) {
         this.hourlyRate = hourlyRate;
@@ -51,7 +51,7 @@ public class Parttime extends Employee{
 
     /**
     Creates a formatted string representation of a parttime employee's information.
-    @return employeeInfo String containing a parttime employee's information.
+    @return employeeInfo    String containing a parttime employee's information.
     */
     @Override
     public String toString(){
@@ -66,8 +66,8 @@ public class Parttime extends Employee{
     
     /**
     Checks if an object has the same profile as a parttime employee.
-    @param obj the object whose profile is being compared to a parttime
-                employee's profile.
+    @param obj    the object whose profile is being compared to a parttime
+                  employee's profile.
      */
     @Override
     public boolean equals(Object obj){
