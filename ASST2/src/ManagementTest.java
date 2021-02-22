@@ -26,6 +26,7 @@ public class ManagementTest {
         profile1.setDateHired(date1);
         employee1.setRole(1);
         employee1.setAnnualSalary(85000);
+
         Profile profile2 = new Profile();
         Management employee2 = new Management(profile2);
         Date date2 = new Date("9/23/1999");
@@ -34,6 +35,7 @@ public class ManagementTest {
         profile2.setDateHired(date2);
         employee2.setRole(2);
         employee2.setAnnualSalary(85000);
+
         Profile profile3 = new Profile();
         Management employee3 = new Management(profile3);
         Date date3 = new Date("10/5/2005");
@@ -42,6 +44,7 @@ public class ManagementTest {
         profile3.setDateHired(date3);
         employee3.setRole(3);
         employee3.setAnnualSalary(85000);
+
         Profile profile4 = new Profile();
         Management employee4 = new Management(profile4);
         Date date4 = new Date("7/1/2018");
@@ -49,6 +52,7 @@ public class ManagementTest {
         profile4.setDepartment("CS");
         profile4.setDateHired(date4);
         employee4.setRole(1);
+
         Profile profile5 = new Profile();
         Management employee5 = new Management(profile5);
         Date date5 = new Date("9/23/1989");
@@ -56,6 +60,7 @@ public class ManagementTest {
         profile5.setDepartment("IT");
         profile5.setDateHired(date5);
         employee5.setRole(2);
+
         Profile profile6 = new Profile();
         Management employee6 = new Management(profile6);
         Date date6 = new Date("10/5/2015");
@@ -63,6 +68,7 @@ public class ManagementTest {
         profile6.setDepartment("ECE");
         profile6.setDateHired(date6);
         employee6.setRole(3);
+
         Profile profile7 = new Profile();
         Management employee7 = new Management(profile7);
         Date date7 = new Date("9/23/1979");
@@ -70,6 +76,7 @@ public class ManagementTest {
         profile7.setDepartment("IT");
         profile7.setDateHired(date7);
         employee7.setAnnualSalary(85000);
+        
         Profile profile8 = new Profile();
         Management employee8 = new Management(profile8);
         Date date8 = new Date("10/15/2015");

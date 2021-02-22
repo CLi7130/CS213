@@ -25,24 +25,28 @@ public class CompanyTest {
         profile1.setName("Jemarcus");
         profile1.setDepartment("CS");
         profile1.setDateHired(date1);
+
         Profile profile2 = new Profile();
         Parttime employee2 = new Parttime(profile2);
         Date date2 = new Date("9/23/1999");
         profile2.setName("Jose");
         profile2.setDepartment("IT");
         profile2.setDateHired(date2);
+        
         Profile profile3 = new Profile();
         Fulltime employee3 = new Fulltime(profile3);
         Date date3 = new Date("10/5/2005");
         profile3.setName("Richard");
         profile3.setDepartment("ECE");
         profile3.setDateHired(date3);
+
         Profile profile4 = new Profile();
         Management employee4 = new Management(profile4);
         Date date4 = new Date("9/15/2001");
         profile4.setName("Jack");
         profile4.setDepartment("CS");
         profile4.setDateHired(date4);
+
         Profile profile5 = new Profile();
         Employee employee5 = new Employee(profile5);
         Date date5 = new Date("6/15/2010");
@@ -75,18 +79,21 @@ public class CompanyTest {
         profile1.setName("Jemarcus");
         profile1.setDepartment("CS");
         profile1.setDateHired(date1);
+
         Profile profile2 = new Profile();
         Parttime employee2 = new Parttime(profile2);
         Date date2 = new Date("9/23/1999");
         profile2.setName("Jose");
         profile2.setDepartment("IT");
         profile2.setDateHired(date2);
+
         Profile profile3 = new Profile();
         Fulltime employee3 = new Fulltime(profile3);
         Date date3 = new Date("10/5/2005");
         profile3.setName("Richard");
         profile3.setDepartment("ECE");
         profile3.setDateHired(date3);
+
         Profile profile4 = new Profile();
         Management employee4 = new Management(profile4);
         Date date4 = new Date("9/15/2001");
@@ -121,12 +128,14 @@ public class CompanyTest {
         profile1.setName("Jemarcus");
         profile1.setDepartment("CS");
         profile1.setDateHired(date1);
+
         Profile profile2 = new Profile();
         Employee employee2 = new Employee(profile2);
         Date date2 = new Date("9/23/1999");
         profile2.setName("Jose");
         profile2.setDepartment("IT");
         profile2.setDateHired(date2);
+
         Profile profile3 = new Profile();
         Parttime employee3 = new Parttime(profile3);
         Date date3 = new Date("10/5/2005");
@@ -134,12 +143,14 @@ public class CompanyTest {
         profile3.setDepartment("ECE");
         profile3.setDateHired(date3);
         employee3.setHours(100);
+
         Profile profile4 = new Profile();
         Fulltime employee4 = new Fulltime(profile4);
         Date date4 = new Date("9/23/1989");
         profile4.setName("Kyle");
         profile4.setDepartment("IT");
         profile4.setDateHired(date4);
+
         Profile profile5 = new Profile();
         Management employee5 = new Management(profile5);
         Date date5 = new Date("10/5/2015");
