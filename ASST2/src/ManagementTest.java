@@ -1,16 +1,11 @@
-/**
- * 
- */
-
-
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
 /**
- * @author Craig Li, Prerak Patel
- *
- */
+JUnit testing for the Management class (tests calculatePayment method).
+@author Craig Li, Prerak Patel
+*/
 public class ManagementTest {
 
     /**
@@ -92,14 +87,30 @@ public class ManagementTest {
         employee6.calculatePayment();
         employee7.calculatePayment();
         employee8.calculatePayment();
-        assertEquals(employee1.getPayment(), 3461.54, 0.01); //Test Case #1 payment for Manager
-        assertEquals(employee2.getPayment(), 3634.61, 0.01); //Test Case #2 payment for Department Head
-        assertEquals(employee3.getPayment(), 3730.77, 0.01); //Test Case #3 payment for Director
-        assertEquals(employee4.getPayment(), 192.31, 0.01); //Test Case #4 payment for Manager with no annualSalary
-        assertEquals(employee5.getPayment(), 365.38, 0.01); //Test Case #5 payment for Department Head with no annualSalary
-        assertEquals(employee6.getPayment(), 461.54, 0.01); //Test Case #6 payment for Director with no annualSalary
-        assertEquals(employee7.getPayment(), 3269.23, 0.01); //Test Case #7 payment for no role with annualSalary
-        assertEquals(employee8.getPayment(), 0, 0.01); //Test Case #8 payment for no role with no annualSalary
+
+        //Test Case #1 tests payment calculation for Manager
+        assertEquals(employee1.getPayment(), 3461.54, 0.01);
+
+        //Test Case #2 tests payment calculation for Department Head
+        assertEquals(employee2.getPayment(), 3634.61, 0.01); 
+
+        //Test Case #3 payment for Director
+        assertEquals(employee3.getPayment(), 3730.77, 0.01); 
+
+        //Test Case #4 payment for Manager with no annualSalary
+        assertEquals(employee4.getPayment(), 192.31, 0.01); 
+
+        //Test Case #5 payment for Department Head with no annualSalary
+        assertEquals(employee5.getPayment(), 365.38, 0.01); 
+
+        //Test Case #6 payment for Director with no annualSalary
+        assertEquals(employee6.getPayment(), 461.54, 0.01); 
+
+         //Test Case #7 payment for no role with annualSalary
+        assertEquals(employee7.getPayment(), 3269.23, 0.01);
+
+        //Test Case #8 payment for no role with no annualSalary
+        assertEquals(employee8.getPayment(), 0, 0.01); 
         
     }
 

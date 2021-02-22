@@ -11,7 +11,7 @@ public class Fulltime extends Employee{
  
     /**
     Gets the Annual salary of a fulltime employee.
-    @return the annualSalary
+    @return annualSalary    The annualSalary of a fulltime employee.
     */
     public int getAnnualSalary() {
         return annualSalary;
@@ -19,7 +19,7 @@ public class Fulltime extends Employee{
 
     /**
     Sets the annual salary of a fulltime employee.
-    @param annualSalary the annualSalary to set
+    @param annualSalary    the annualSalary to set
     */
     public void setAnnualSalary(int annualSalary) {
         this.annualSalary = annualSalary;
@@ -27,8 +27,8 @@ public class Fulltime extends Employee{
     
     /**
     Creates a new fulltime employee based on a given profile.
-    @param profile provided profile object containing information about
-                    the fulltime employee.
+    @param profile    provided profile object containing information about
+                      the fulltime employee.
     */
     public Fulltime(Profile Profile) {
         super(Profile);
@@ -36,12 +36,13 @@ public class Fulltime extends Employee{
     
     /**
     Creates a formatted string representation of a fulltime employee's information.
+    @return employeeInfo    Formatted String containing Fulltime employee info.
     */
     @Override
     public String toString(){
         DecimalFormat money = new DecimalFormat("#,##0.00");
-        String employeeInfo = super.toString() +
-                            "::FULL TIME::Annual Salary $" 
+        String employeeInfo = super.toString() 
+                            + "::FULL TIME::Annual Salary $" 
                             + money.format(annualSalary);
         return employeeInfo;
     }
@@ -49,6 +50,7 @@ public class Fulltime extends Employee{
     /**
     Checks if an object has the same profile information as a fulltime employee.
     @param obj Object being compared to a fulltime employee.
+    @return true if the object is a Fulltime employee, false if not.
     */
     @Override
     public boolean equals(Object obj){

@@ -20,6 +20,7 @@ public class Parttime extends Employee{
     
     /**
     Gets the hours a parttime employee has worked during this pay period.
+    @return hours    The number of hours worked by a Parttime employee.
     */
     public int getHours() {
         return hours;
@@ -27,7 +28,7 @@ public class Parttime extends Employee{
     
     /**
     Sets the hours a parttime employee has worked during this pay period.
-    @param hours    provided number of hours worked by the employee.
+    @param hours    Provided number of hours worked by the employee.
     */
     public void setHours(int hours) {
         this.hours = hours;
@@ -68,7 +69,8 @@ public class Parttime extends Employee{
     Checks if an object has the same profile as a parttime employee.
     @param obj    the object whose profile is being compared to a parttime
                   employee's profile.
-     */
+    @return true if the object is a Parttime employee, false if not.
+    */
     @Override
     public boolean equals(Object obj){
         if (obj instanceof Parttime) {

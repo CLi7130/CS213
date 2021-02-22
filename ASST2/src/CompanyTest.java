@@ -1,21 +1,16 @@
-/**
- * 
- */
-
-
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
 /**
- * @author Craig Li, Prerak Patel
- *
- */
+JUnit Testing for Company class, tests add and remove methods.
+@author Craig Li, Prerak Patel
+*/
 public class CompanyTest {
 
     /**
-     * Test method for {@link Company#add(Employee)}.
-     */
+    Test method for {@link Company#add(Employee)}.
+    */
     @Test
     public void testAdd() {
         Company list = new Company();
@@ -54,22 +49,41 @@ public class CompanyTest {
         profile5.setDepartment("IT");
         profile5.setDateHired(date5);
         
-        assertTrue(list.add(employee1)); //Test Case #1 testing add employee
-        assertTrue(list.add(employee2)); //Test Case #2 testing add a Parttime Employee
-        assertTrue(list.add(employee3));; //Test Case #3 testing add a Fulltime Employee
-        assertTrue(list.add(employee4)); //Test Case #4 testing add a Management Employee
-        assertTrue(list.add(employee5)); //Test Case #5 testing grow
-        assertFalse(list.add(employee1)); //Test Case #6 testing add an existing Employee
-        assertFalse(list.add(employee2)); //Test Case #7 testing add an existing Parttime Employee
-        assertFalse(list.add(employee3)); //Test Case #8 testing add an existing Fulltime Employee
-        assertFalse(list.add(employee4)); //Test Case #9 testing add an existing Management Employee
-        assertFalse(list.add(null)); //Test Case #10 remove null employee
+        //Test Case #1 testing add employee
+        assertTrue(list.add(employee1)); 
+
+        //Test Case #2 testing add a Parttime Employee
+        assertTrue(list.add(employee2)); 
+
+        //Test Case #3 testing add a Fulltime Employee
+        assertTrue(list.add(employee3)); 
+
+        //Test Case #4 testing add a Management Employee
+        assertTrue(list.add(employee4)); 
+
+        //Test Case #5 testing grow
+        assertTrue(list.add(employee5)); 
+
+        //Test Case #6 testing add an existing Employee
+        assertFalse(list.add(employee1)); 
+
+        //Test Case #7 testing add an existing Parttime Employee
+        assertFalse(list.add(employee2)); 
+
+        //Test Case #8 testing add an existing Fulltime Employee
+        assertFalse(list.add(employee3)); 
+
+        //Test Case #9 testing add an existing Management Employee
+        assertFalse(list.add(employee4)); 
+
+        //Test Case #10 remove null employee
+        assertFalse(list.add(null)); 
 
     }
 
     /**
-     * Test method for {@link Company#remove(Employee)}.
-     */
+    Test method for {@link Company#remove(Employee)}.
+    */
     @Test
     public void testRemove() {
         Company list = new Company();
@@ -101,24 +115,41 @@ public class CompanyTest {
         profile4.setDepartment("CS");
         profile4.setDateHired(date4);
         
-        assertFalse(list.remove(employee1)); //Test Case #11 remove employee that is not in the list
-        assertFalse(list.remove(employee2)); //Test Case #12 remove Parttime employee that is not in the list
-        assertFalse(list.remove(employee3)); //Test Case #13 remove Fulltime employee that is not in the list
-        assertFalse(list.remove(employee4)); //Test Case #14 remove Management employee that is not in the list
+        //Test Case #11 remove employee that is not in the list
+        assertFalse(list.remove(employee1)); 
+
+        //Test Case #12 remove Parttime employee that is not in the list
+        assertFalse(list.remove(employee2)); 
+        
+        //Test Case #13 remove Fulltime employee that is not in the list
+        assertFalse(list.remove(employee3)); 
+
+        //Test Case #14 remove Management employee that is not in the list
+        assertFalse(list.remove(employee4)); 
+
+        //Test Case #15 remove general employee in the list
         list.add(employee1);
-        assertTrue(list.remove(employee1)); //Test Case #15 remove employee in the list
+        assertTrue(list.remove(employee1)); 
+
+        //Test Case #16 remove Parttime employee in the list
         list.add(employee2);
-        assertTrue(list.remove(employee2)); //Test Case #16 remove Parttime employee in the list
+        assertTrue(list.remove(employee2)); 
+
+        //Test Case #17 remove Fulltime employee in the list
         list.add(employee3);
-        assertTrue(list.remove(employee3)); //Test Case #17 remove Fulltime employee in the list
+        assertTrue(list.remove(employee3)); 
+
+        //Test Case #18 remove Managemnt employee in the list
         list.add(employee4);
-        assertTrue(list.remove(employee4)); //Test Case #18 remove Managemnt employee in the list
-        assertFalse(list.remove(employee4)); //Test Case #19 remove employee when list is empty
+        assertTrue(list.remove(employee4));
+        
+        //Test Case #19 remove employee when list is empty
+        assertFalse(list.remove(employee4)); 
     }
 
     /**
-     * Test method for {@link Company#setHours(Employee)}.
-     */
+    Test method for {@link Company#setHours(Employee)}.
+    */
     @Test
     public void testSetHours() {
         Company list = new Company();
@@ -158,17 +189,27 @@ public class CompanyTest {
         profile5.setDepartment("ECE");
         profile5.setDateHired(date5);
 
-
         list.add(employee2);
         list.add(employee3);
         list.add(employee4);
         list.add(employee5);
-        assertFalse(list.setHours(employee1)); //Test Case #20 setHours for employee not in list
-        assertFalse(list.setHours(employee2)); //Test Case #21 setHours for Employee
-        assertTrue(list.setHours(employee3)); //Test Case #22 setHours for Parttime
-        assertEquals(employee3.getHours(), 100); // make sure test case 9 actually worked
-        assertFalse(list.setHours(employee4)); //Test Case #23 setHours for Fulltime
-        assertFalse(list.setHours(employee5)); //Test Case #24 setHours for Management
+
+        //Test Case #20 setHours for employee not in list
+        assertFalse(list.setHours(employee1)); 
+
+        //Test Case #21 setHours for Employee
+        assertFalse(list.setHours(employee2)); 
+
+        //Test Case #22 setHours for Parttime
+        assertTrue(list.setHours(employee3)); 
+        // make sure test case 22 actually worked
+        assertEquals(employee3.getHours(), 100);
+
+        //Test Case #23 setHours for Fulltime
+        assertFalse(list.setHours(employee4)); 
+
+        //Test Case #24 setHours for Management
+        assertFalse(list.setHours(employee5)); 
     }
 
 }

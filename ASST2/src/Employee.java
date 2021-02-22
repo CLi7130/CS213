@@ -18,7 +18,6 @@ public class Employee{
         return payment;
     }
     
-
     /**
     Sets payment rate for an employee.
     @param payment the payment to set
@@ -26,6 +25,7 @@ public class Employee{
     public void setPayment(double payment) {
         this.payment = payment;
     }
+
     /**
     Gets profile of an employee.
     @return Profile    Profile of an employee.
@@ -33,6 +33,7 @@ public class Employee{
     public Profile getProfile(){
         return this.profile;
     }
+
     /**
     Creates a new employee based on a given profile
     @param Profile    Profile object that contains information about an
@@ -56,6 +57,7 @@ public class Employee{
     /**
     Checks if an Employee's prfile is the same as a given object's profile.
     @param obj    Object with a profile to be compared to an employee's profile.
+    @return true if the object is an employee, false if not.
     */
     @Override
     public boolean equals(Object obj){
