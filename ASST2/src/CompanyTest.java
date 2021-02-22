@@ -113,7 +113,7 @@ public class CompanyTest {
         assertTrue(list.remove(employee3)); //Test Case #17 remove Fulltime employee in the list
         list.add(employee4);
         assertTrue(list.remove(employee4)); //Test Case #18 remove Managemnt employee in the list
-        assertFalse(list.remove(null)); //Test Case #19 remove null employee
+        assertFalse(list.remove(employee4)); //Test Case #19 remove employee when list is empty
     }
 
     /**
