@@ -10,7 +10,7 @@ S Doe,Jane CS 7/1/2020
 PA
 PD
 PH
-AP Doe, Jane CS 7/1/2020 45.9
+AP Doe,Jane CS 7/1/2020 45.9
 AF Doe,Jane ECE 1/1/2005 85000
 AM Doe,Jane IT 2/28/2012 85000 1
 PA
