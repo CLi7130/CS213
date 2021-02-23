@@ -27,8 +27,8 @@ public class Fulltime extends Employee{
     
     /**
     Creates a new fulltime employee based on a given profile.
-    @param profile    provided profile object containing information about
-                      the fulltime employee.
+    @param  Profile provided profile object containing information 
+                about the fulltime employee.
     */
     public Fulltime(Profile Profile) {
         super(Profile);
