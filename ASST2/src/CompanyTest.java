@@ -48,6 +48,13 @@ public class CompanyTest {
         profile5.setName("Lemarcus");
         profile5.setDepartment("IT");
         profile5.setDateHired(date5);
+
+        Profile profile6 = new Profile();
+        Employee employee6 = new Fulltime(profile6);
+        Date date6 = new Date("9/15/2001");
+        profile6.setName("Jack");
+        profile6.setDepartment("CS");
+        profile6.setDateHired(date6);
         
         //Test Case #1 testing add employee
         assertTrue(list.add(employee1)); 
@@ -76,8 +83,8 @@ public class CompanyTest {
         //Test Case #9 testing add an existing Management Employee
         assertFalse(list.add(employee4)); 
 
-        //Test Case #10 remove null employee
-        assertFalse(list.add(null)); 
+        //Test Case #10 Add different employee with same information
+        assertFalse(list.add(employee6)); 
 
     }
 
