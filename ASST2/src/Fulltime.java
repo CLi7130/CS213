@@ -7,7 +7,7 @@ Methods included allow manipulation of annual salary, as well as a way to calcul
 public class Fulltime extends Employee{
 
     private int annualSalary = 0; 
-    private static final double PAYPERIODSPERYEAR = 26;
+    private static final double PAY_PERIODS_PER_YEAR = 26;
  
     /**
     Gets the Annual salary of a fulltime employee.
@@ -68,7 +68,7 @@ public class Fulltime extends Employee{
     */
     @Override
     public void calculatePayment(){
-        this.setPayment(annualSalary / PAYPERIODSPERYEAR);
+        this.setPayment(annualSalary / PAY_PERIODS_PER_YEAR);
     }
     
 }

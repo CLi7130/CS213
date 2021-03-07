@@ -15,12 +15,12 @@ public class Date implements Comparable<Date>{
     private static final int QUADRENNIAL = 4;
     private static final int CENTENNIAL = 100;
     private static final int QUATERCENTENNIAL = 400;
-    private static final int THIRTYONEDAYSPERMONTH = 31;
-    private static final int THIRTYDAYSPERMONTH = 30;
-    private static final int TWENTYEIGHTDAYSPERMONTH = 28;
-    private static final int TWENTYNINEDAYSPERMONTH = 29;
-    private static final int MONTHMAX = 12;
-    private static final int YEARMIN = 1900;
+    private static final int THIRTY_ONE_DAYS_PER_MONTH = 31;
+    private static final int THIRTY_DAYS_PER_MONTH = 30;
+    private static final int TWENTY_EIGHT_DAYS_PER_MONTH = 28;
+    private static final int TWENTY_NINE_DAYS_PER_MONTH = 29;
+    private static final int MONTH_MAX = 12;
+    private static final int YEAR_MIN = 1900;
 
     /**
     Gets day book was published.
@@ -133,10 +133,10 @@ public class Date implements Comparable<Date>{
         int testDay = this.getDay();
         boolean isLeapYear = false;
 
-        if(testMonth < 1 || testMonth > MONTHMAX){
+        if(testMonth < 1 || testMonth > MONTH_MAX){
             return false;
         }
-        if(testYear < YEARMIN || testYear > yearMax){
+        if(testYear < YEAR_MIN || testYear > yearMax){
             return false;
         }
         if(testYear == yearMax){
@@ -171,22 +171,22 @@ public class Date implements Comparable<Date>{
             isLeapYear = isLeapYear(testYear);
 
             if(isLeapYear){
-                daysPerMonthMax = TWENTYNINEDAYSPERMONTH;
+                daysPerMonthMax = TWENTY_NINE_DAYS_PER_MONTH;
             }
             else{
-                daysPerMonthMax = TWENTYEIGHTDAYSPERMONTH;
+                daysPerMonthMax = TWENTY_EIGHT_DAYS_PER_MONTH;
             }
         }
 
         for(int i = 0; i < monthsWith31Days.length; i++){
             if(testMonth == monthsWith31Days[i]){
-                daysPerMonthMax = THIRTYONEDAYSPERMONTH;
+                daysPerMonthMax = THIRTY_ONE_DAYS_PER_MONTH;
                 break;
             }
         }
         for(int i = 0; i < monthsWith30Days.length; i++){
             if(testMonth == monthsWith30Days[i]){
-                daysPerMonthMax = THIRTYDAYSPERMONTH;
+                daysPerMonthMax = THIRTY_DAYS_PER_MONTH;
                 break;
             }
         }

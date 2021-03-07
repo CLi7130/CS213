@@ -7,8 +7,8 @@ public class Parttime extends Employee{
     
     private int hours = 0;
     private double hourlyRate = 0;
-    private static final int HOURSUNTILBONUS = 80;
-    private static final double BONUSRATE = 1.5;
+    private static final int HOURS_UNTIL_BONUS = 80;
+    private static final double BONUS_RATE = 1.5;
 
     /**
     Creates a new parttime employee based on a given profile.
@@ -89,9 +89,9 @@ public class Parttime extends Employee{
     @Override
     public void calculatePayment(){
         double paymentBonus = 0;
-        if (hours > HOURSUNTILBONUS) {
-            this.setPayment(HOURSUNTILBONUS * hourlyRate);
-            paymentBonus = (hours - HOURSUNTILBONUS) * (BONUSRATE * hourlyRate);
+        if (hours > HOURS_UNTIL_BONUS) {
+            this.setPayment(HOURS_UNTIL_BONUS * hourlyRate);
+            paymentBonus = (hours - HOURS_UNTIL_BONUS) * (BONUS_RATE * hourlyRate);
             this.setPayment(this.getPayment() + paymentBonus);
         }
         else {
