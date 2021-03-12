@@ -1,4 +1,5 @@
 package Payroll;
+
 /**
 Creates a new Company instance, an array of employees.
 Array of employees will automatically grow when maximum capacity is reached,
@@ -11,6 +12,7 @@ public class Company{
     private int numEmployee;
     private static final int GROW_AMOUNT = 4;
     private static final int FAIL_CONDITION = -1;
+    //private TextArea messageArea;
     
     /**
     Gets number of employees.
@@ -153,10 +155,10 @@ public class Company{
     public void print(){
         shiftArray();
         for(int i = 0; i < empList.length; i++) {
-            if(empList[i] == null) { 
+            if(empList[i] == null) {
                 continue;
             }
-            System.out.println(empList[i].toString());
+            PayrollController.getText(empList[i].toString() + '\n');
         }
     }
     

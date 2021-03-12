@@ -76,10 +76,10 @@ public class Date implements Comparable<Date>{
     @param  date    selected/provided publishing date in format MM/DD/YYYY
     */
     public Date(String date){
-        String[] splitDateInput = date.split("/");
-        final int monthSplit = 0;
-        final int daySplit = 1;
-        final int yearSplit = 2;
+        String[] splitDateInput = date.split("-");
+        final int monthSplit = 1;
+        final int daySplit = 2;
+        final int yearSplit = 0;
 
         this.setMonth(Integer.parseInt(splitDateInput[monthSplit]));
         this.setDay(Integer.parseInt(splitDateInput[daySplit]));

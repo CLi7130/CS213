@@ -5,6 +5,7 @@
 package Payroll;
 
 import java.net.URL;
+import java.util.NoSuchElementException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -17,9 +18,14 @@ import javafx.scene.control.ToggleGroup;
 
 public class PayrollController {
 
+
+
     final ToggleGroup group1 = new ToggleGroup();
     final ToggleGroup group2 = new ToggleGroup();
     final ToggleGroup group3 = new ToggleGroup();
+    private static final int MANAGER = 1;
+    private static final int DPT_HEAD = 2;
+    private static final int DIRECTOR = 3;
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
 
@@ -69,14 +75,299 @@ public class PayrollController {
     private RadioButton director; // Value injected by FXMLLoader
 
     @FXML // fx:id="messageArea"
-    private TextArea messageArea; // Value injected by FXMLLoader
+    public TextArea messageArea; // Value injected by FXMLLoader
 
     @FXML // fx:id="setHours"
     private Button setHours; // Value injected by FXMLLoader
+    
+    public static String text;
 
+    Company company = new Company();
+    /**
+    Profile profile1 = new Profile();
+    Employee employee1 = new Employee(profile1);
+    Date date1 = new Date("7/1/2020");
+    Profile profile2 = new Profile();
+    Parttime employee2 = new Parttime(profile2);
+    Date date2 = new Date("9/23/1999");
+     */
+
+    /**
+     * @param messageArea the messageArea to set
+     */
+    public static void getText(String texting) {
+        text += texting;
+    }
+    
+    /**
+    Creates a general profile common to all employees with name, date hired, and department as specified by the user.
+    @param empInfo[]    String array that contains all relevant data tokens
+                        provided by the user.
+    @param profile      Empty profile object that will be filled with 
+                        information from empInfo[].
+    @return Method returns false if any of the provided information is invalid,
+            true if all information is valid.
+    */
+    private boolean makeBaseEmp(Profile profile){
+
+        try{
+            if(this.name == null || this.name.getText().trim().isEmpty()) {
+                messageArea.setText("Enter Name.\n");
+                return false;
+            }
+            String name = this.name.getText();
+            String dmpt = group1.getSelectedToggle().getUserData().toString();
+            String dateString = date.getValue().toString();
+            Date dateHired = new Date(dateString);
+    
+
+            if(!dateHired.isValid()){
+                messageArea.setText(dateString + " is not a valid"
+                                    + " date!\n");
+                return false;
+            }
+            profile.setName(name);
+            profile.setDepartment(dmpt);
+            profile.setDateHired(dateHired);
+        }
+        catch(NoSuchElementException exception){
+            messageArea.setText("Exception: Unexpected Number " 
+                                + "of Data Tokens.\n");
+            return false;
+        }
+        catch(ArrayIndexOutOfBoundsException exception){
+            messageArea.setText("Exception: Unexpected Number " 
+                                + "of Data Tokens.\n");
+            return false;
+        }
+        catch(NumberFormatException exception){
+            messageArea.setText("Exception: Invalid Date.\n");
+            return false;
+        }
+        catch(NullPointerException exception) {
+            messageArea.setText("Exception: Invalid Date.\n");
+            return false;
+        }
+        return true;
+    }
+    
+    /**
+    Checks if given company has zero employees.
+    @param  company takes in a company instance which should include the list of employees
+    @return true if company has zero employees, false if otherwise.
+    */
+    private boolean isCompanyEmpty(Company company){
+        if(company.getNumEmployees() == 0){
+            messageArea.setText("Employee database is empty.\n");
+            return true;
+        }
+        return false;
+    }
+    
+    /**
+    Adds additional information specific to parttime employees based on user input.
+    @param empInfo[]    String array that contains all relevant data tokens
+                        provided by the user.
+    @param employee    Parttime employee object that will be filled with
+                       relevant information from empInfo[].
+    @return Method returns false if any of the provided information is invalid,
+            true if all information is valid.
+    */
+    private boolean addParttimeInfo(Parttime employee){
+        
+        try{
+            if(!(this.hoursWorked == null || this.hoursWorked.getText().trim().isEmpty())) {
+                isHoursValid(employee);
+            }
+            if(this.hourlyRate == null || this.hourlyRate.getText().trim().isEmpty()) {
+                messageArea.setText("Enter Hourly Rate.\n");
+                return false;
+            }
+            double hourlyRate = Double.parseDouble(this.hourlyRate.getText());
+            if(hourlyRate < 0){
+                messageArea.setText("Pay rate cannot be negative.\n");
+                return false;
+            }
+            employee.setHourlyRate(hourlyRate);
+        }
+        catch(NumberFormatException hourlyRate){
+            messageArea.setText("Exception: Invalid Hourly Rate.\n"); 
+            return false;
+        }
+        catch(ArrayIndexOutOfBoundsException exception){
+            messageArea.setText("Exception: Unexpected Number " 
+                                + "of Data Tokens.\n");
+            return false;
+        }
+        catch(NullPointerException exception){
+            messageArea.setText("Exception: No data.\n");
+            return false;
+        }
+        return true;
+    }
+    
+    /**
+    Adds additional information specific to fulltime employees based on user input.
+    @param empInfo[]    String array that contains all relevant data tokens
+                        provided by the user.
+    @param employee    Fulltime employee object that will be filled with
+                       relevant information from empInfo[].
+    @return Method returns false if any of the provided information is invalid,
+            true if all information is valid.
+    */
+    private boolean addFulltimeInfo(Fulltime employee){
+
+        try{
+            if(this.annualSalary == null || this.annualSalary.getText().trim().isEmpty()) {
+                messageArea.setText("Enter Annual Salary.\n");
+                return false;
+            }
+            int annualSalary = Integer.parseInt(this.annualSalary.getText());
+            if(annualSalary < 0){
+                messageArea.setText("Salary cannot be negative.\n");
+                return false;
+                
+            }
+            employee.setAnnualSalary(annualSalary);
+        }
+        catch(NoSuchElementException exception){
+            messageArea.setText("Exception: Unexpected Number " 
+                                + "of Data Tokens.\n");
+            return false;
+        }
+        catch(NumberFormatException annualSalary){
+            messageArea.setText("Exception: Invalid Salary.\n");
+            return false;
+        }
+        catch(NullPointerException exception){
+            messageArea.setText("Exception: No data.\n");
+            return false;
+        }
+        catch(ArrayIndexOutOfBoundsException exception){
+            messageArea.setText("Exception: Unexpected Number " 
+                                + "of Data Tokens.\n");
+            return false;
+        }       
+        return true;
+    }
+    
+    /**
+    Checks and sets parttime hours provided by the user if the hours are within the valid range of 0-100.
+    @param empInfo[]    String array that contains all relevant data tokens
+                        provided by the user.
+    @param company    Company that contains the parttime employee.
+    @param employee    Parttime employee object that will be filled with
+                    relevant information from empInfo[].
+    @return Method returns false if any of the provided information is invalid,
+            true if all information is valid.
+    */
+    private boolean isHoursValid(Parttime employee){
+
+        try{
+            if(this.hoursWorked == null || this.hoursWorked.getText().trim().isEmpty()) {
+                messageArea.appendText("Enter Hours Worked.\n");
+                return false;
+            }
+            int hours = Integer.parseInt(this.hoursWorked.getText());
+            if(hours > 100){
+                messageArea.appendText("Invalid Hours: over 100.\n");
+                return false;
+            }
+            else if(hours < 0){
+                messageArea.appendText("Working hours cannot be negative\n");
+                return false;
+            }
+            employee.setHours(hours);
+            if(company.setHours(employee)){
+                return true;
+            }
+            else{
+                messageArea.appendText("Employee is not in list.\n");
+                return false;
+            }
+        }
+        catch(NumberFormatException hours){
+            messageArea.appendText("Exception: Invalid Hours.\n");
+            return false;
+        }
+        catch(ArrayIndexOutOfBoundsException exception){
+            messageArea.appendText("Exception: Unexpected Number " 
+                                + "of Data Tokens.\n");
+            return false;
+        } 
+        catch(NoSuchElementException exception){
+            messageArea.appendText("Exception: Unexpected Number " 
+                                + "of Data Tokens.\n");
+            return false;
+        }
+        catch(ClassCastException exception){
+            messageArea.appendText("'" + employee.getProfile().getName()
+                                + "' is not a Parttime employee.\n");
+            return false;
+        }
+    }
+    
     @FXML
     void add(ActionEvent event) {
+        messageArea.clear();
+        Profile profile = new Profile();
+        if(makeBaseEmp(profile) == false) {
+            messageArea.appendText("Employee not Added\n");
+            return;
+        }
+        if (group2.getSelectedToggle().getUserData().toString().equals("Fulltime")) {
+            Fulltime fulltime = new Fulltime(profile);
+            if(addFulltimeInfo(fulltime)) {
+                if (company.add(fulltime)) {
+                    messageArea.setText("Employee added\n");
+                }
+                else {
+                    messageArea.appendText("Employee not Added\n");
+                }
+            }
+            else {
+                messageArea.appendText("Employee not Added\n");
+            }
+        }
+        else if (group2.getSelectedToggle().getUserData().toString().equals("Parttime")) {
+            Parttime parttime = new Parttime(profile);
+            if(addParttimeInfo(parttime)) {
+                if (company.add(parttime)) {
+                    messageArea.setText("Employee added\n");
+                }
+                else {
+                    messageArea.appendText("Employee not Added\n");
+                }
+            }
+            else {
+                messageArea.appendText("Employee not Added\n");
+            }
+        }
+        else if (group2.getSelectedToggle().getUserData().toString().equals("Management")) {
+            Management management = new Management(profile);
+            if(addFulltimeInfo(management)) {
+                if(group3.getSelectedToggle().getUserData().toString().equals("Manager")) {
+                    management.setRole(MANAGER);
+                }
+                else if(group3.getSelectedToggle().getUserData().toString().equals("Department Head")) {
+                    management.setRole(DPT_HEAD);
+                }
+                else if(group3.getSelectedToggle().getUserData().toString().equals("Director")) {
+                    management.setRole(DIRECTOR);
+                }
+                
+                if (company.add(management)) {
+                    messageArea.setText("Employee added\n");
+                }
+                else {
+                    messageArea.appendText("Employee not Added\n");
+                }
+            }
+            else {
+                messageArea.appendText("Employee not Added\n");
+            }
 
+        }
     }
 
     @FXML
@@ -87,6 +378,7 @@ public class PayrollController {
         annualSalary.clear();
         hoursWorked.clear();
         hourlyRate.clear();
+        messageArea.setText("Please Enter a Command");
     }
 
     @FXML
@@ -101,42 +393,79 @@ public class PayrollController {
 
     @FXML
     void print(ActionEvent event) {
-
+        if(isCompanyEmpty(company)) {
+            return;
+        }
+        text = "";
+        company.print();
+        messageArea.setText(text);
     }
 
     @FXML
     void printByDate(ActionEvent event) {
-
+        if(isCompanyEmpty(company)) {
+            return;
+        }
+        text = "";
+        company.printByDate();
+        messageArea.setText(text);
     }
 
     @FXML
     void printByDpmt(ActionEvent event) {
-
+        if(isCompanyEmpty(company)) {
+            return;
+        }
+        text = "";
+        company.printByDepartment();
+        messageArea.setText(text);
     }
 
     @FXML
     void processPayments(ActionEvent event) {
-
+        if(isCompanyEmpty(company)) {
+            return;
+        }
+        company.processPayments();
+        messageArea.setText("Payment for employees processed");
     }
 
     @FXML
     void remove(ActionEvent event) {
-
+        if(isCompanyEmpty(company)) {
+            return;
+        }
+        Profile profile = new Profile();
+        Employee employee = new Employee(profile);
+        if(makeBaseEmp(profile)){
+            if(company.remove(employee)){
+                messageArea.setText("Employee removed.");
+            }
+            else{
+                messageArea.setText("Employee doesn't exist.");
+            }
+        }
     }
 
     @FXML
     void setHours(ActionEvent event) {
-
+        if(isCompanyEmpty(company)) {
+            return;
+        }
+        Profile profile = new Profile();
+        Parttime employee = new Parttime(profile);
+        if(makeBaseEmp(profile)){
+            if(isHoursValid(employee)){
+                messageArea.setText("Working hours set.");
+            }
+        }
     }
 
     @FXML
     void visibility() {
-        System.out.println("A");
         if (group2.getSelectedToggle() != null) {
             String workType = group2.getSelectedToggle().getUserData().toString();
-            System.out.println("B");
             if(workType.equals("Fulltime")) {
-                System.out.println("C");
                 annualSalary.setDisable(false);
                 hoursWorked.setDisable(true);
                 hourlyRate.setDisable(true);
@@ -146,7 +475,6 @@ public class PayrollController {
                 setHours.setDisable(true);
             }
             else if(workType.equals("Parttime")) {
-                System.out.println("D");
                 annualSalary.setDisable(true);
                 hoursWorked.setDisable(false);
                 hourlyRate.setDisable(false);
@@ -156,7 +484,6 @@ public class PayrollController {
                 setHours.setDisable(false);
             }
             else if(workType.equals("Management")) {
-                System.out.println("E");
                 annualSalary.setDisable(false);
                 hoursWorked.setDisable(true);
                 hourlyRate.setDisable(true);
@@ -165,7 +492,6 @@ public class PayrollController {
                 director.setDisable(false);
                 setHours.setDisable(true);
             }
-            System.out.println("F");
         }
     }
 
@@ -208,6 +534,8 @@ public class PayrollController {
         CS.setSelected(true);
         fulltime.setSelected(true);
         manager.setSelected(true);
+        messageArea.setEditable(false);
+        messageArea.setText("Please Enter a Command");
         visibility();
     }
 }
