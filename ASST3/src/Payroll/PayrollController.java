@@ -4,9 +4,15 @@
 
 package Payroll;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.net.URL;
 import java.util.NoSuchElementException;
 import java.util.ResourceBundle;
+import java.util.Scanner;
+import java.util.StringTokenizer;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -15,6 +21,9 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
+import javafx.stage.Stage;
 
 public class PayrollController {
 
@@ -383,12 +392,80 @@ public class PayrollController {
 
     @FXML
     void fileExport(ActionEvent event) {
-
+        FileChooser chooser = new FileChooser();
+        chooser.setTitle("Open Target File for the Export");
+        chooser.getExtensionFilters().addAll(new ExtensionFilter("Text Files", "*.txt"),
+                new ExtensionFilter("All Files", "*.*"));
+        Stage stage = new Stage();
+        File targetFile = chooser.showSaveDialog(stage); //get the reference of the target file
+        try {
+            PrintWriter pw = new PrintWriter(targetFile);
+            text = "";
+            company.exportDatabase();
+            pw.print(text);
+            pw.close();
+            messageArea.setText(targetFile + " Exported");
+        } catch (FileNotFoundException e) {
+            messageArea.setText("File Not Found");
+            e.printStackTrace();
+        }
     }
 
     @FXML
     void fileImport(ActionEvent event) {
-
+        FileChooser chooser = new FileChooser();
+        chooser.setTitle("Open Source File for the Import");
+        chooser.getExtensionFilters().addAll(new ExtensionFilter("Text Files", "*.txt"),
+                new ExtensionFilter("All Files", "*.*"));
+        Stage stage = new Stage();
+        File sourceFile = chooser.showOpenDialog(stage); //get the reference of the source file
+        System.out.println(sourceFile);
+        try {
+            Scanner input = new Scanner(sourceFile);
+            while(input.hasNextLine()) {
+                final String DELIMS = ",";
+                String stringInput = input.nextLine();
+                StringTokenizer string = new StringTokenizer(stringInput,
+                        DELIMS, false);
+                String action = string.nextToken().toString();
+                if (action.equals("P")) {
+                    Profile profile = new Profile();
+                    Parttime parttime = new Parttime(profile);
+                    profile.setName(string.nextToken().toString());
+                    profile.setDepartment(string.nextToken().toString());
+                    Date date = new Date(string.nextToken().toString());
+                    profile.setDateHired(date);
+                    parttime.setHourlyRate(Double.parseDouble(string.nextToken().toString()));
+                    company.add(parttime);
+                }
+                else if (action.equals("F")) {
+                    Profile profile = new Profile();
+                    Fulltime fulltime = new Fulltime(profile);
+                    profile.setName(string.nextToken().toString());
+                    profile.setDepartment(string.nextToken().toString());
+                    Date date = new Date(string.nextToken().toString());
+                    profile.setDateHired(date);
+                    fulltime.setAnnualSalary(Integer.parseInt(string.nextToken().toString()));
+                    company.add(fulltime);
+                }
+                else if (action.equals("M")) {
+                    Profile profile = new Profile();
+                    Management management = new Management(profile);
+                    profile.setName(string.nextToken().toString());
+                    profile.setDepartment(string.nextToken().toString());
+                    Date date = new Date(string.nextToken().toString());
+                    profile.setDateHired(date);
+                    management.setAnnualSalary(Integer.parseInt(string.nextToken().toString()));
+                    management.setRole(Integer.parseInt(string.nextToken().toString()));
+                    company.add(management);
+                }
+            }
+            messageArea.setText(sourceFile + " Imported");
+            input.close();
+        } catch (FileNotFoundException e) {
+            messageArea.setText("File Not Found");
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -535,6 +612,7 @@ public class PayrollController {
         fulltime.setSelected(true);
         manager.setSelected(true);
         messageArea.setEditable(false);
+        date.setEditable(false);
         messageArea.setText("Please Enter a Command");
         visibility();
     }

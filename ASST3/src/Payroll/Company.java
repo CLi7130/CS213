@@ -290,5 +290,19 @@ public class Company{
             empList[i] = swap;
         }
     }
-
+    
+    /**
+    Gets the data from all the employees in the comapny and 
+    sends them to the controler to become a string to be exported.
+    */
+    public void exportDatabase() {
+        shiftArray();
+        for(int i = 0; i < empList.length; i++) {
+            if(empList[i] == null) {
+                continue;
+            }
+            PayrollController.getText(empList[i].toString() + '\n');
+        }
+    }
+    
 }
