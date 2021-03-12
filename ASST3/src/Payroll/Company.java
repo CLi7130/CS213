@@ -35,6 +35,7 @@ public class Company{
     Searches employee list to find index of an employee.
     @return index   int value representing index where employee is located.
                     Will have value of -1 (FAILCONDITION) if employee is not found.
+    @param  employee    the employee you want to find
     */
     private int find(Employee employee){
         int index = 0;

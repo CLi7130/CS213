@@ -1,7 +1,3 @@
-/**
- * Sample Skeleton for 'Payroll.fxml' Controller Class
- */
-
 package Payroll;
 
 import java.io.File;
@@ -25,16 +21,19 @@ import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 
+/**
+Controller Class for Payroll.fmxl handles all the actions that happen on the GUI
+@author Craig Li, Prerak Patel
+ */
 public class PayrollController {
-
-
-
+    
     final ToggleGroup group1 = new ToggleGroup();
     final ToggleGroup group2 = new ToggleGroup();
     final ToggleGroup group3 = new ToggleGroup();
     private static final int MANAGER = 1;
     private static final int DPT_HEAD = 2;
     private static final int DIRECTOR = 3;
+    
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
 
@@ -92,17 +91,9 @@ public class PayrollController {
     public static String text;
 
     Company company = new Company();
-    /**
-    Profile profile1 = new Profile();
-    Employee employee1 = new Employee(profile1);
-    Date date1 = new Date("7/1/2020");
-    Profile profile2 = new Profile();
-    Parttime employee2 = new Parttime(profile2);
-    Date date2 = new Date("9/23/1999");
-     */
 
     /**
-     * @param messageArea the messageArea to set
+     * @param texting setting the text
      */
     public static void getText(String texting) {
         text += texting;
@@ -110,15 +101,12 @@ public class PayrollController {
     
     /**
     Creates a general profile common to all employees with name, date hired, and department as specified by the user.
-    @param empInfo[]    String array that contains all relevant data tokens
-                        provided by the user.
     @param profile      Empty profile object that will be filled with 
-                        information from empInfo[].
+                        information from GUI.
     @return Method returns false if any of the provided information is invalid,
             true if all information is valid.
     */
     private boolean makeBaseEmp(Profile profile){
-
         try{
             if(this.name == null || this.name.getText().trim().isEmpty()) {
                 messageArea.setText("Enter Name.\n");
@@ -175,10 +163,8 @@ public class PayrollController {
     
     /**
     Adds additional information specific to parttime employees based on user input.
-    @param empInfo[]    String array that contains all relevant data tokens
-                        provided by the user.
     @param employee    Parttime employee object that will be filled with
-                       relevant information from empInfo[].
+                       relevant information from GUI.
     @return Method returns false if any of the provided information is invalid,
             true if all information is valid.
     */
@@ -217,10 +203,8 @@ public class PayrollController {
     
     /**
     Adds additional information specific to fulltime employees based on user input.
-    @param empInfo[]    String array that contains all relevant data tokens
-                        provided by the user.
     @param employee    Fulltime employee object that will be filled with
-                       relevant information from empInfo[].
+                       relevant information from GUI.
     @return Method returns false if any of the provided information is invalid,
             true if all information is valid.
     */
@@ -262,11 +246,8 @@ public class PayrollController {
     
     /**
     Checks and sets parttime hours provided by the user if the hours are within the valid range of 0-100.
-    @param empInfo[]    String array that contains all relevant data tokens
-                        provided by the user.
-    @param company    Company that contains the parttime employee.
     @param employee    Parttime employee object that will be filled with
-                    relevant information from empInfo[].
+                    relevant information from GUI.
     @return Method returns false if any of the provided information is invalid,
             true if all information is valid.
     */
@@ -316,6 +297,10 @@ public class PayrollController {
         }
     }
     
+    /**
+     * Add will add an employee to the company list on action event
+     * @param event takes in the action event
+     */
     @FXML
     void add(ActionEvent event) {
         messageArea.clear();
@@ -379,6 +364,10 @@ public class PayrollController {
         }
     }
 
+    /**
+     * Clear will clear all data fields and text areas on the GUI
+     * @param event takes in the action event
+     */
     @FXML
     void clear(ActionEvent event) {
         messageArea.clear();
@@ -390,8 +379,15 @@ public class PayrollController {
         messageArea.setText("Please Enter a Command");
     }
 
+    /**
+     * Export the database of employees to a file of your choosing
+     * @param event takes in an action event
+     */
     @FXML
     void fileExport(ActionEvent event) {
+        if(isCompanyEmpty(company)) {
+            return;
+        }
         FileChooser chooser = new FileChooser();
         chooser.setTitle("Open Target File for the Export");
         chooser.getExtensionFilters().addAll(new ExtensionFilter("Text Files", "*.txt"),
@@ -411,6 +407,10 @@ public class PayrollController {
         }
     }
 
+    /**
+     * Imports a file of your choosing and ads all the employees from the file
+     * @param event takes in an action event
+     */
     @FXML
     void fileImport(ActionEvent event) {
         FileChooser chooser = new FileChooser();
@@ -468,6 +468,10 @@ public class PayrollController {
         }
     }
 
+    /**
+     * prints the company list to the text area
+     * @param event takes in an action event
+     */
     @FXML
     void print(ActionEvent event) {
         if(isCompanyEmpty(company)) {
@@ -478,6 +482,10 @@ public class PayrollController {
         messageArea.setText(text);
     }
 
+    /**
+     * prints the comapny list to the text area sorted by date
+     * @param event taks in an ction event
+     */
     @FXML
     void printByDate(ActionEvent event) {
         if(isCompanyEmpty(company)) {
@@ -488,6 +496,10 @@ public class PayrollController {
         messageArea.setText(text);
     }
 
+    /**
+     * prints the comapny list to the text area sorted by department
+     * @param event taks in an ction event
+     */
     @FXML
     void printByDpmt(ActionEvent event) {
         if(isCompanyEmpty(company)) {
@@ -498,6 +510,10 @@ public class PayrollController {
         messageArea.setText(text);
     }
 
+    /**
+     * Processes the payments for the employees
+     * @param event takes in an action event
+     */
     @FXML
     void processPayments(ActionEvent event) {
         if(isCompanyEmpty(company)) {
@@ -507,6 +523,10 @@ public class PayrollController {
         messageArea.setText("Payment for employees processed");
     }
 
+    /**
+     * removes the employee with the matching profile
+     * @param event takes in an action event
+     */
     @FXML
     void remove(ActionEvent event) {
         if(isCompanyEmpty(company)) {
@@ -524,6 +544,10 @@ public class PayrollController {
         }
     }
 
+    /**
+     * Sets the hours for a Parttime employee
+     * @param event takes in an ction event
+     */
     @FXML
     void setHours(ActionEvent event) {
         if(isCompanyEmpty(company)) {
@@ -538,6 +562,9 @@ public class PayrollController {
         }
     }
 
+    /**
+     * sets the visibility of data fields to disabled depending on the employee type
+     */
     @FXML
     void visibility() {
         if (group2.getSelectedToggle() != null) {
@@ -572,6 +599,9 @@ public class PayrollController {
         }
     }
 
+    /**
+     * initialize the GUI and set all the radio buttons to be apart of a toggle group
+     */
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
         assert date != null : "fx:id=\"date\" was not injected: check your FXML file 'Payroll.fxml'.";
