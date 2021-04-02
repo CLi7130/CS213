@@ -14,7 +14,7 @@ public class Main extends Application {
 		    BorderPane root = (BorderPane)FXMLLoader.load(getClass().getResource("mainMenu.fxml"));
 		    Scene scene = new Scene(root, 650, 500);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-			primaryStage.setTitle("RU Cafe");
+			primaryStage.setTitle("Rutgers Cafe");
 			primaryStage.setScene(scene);
 			primaryStage.setResizable(false);
 			primaryStage.show();
