@@ -3,14 +3,13 @@ package ruCafe;
 /**
  * Sample Skeleton for 'orderingDonuts.fxml' Controller Class
  */
-
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
@@ -34,26 +33,27 @@ public class donutController {
     @FXML // fx:id="addToOrder"
     private Button addToOrder; // Value injected by FXMLLoader
 
-    @FXML // fx:id="quantityDonut"
-    private MenuButton quantityDonut; // Value injected by FXMLLoader
-
     @FXML // fx:id="orderedDonuts"
     private TextArea orderedDonuts; // Value injected by FXMLLoader
 
-    @FXML // fx:id="donutType"
-    private MenuButton donutType; // Value injected by FXMLLoader
+    @FXML // fx:id="donutChoicesMenu"
+    private ComboBox<?> donutChoicesMenu; // Value injected by FXMLLoader
 
-    @FXML // fx:id="yeastDonut"
-    private MenuItem yeastDonut; // Value injected by FXMLLoader
+    @FXML // fx:id="donutQuantityMenu"
+    private ChoiceBox<?> donutQuantityMenu; // Value injected by FXMLLoader
 
-    @FXML // fx:id="cakeDonut"
-    private MenuItem cakeDonut; // Value injected by FXMLLoader
+    @FXML // fx:id="donutTypeMenu"
+    private ComboBox<?> donutTypeMenu; // Value injected by FXMLLoader
 
-    @FXML // fx:id="donutHoles"
-    private MenuItem donutHoles; // Value injected by FXMLLoader
+    @FXML
+    void add(ActionEvent event) {
 
-    @FXML // fx:id="donutChoices"
-    private ComboBox<?> donutChoices; // Value injected by FXMLLoader
+    }
+
+    @FXML
+    void remove(ActionEvent event) {
+
+    }
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
@@ -61,13 +61,19 @@ public class donutController {
         assert removeDonut != null : "fx:id=\"removeDonut\" was not injected: check your FXML file 'orderingDonuts.fxml'.";
         assert donutTotal != null : "fx:id=\"donutTotal\" was not injected: check your FXML file 'orderingDonuts.fxml'.";
         assert addToOrder != null : "fx:id=\"addToOrder\" was not injected: check your FXML file 'orderingDonuts.fxml'.";
-        assert quantityDonut != null : "fx:id=\"quantityDonut\" was not injected: check your FXML file 'orderingDonuts.fxml'.";
         assert orderedDonuts != null : "fx:id=\"orderedDonuts\" was not injected: check your FXML file 'orderingDonuts.fxml'.";
-        assert donutType != null : "fx:id=\"donutType\" was not injected: check your FXML file 'orderingDonuts.fxml'.";
-        assert yeastDonut != null : "fx:id=\"yeastDonut\" was not injected: check your FXML file 'orderingDonuts.fxml'.";
-        assert cakeDonut != null : "fx:id=\"cakeDonut\" was not injected: check your FXML file 'orderingDonuts.fxml'.";
-        assert donutHoles != null : "fx:id=\"donutHoles\" was not injected: check your FXML file 'orderingDonuts.fxml'.";
-        assert donutChoices != null : "fx:id=\"donutChoices\" was not injected: check your FXML file 'orderingDonuts.fxml'.";
-
+        assert donutChoicesMenu != null : "fx:id=\"donutChoicesMenu\" was not injected: check your FXML file 'orderingDonuts.fxml'.";
+        assert donutQuantityMenu != null : "fx:id=\"donutQuantityMenu\" was not injected: check your FXML file 'orderingDonuts.fxml'.";
+        assert donutTypeMenu != null : "fx:id=\"donutTypeMenu\" was not injected: check your FXML file 'orderingDonuts.fxml'.";
+        
+        donutTypeMenu.getItems().addAll("Yeast Donuts", "Cake Donuts", "Donut Holes");
+        donutQuantityMenu.getItems().addAll("1", "2", "3", "4", "5");
+        donutTotal.setEditable(false);
+        orderedDonuts.setEditable(false);
     }
 }
+
+
+/*
+
+*/

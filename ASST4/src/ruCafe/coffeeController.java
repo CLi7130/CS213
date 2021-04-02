@@ -5,8 +5,10 @@ package ruCafe;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 
@@ -24,14 +26,30 @@ public class coffeeController {
     @FXML // fx:id="addButton"
     private Button addButton; // Value injected by FXMLLoader
 
+    @FXML // fx:id="coffeeChoiceButton"
+    private ComboBox<?> coffeeChoiceButton; // Value injected by FXMLLoader
+
     @FXML // fx:id="addInQuantity"
     private MenuItem addInQuantity; // Value injected by FXMLLoader
+
+    @FXML
+    void add(ActionEvent event) {
+
+    }
+
+    @FXML
+    void getTotal(ActionEvent event) {
+
+    }
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
         assert coffeeTotal != null : "fx:id=\"coffeeTotal\" was not injected: check your FXML file 'orderingCoffee.fxml'.";
         assert addButton != null : "fx:id=\"addButton\" was not injected: check your FXML file 'orderingCoffee.fxml'.";
+        assert coffeeChoiceButton != null : "fx:id=\"coffeeChoiceButton\" was not injected: check your FXML file 'orderingCoffee.fxml'.";
         assert addInQuantity != null : "fx:id=\"addInQuantity\" was not injected: check your FXML file 'orderingCoffee.fxml'.";
 
+        coffeeChoiceButton.getItems().addAll("Short", "Tall", "Grande", "Venti"); //initialize size choices
+        coffeeTotal.setEditable(false); //disable editing in text field?
     }
 }
