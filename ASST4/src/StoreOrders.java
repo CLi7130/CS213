@@ -1,4 +1,4 @@
-package ruCafe;
+package src;
 
 public class StoreOrders implements Customizable{
     

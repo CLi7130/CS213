@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.image.Image?>
@@ -21,7 +21,7 @@
    <left>
       <ImageView fitWidth="290.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER_LEFT">
          <image>
-            <Image url="@../Images/coffeePour.jpeg" />
+            <Image url="@Images/orderCoffeeBG.jpeg" />
          </image>
       </ImageView>
    </left>
@@ -64,7 +64,7 @@
                         <InnerShadow />
                      </effect>
                   </Label>
-                  <TextField fx:id="coffeeTotal" onAction="#getTotal" prefHeight="25.0" prefWidth="120.0" promptText="0.00" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="coffeeTotal" maxWidth="-Infinity" onAction="#getTotal" prefHeight="25.0" prefWidth="100.0" promptText="0.00" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <Button fx:id="addButton" mnemonicParsing="false" onAction="#add" text="Add To Order" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <Label text="Coffee Size">
                      <font>
@@ -74,17 +74,17 @@
                         <InnerShadow />
                      </effect>
                   </Label>
-                  <ComboBox fx:id="coffeeChoiceButton" onAction="#getTotal" prefWidth="100.0" GridPane.columnIndex="1" />
+                  <ComboBox fx:id="coffeeSizeMenu" onAction="#getTotal" prefWidth="100.0" GridPane.columnIndex="1" />
                </children>
             </GridPane>
-            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
-                  <RadioButton mnemonicParsing="false" onAction="#add" text="Cream" />
-                  <RadioButton mnemonicParsing="false" onAction="#add" text="Syrup" />
-                  <RadioButton mnemonicParsing="false" onAction="#add" text="Milk" />
-                  <RadioButton mnemonicParsing="false" onAction="#add" text="Caramel" />
-                  <RadioButton mnemonicParsing="false" onAction="#add" text="Whipped Cream" wrapText="true" />
-                  <MenuButton fx:id="addInQuantity" alignment="CENTER" mnemonicParsing="false" text="Add In Quantity">
+                  <CheckBox fx:id="creamCheckBox" mnemonicParsing="false" onAction="#getTotal" text="Cream" />
+                  <CheckBox fx:id="syrupCheckBox" mnemonicParsing="false" onAction="#getTotal" text="Syrup" />
+                  <CheckBox fx:id="milkCheckBox" mnemonicParsing="false" onAction="#getTotal" text="Milk" />
+                  <CheckBox fx:id="caramelCheckBox" mnemonicParsing="false" onAction="#getTotal" text="Caramel" />
+                  <CheckBox fx:id="whippedCreamCheckBox" mnemonicParsing="false" onAction="#getTotal" text="Whipped Cream" />
+                  <MenuButton fx:id="addInQuantity" alignment="CENTER" mnemonicParsing="false" onAction="#getTotal" text="Add In Quantity">
                     <items>
                       <MenuItem mnemonicParsing="false" text="1" />
                       <MenuItem mnemonicParsing="false" text="2" />

@@ -15,7 +15,6 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <BorderPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #fec3c7;">
@@ -108,7 +107,7 @@
       </BorderPane>
       <ImageView fitHeight="400.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../Images/orderDonuts/orderGeneric.jpeg" />
+            <Image url="@Images/orderDonuts/orderDonutsBG.jpeg" />
          </image>
       </ImageView>
    </children>

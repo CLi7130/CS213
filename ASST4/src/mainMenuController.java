@@ -1,4 +1,7 @@
+package src;
+
 /**
+
  * Sample Skeleton for 'mainMenu.fxml' Controller Class
  */
 

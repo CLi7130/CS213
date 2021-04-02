@@ -1,4 +1,4 @@
-package ruCafe;
+package src;
 /**
  * Sample Skeleton for 'storeOrders.fxml' Controller Class
  */

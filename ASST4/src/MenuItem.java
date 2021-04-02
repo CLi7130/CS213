@@ -1,6 +1,7 @@
-package ruCafe;
+package src;
 
-public class Coffee extends MenuItem implements Customizable{
+public class MenuItem implements Customizable{
+
     @Override
     public boolean add(Object obj) {
         // TODO Auto-generated method stub

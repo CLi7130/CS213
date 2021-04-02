@@ -16,7 +16,7 @@
    <children>
       <ImageView fitHeight="400.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../Images/mainMenuBackground.jpeg" />
+            <Image url="@Images/mainMenuBG.jpeg" />
          </image>
       </ImageView>
       <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
@@ -36,7 +36,7 @@
                      <graphic>
                         <ImageView fitHeight="90.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../Images/coffeeSplash.jpeg" />
+                              <Image url="@Images/orderCoffeeButton.jpeg" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -45,7 +45,7 @@
                      <graphic>
                         <ImageView fitHeight="90.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../Images/assortedDonuts.jpeg" />
+                              <Image url="@Images/orderDonutsButton.jpeg" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -54,7 +54,7 @@
                      <graphic>
                         <ImageView fitHeight="90.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../Images/singleOrder.jpeg" />
+                              <Image url="@Images/singleOrder.jpeg" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -63,7 +63,7 @@
                      <graphic>
                         <ImageView fitHeight="90.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../Images/receiptsCoffee.jpeg" />
+                              <Image url="@Images/storeOrdersButton.jpeg" />
                            </image>
                         </ImageView>
                      </graphic>

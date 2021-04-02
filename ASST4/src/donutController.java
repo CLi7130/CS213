@@ -1,4 +1,4 @@
-package ruCafe;
+package src;
 
 /**
  * Sample Skeleton for 'orderingDonuts.fxml' Controller Class

@@ -1,4 +1,4 @@
-package ruCafe;
+package src;
 
 public interface Customizable {
     boolean add(Object obj);
