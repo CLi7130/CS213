@@ -1,0 +1,13 @@
+package application;
+//delete file on submission 
+public class test {
+
+    public static void main(String[] args) {
+        Coffee coffee = new Coffee();
+        coffee.setCARAMEL(true);
+        coffee.setSize("GRANDE");
+        coffee.add(coffee);
+        System.out.println(coffee.print()); //3.19 this is correct
+    }
+
+}
