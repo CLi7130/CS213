@@ -2,88 +2,52 @@ package application;
 
 import java.text.DecimalFormat;
 
+enum COFFEE_ADD_INS {
+    CREAM, SYRUP, MILK, CARAMEL, WHIPPED_CREAM;
+
+}
+
 public class Coffee extends MenuItem implements Customizable{
     final static private double SHORT = 1.99;
     final static private double TALL = 2.49;
     final static private double GRANDE = 2.99;
     final static private double VENTI = 3.49;
     final static private double ADD_INS = 0.20;
-
     
     final static private String SHORT_STRING = "SHORT";
     final static private String TALL_STRING = "TALL";
     final static private String GRANDE_STRING = "GRANDE";
     final static private String VENTI_STRING = "VENTI";
-
-    /**
-     * @return the cREAM
-     */
-    public boolean isCREAM() {
-        return CREAM;
+ 
+    
+    public int numAddIns = 0;
+    public COFFEE_ADD_INS[] addins = new COFFEE_ADD_INS[5];
+    
+    public boolean addAddins(COFFEE_ADD_INS coffeeAddins) {
+        numAddIns++;
+        addins[numAddIns - 1] = coffeeAddins;
+        return true;
     }
-
-    /**
-     * @param cREAM the cREAM to set
-     */
-    public void setCREAM(boolean cREAM) {
-        CREAM = cREAM;
+    
+    public boolean removeAddins(COFFEE_ADD_INS coffeeAddins) {
+        return false;
     }
-
-    /**
-     * @return the sYRUP
-     */
-    public boolean isSYRUP() {
-        return SYRUP;
+    
+    public int findAddins(COFFEE_ADD_INS coffeeAddins) {
+        return 0;
     }
-
-    /**
-     * @param sYRUP the sYRUP to set
-     */
-    public void setSYRUP(boolean sYRUP) {
-        SYRUP = sYRUP;
+    
+    public String printAddins() {
+        String coffeeAddins = "";
+        for(int i = 0; i < numAddIns; i++) {
+            coffeeAddins += addins[i].name() + " ";
+        }
+        return coffeeAddins;
     }
-
-    /**
-     * @return the mILK
-     */
-    public boolean isMILK() {
-        return MILK;
-    }
-
-    /**
-     * @param mILK the mILK to set
-     */
-    public void setMILK(boolean mILK) {
-        MILK = mILK;
-    }
-
-    /**
-     * @return the cARAMEL
-     */
-    public boolean isCARAMEL() {
-        return CARAMEL;
-    }
-
-    /**
-     * @param cARAMEL the cARAMEL to set
-     */
-    public void setCARAMEL(boolean cARAMEL) {
-        CARAMEL = cARAMEL;
-    }
-
-    /**
-     * @return the wHIPPED_CREAM
-     */
-    public boolean isWHIPPED_CREAM() {
-        return WHIPPED_CREAM;
-    }
-
-    /**
-     * @param wHIPPED_CREAM the wHIPPED_CREAM to set
-     */
-    public void setWHIPPED_CREAM(boolean wHIPPED_CREAM) {
-        WHIPPED_CREAM = wHIPPED_CREAM;
-    }
+    
+    private String size;
+    Coffee coffee;
+    
 
     /**
      * @return the size
@@ -98,15 +62,6 @@ public class Coffee extends MenuItem implements Customizable{
     public void setSize(String size) {
         this.size = size;
     }
-
-    private boolean CREAM = false;
-    private boolean SYRUP = false;
-    private boolean MILK = false;
-    private boolean CARAMEL = false;
-    private boolean WHIPPED_CREAM = false;
-    
-    private String size;
-    Coffee coffee;
 
     
     @Override
@@ -143,26 +98,14 @@ public class Coffee extends MenuItem implements Customizable{
             total += VENTI;
         }
         
-        if(coffee.CARAMEL) {
-            total += ADD_INS;
-        }
-        if(coffee.CREAM) {
-            total += ADD_INS;
-        }
-        if(coffee.MILK) {
-            total += ADD_INS;
-        }
-        if(coffee.SYRUP) {
-            total += ADD_INS;
-        }
-        if(coffee.WHIPPED_CREAM) {
-            total += ADD_INS;
-        }
+        total += ADD_INS * numAddIns;
         return total;
     }
     
     public String print() {
         DecimalFormat money = new DecimalFormat("#,###.##");
-        return money.format(itemPrice());
+        String qualities;
+        qualities = coffee.printAddins() + money.format(super.itemPrice());
+        return qualities;
     }
 }
