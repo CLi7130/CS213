@@ -1,4 +1,4 @@
-package ruCafe;
+package application;
 
 import java.text.DecimalFormat;
 
