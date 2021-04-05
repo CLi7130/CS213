@@ -2,26 +2,29 @@ package application;
 
 import java.text.DecimalFormat;
 
-enum COFFEE_ADD_INS {
-    CREAM, SYRUP, MILK, CARAMEL, WHIPPED_CREAM;
+import ruCafe.Enums.COFFEE_ADD_INS;
+import ruCafe.Enums.COFFEE_SIZE;
 
-}
 
 public class Coffee extends MenuItem implements Customizable{
     final static private double SHORT = 1.99;
     final static private double TALL = 2.49;
     final static private double GRANDE = 2.99;
     final static private double VENTI = 3.49;
+    final static private double [] sizeCost = {SHORT, TALL, GRANDE, VENTI};
     final static private double ADD_INS = 0.20;
-    
-    final static private String SHORT_STRING = "SHORT";
-    final static private String TALL_STRING = "TALL";
-    final static private String GRANDE_STRING = "GRANDE";
-    final static private String VENTI_STRING = "VENTI";
- 
+    private static final int FAIL_CONDITION = -1;
+    private static final int TOTAL_ADD_INS_POSSIBLE = 5;
+
+
+
+
+    private COFFEE_SIZE size;
+    Coffee coffee;
     
     public int numAddIns = 0;
-    public COFFEE_ADD_INS[] addins = new COFFEE_ADD_INS[5];
+    public COFFEE_ADD_INS[] addins = new COFFEE_ADD_INS[TOTAL_ADD_INS_POSSIBLE];
+    
     
     public boolean addAddins(COFFEE_ADD_INS coffeeAddins) {
         numAddIns++;
@@ -30,36 +33,65 @@ public class Coffee extends MenuItem implements Customizable{
     }
     
     public boolean removeAddins(COFFEE_ADD_INS coffeeAddins) {
+        final int index = findAddins(coffeeAddins);
+        if(index >= 0) {
+            addins[index] = null;
+            numAddIns--;
+            return true;
+        }
         return false;
     }
     
     public int findAddins(COFFEE_ADD_INS coffeeAddins) {
-        return 0;
+        int index = 0;
+        shiftArray();
+        for(int i = 0; i < addins.length; i++) {
+            if(addins[i] == null){
+                continue;
+            }
+            if(addins[i].equals(coffeeAddins)) {
+                index = i;
+                return index;
+            }
+        }
+        index = FAIL_CONDITION;
+        return index;
     }
     
     public String printAddins() {
         String coffeeAddins = "";
+        shiftArray();
         for(int i = 0; i < numAddIns; i++) {
+            if(addins[i] == null){
+                continue;
+            }
             coffeeAddins += addins[i].name() + " ";
         }
         return coffeeAddins;
     }
     
-    private String size;
-    Coffee coffee;
-    
-
     /**
-     * @return the size
-     */
-    public String getSize() {
-        return size;
+    Shifts an array so that there are no null spaces/gaps.
+    */
+    private void shiftArray() {
+        COFFEE_ADD_INS [] shiftedArray = new COFFEE_ADD_INS[addins.length];
+        int count = 0;
+        for(int i = 0; i < addins.length; i++) {
+            if(addins[i] != null) {
+                shiftedArray[count] = addins[i];
+            }
+            else{
+                count--;
+            }
+            count++;
+        }
+        addins = shiftedArray;
     }
 
     /**
      * @param size the size to set
      */
-    public void setSize(String size) {
+    public void setSize(COFFEE_SIZE size) {
         this.size = size;
     }
 
@@ -76,28 +108,16 @@ public class Coffee extends MenuItem implements Customizable{
     @Override
     public boolean remove(Object obj) {
         if (obj instanceof Coffee) {
-            coffee = (Coffee) obj;
+            coffee = null;
             return true;
         }
         return false;
     }
     
     public double itemPrice(){
-        String coffeeSize = coffee.size;
+        COFFEE_SIZE coffeeSize = coffee.size;
         double total = 0;
-        if(coffeeSize == SHORT_STRING) {
-            total += SHORT;
-        }
-        else if(coffeeSize == TALL_STRING) {
-            total += TALL;
-        }
-        else if(coffeeSize == GRANDE_STRING) {
-            total += GRANDE;
-        }
-        else if(coffeeSize == VENTI_STRING) {
-            total += VENTI;
-        }
-        
+        total += sizeCost[coffeeSize.ordinal() - 1];
         total += ADD_INS * numAddIns;
         return total;
     }
@@ -105,6 +125,9 @@ public class Coffee extends MenuItem implements Customizable{
     public String print() {
         DecimalFormat money = new DecimalFormat("#,###.##");
         String qualities;
+        if(coffee == null) {
+            return "";
+        }
         qualities = coffee.printAddins() + money.format(super.itemPrice());
         return qualities;
     }
