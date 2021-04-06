@@ -23,8 +23,8 @@
 		</ImageView>
 		<GridPane prefHeight="400.0" prefWidth="600.0">
 			<columnConstraints>
-				<ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="412.0" minWidth="10.0" prefWidth="361.0" />
-				<ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="295.0" minWidth="10.0" prefWidth="239.0" />
+				<ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="412.0" minWidth="10.0" prefWidth="287.0" />
+				<ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="354.0" minWidth="10.0" prefWidth="313.0" />
 			</columnConstraints>
 			<rowConstraints>
 				<RowConstraints maxHeight="218.0" minHeight="10.0" prefHeight="110.0" vgrow="SOMETIMES" />
@@ -63,8 +63,27 @@
 						<TextField fx:id="totalDisplay" editable="false" maxWidth="-Infinity" prefWidth="100.0" promptText="\$0.00" GridPane.columnIndex="1" />
 					</children>
 				</GridPane>
-				<ComboBox fx:id="orderNumberMenu" prefWidth="150.0" promptText="Order Number" GridPane.columnIndex="1" />
-            <ListView fx:id="orderDisplay" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.rowSpan="2" />
+            <ListView fx:id="orderDisplay" prefHeight="200.0" prefWidth="258.0" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.rowSpan="2" />
+            <GridPane GridPane.columnIndex="1">
+              <columnConstraints>
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+      				<ComboBox fx:id="orderNumberMenu" prefWidth="150.0" promptText="Order Number" GridPane.columnIndex="1" />
+                  <Label text="Order Number" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                  </Label>
+               </children>
+            </GridPane>
 			</children>
 		</GridPane>
 	</children>

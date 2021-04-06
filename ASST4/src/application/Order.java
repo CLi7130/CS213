@@ -10,11 +10,11 @@ import java.util.ArrayList;
  */
 public class Order implements Customizable {
 
-    private int numOrder;
+    private int orderNumber;
     private ArrayList<MenuItem> orderList;
     private static final int FAIL_CONDITION = -1;
-    final static double TAX = 1.06625;
-    private double orderTotalCost = 0;
+    final static double TAX = 0.06625;
+    private double orderSubtotal;
     DecimalFormat money = new DecimalFormat("$#,##0.00");
 
 
@@ -22,10 +22,16 @@ public class Order implements Customizable {
      * Gets the order number
      * @return the orderNum
      */
-    public int getnumOrder() {
-        return numOrder;
+    public int getOrderNumber() {
+        return this.orderNumber;
     }
-
+    /**
+     * Sets the order number
+     * @param orderNumber	the order number to set.
+     */
+    public void setOrderNumber(int orderNumber) {
+    	this.orderNumber = orderNumber;
+    }
     /**
      * Getter for an order
      * @return the orderList
@@ -37,8 +43,8 @@ public class Order implements Customizable {
      * Constructor for a new order
      */
     public Order() {
-        numOrder = 0;
-        orderList = new ArrayList<MenuItem>();
+        this.orderList = new ArrayList<MenuItem>();
+        this.orderSubtotal = 0;
     }
     /**
      * checks to see if an order is the correct order
@@ -61,12 +67,12 @@ public class Order implements Customizable {
      */
     @Override
     public boolean add(Object obj) {
-        removeNulls();
+        this.removeNulls();
         if(obj instanceof MenuItem) {
-            numOrder++;
+            
             MenuItem tempObj = (MenuItem) obj;
             orderList.add(tempObj);
-            this.orderTotalCost = this.orderTotalCost + tempObj.getPrice();
+            this.orderSubtotal = this.updateOrderTotal();
             return true;
         }
         return false;
@@ -79,13 +85,14 @@ public class Order implements Customizable {
     @Override
     public boolean remove(Object obj) {
         if(obj instanceof MenuItem) {
+        	this.removeNulls();
         	MenuItem deleteThisItem = (MenuItem) obj;
             final int index = find(deleteThisItem);
             if(index >= 0) {
             	
             	orderList.remove(index);
-            	this.orderTotalCost = this.orderTotalCost - deleteThisItem.getPrice();
-                numOrder--;
+            	this.orderSubtotal = this.updateOrderTotal();
+                
                 return true;
             }
             return false;
@@ -99,11 +106,7 @@ public class Order implements Customizable {
      */
     private int find(MenuItem menuItem) {
         int index = 0;
-        removeNulls();
         for(int i = 0; i < orderList.size(); i++) {
-            if(orderList.get(i) == null) {
-                continue;
-            }
             if(orderList.get(i).equals(menuItem)) {
                 index = i;
                 return index;
@@ -122,26 +125,25 @@ public class Order implements Customizable {
     	}
     }
     /*
-     * Gets the current Order total.
+     * Gets the current Order subtotal.
      * @return	this.orderTotalCost	total cost of the order
      */
-    public double getOrderTotal() {
+    public double updateOrderTotal() {
     	double total = 0;
+    	this.removeNulls();
         for(MenuItem menuItems : orderList) {
-            if(menuItems == null) {
-                continue;
-            }
             total += menuItems.getPrice();
             //totalTax += menuItems.itemPrice();
         }
-        return total;
+        this.orderSubtotal = total;
+        return this.orderSubtotal;
     }
     /**
      * Gets the amount that is paid towards tax on a certain order.
      * @return taxOnOrder	the amount of tax on an order
      */
     public double getOrderTax() {
-    	double taxOnOrder = (this.orderTotalCost * TAX) - this.orderTotalCost;
+    	double taxOnOrder = this.orderSubtotal * TAX;
     	
     	return taxOnOrder;
     }
@@ -150,7 +152,14 @@ public class Order implements Customizable {
      * @params amount	double value to set order total to
      */
     public void setOrderTotal(double amount) {
-    	this.orderTotalCost = amount;
+    	this.orderSubtotal = amount;
+    }
+    /**
+     * Gets the order subtotal.
+     * @return the subtotal.
+     */
+    public double getSubtotal() {
+    	return this.orderSubtotal;
     }
     
     /**
@@ -159,15 +168,21 @@ public class Order implements Customizable {
      */
     public String print() {
         String orders = "";       
-        removeNulls();
+        this.removeNulls();
+        
         for(MenuItem menuItems : orderList) {
-            if(menuItems == null) {
-                continue;
-            }
             orders += menuItems.print() + '\n';
             //totalTax += menuItems.itemPrice();
         }
-        orders += ("Total: " + money.format((this.getOrderTotal() * TAX)));
+        
+        double subtotal = this.getSubtotal();
+        double tax = this.getOrderTax();
+        double total = subtotal + tax;
+        
+        orders += '\n';
+        orders += ("Subtotal: " + money.format(subtotal)) + '\n';
+        orders += ("Tax: " + money.format(tax)) + '\n';
+        orders += ("Total: " + money.format(total));
         return orders;
     }
 

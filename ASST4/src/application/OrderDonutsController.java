@@ -108,6 +108,7 @@ public class OrderDonutsController {
     	currentDonut.setQuantity(donutQuantityMenu.getValue());
     	
     	donutTotal.setText(money.format(currentOrderTotal));
+    	checkIfEmpty();
     	updateImage();
     }
 
@@ -120,15 +121,18 @@ public class OrderDonutsController {
     void add(ActionEvent event) {
     	//check for null values in donut quantity and choice first
     	//update Price in listview
-    
+
     	currentDonut.setType(donutTypeMenu.getValue());
     	currentDonut.setFlavor(donutFlavorsMenu.getValue().toString());
     	currentDonut.setQuantity(donutQuantityMenu.getValue());
     	currentDonut.itemPrice();
     	currentOrderTotal += currentDonut.getPrice();
+    	donutTotal.setText(money.format(currentOrderTotal));
   
     	formattedOrder.add(currentDonut.print());
-    	donutControllerOrder.add(currentDonut);//switch this to actual order?
+    	donutControllerOrder.add(currentDonut);//change this to actual order
+    	
+    	checkIfEmpty();
     	
     	currentDonut = null;
     	resetFields();
@@ -144,38 +148,32 @@ public class OrderDonutsController {
     	//update Price in listview
     	
     	try {
-    		Donut removeThisDonut = new Donut();
-    		
-    		String itemToBeRemoved = donutOrderDisplay.getSelectionModel().getSelectedItem().toString();
-    		String[] splitStringArr = itemToBeRemoved.split("[( $)]+");
-    		
-    		removeThisDonut.setFlavor(splitStringArr[ITEM_FLAVOR_LOCATION]);
-    		double removedOrderCost = Double.parseDouble(splitStringArr[ITEM_COST_LOCATION]);
-    		
-    		for(int i = 0; i < donutControllerOrder.size(); i++) {
-    			Donut iterator = donutControllerOrder.get(i);
-    			
-    			if(iterator.getFlavor().equals(removeThisDonut.getFlavor())
-        				&& (iterator.getPrice() == removedOrderCost))
-    			{
+    		Object donut = donutOrderDisplay.getSelectionModel().getSelectedItem();
+    		String itemToRemove = donutOrderDisplay.getSelectionModel().getSelectedItem().toString();
+    	
+        	for(int i = 0; i < donutControllerOrder.size(); i++) {
+        		
+        		if(itemToRemove.equals(donutControllerOrder.get(i).print())){
+        			double removedOrderCost = donutControllerOrder.get(i).getPrice();
         			donutControllerOrder.remove(i);
+        			formattedOrder.remove(donut);
+        			currentOrderTotal -= removedOrderCost;
+        			
+        			donutTotal.setText(money.format(currentOrderTotal));
         			break;
         		}
-    		}
-    		
-        	formattedOrder.remove(donutOrderDisplay.getSelectionModel().getSelectedItem());
-        	currentOrderTotal -= removedOrderCost;
+        		
+        	}
+        	checkIfEmpty();
         	
-        	resetFields();
     	}
     	catch(NullPointerException e){
-    		if(formattedOrder.size() == 0) {
-    			Alerts.makeNewWarning("There are No Donuts In Your Order.", "Warning");
+    		if(formattedOrder.size() != 0) {
+    			Alerts.makeNewWarning("Please Select an item to Remove", "Warning");
     		}
     		else {
-    			Alerts.makeNewWarning("Please Select a Donut to Remove", "Warning");
+    			checkIfEmpty();
     		}
-    		
     	}
     }
     
@@ -187,7 +185,7 @@ public class OrderDonutsController {
      */
     @FXML
     void addToOrder() {
-   	
+    	
 		if(donutControllerOrder.size() == 0) {
 			Alerts.makeNewWarning("There are No Donuts In Your Order.", "Warning");
 		}
@@ -226,7 +224,7 @@ public class OrderDonutsController {
     		Alerts.makeNewWarning("File Not Found.", "Exception");
     	}
     	catch(Exception e){
-    		e.printStackTrace();//DELETE THIS BEFORE SUBMISSION
+    		Alerts.makeNewWarning("Error", "Error");
     	}
     }
     /**
@@ -239,6 +237,20 @@ public class OrderDonutsController {
     	donutFlavorsMenu.setPromptText(donutChoice);
     	//implement image switcher?
     	updateImage();
+    }
+    /**
+     * Checks if the order is empty, disables add to order and remove buttons if empty.
+     * 
+     */
+    private void checkIfEmpty() {
+    	if(formattedOrder.isEmpty()) {
+    		addToOrder.setDisable(true);
+    		removeDonut.setDisable(true);
+    	}
+    	else {
+    		addToOrder.setDisable(false);
+    		removeDonut.setDisable(false);
+    	}
     }
 
     /**
@@ -253,8 +265,8 @@ public class OrderDonutsController {
     	donutFlavorsMenu.setDisable(false);
     	donutQuantityMenu.setDisable(false);
         addDonut.setDisable(false);
-        removeDonut.setDisable(false);
-        addToOrder.setDisable(false);
+        
+        checkIfEmpty();
         
     	if(donutType.equals("CAKE_DONUTS")) {
     		donutFlavorsMenu.getItems().setAll(CAKE_DONUTS.values());

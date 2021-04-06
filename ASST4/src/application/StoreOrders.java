@@ -10,6 +10,7 @@ public class StoreOrders implements Customizable {
 	
 	private static ArrayList<Order> storeOrders;
     private int numStoreOrder;
+    private int orderNumberOffset;
     private static final int FAIL_CONDITION = -1;
 
     /**
@@ -25,13 +26,31 @@ public class StoreOrders implements Customizable {
      * @return the numStoreOrder
      */
     public int getNumStoreOrder() {
-        return numStoreOrder;
+        return this.numStoreOrder;
+    }
+    /**
+     * Gets a specific order from a store orders arraylist based on order
+     * number.
+     * @param orderNumber	the orderNumber to find
+     * @return	i	The index of the order number in the storeOrders arraylist.
+     */
+    public int findOrder(int orderNumber) {
+    	
+    	for(int i = 0; i < this.getStoreOrders().size(); i++) {
+    		if(this.getStoreOrders().get(i).getOrderNumber()
+    				== orderNumber) {
+    			return i;
+    		}
+    	}
+    
+    	return FAIL_CONDITION;
     }
     /**
      * Constructor for a new StoreOrders object.
      */
     public StoreOrders() {
-        numStoreOrder = 0;
+        this.numStoreOrder = 0;
+        this.orderNumberOffset = 0;
         storeOrders = new ArrayList<Order>();
     }
 
@@ -45,7 +64,9 @@ public class StoreOrders implements Customizable {
     	removeNulls();
         if(obj instanceof Order) {
             numStoreOrder++;
-            storeOrders.add((Order) obj);
+            Order addedOrder = (Order) obj;
+            addedOrder.setOrderNumber(numStoreOrder + orderNumberOffset);
+            storeOrders.add(addedOrder);
             return true;
         }
         return false;
@@ -57,12 +78,13 @@ public class StoreOrders implements Customizable {
      */
     @Override
     public boolean remove(Object obj) {
-    	removeNulls();
+    	this.removeNulls();
         if(obj instanceof Order) {
             final int index = find((Order) obj);
             if(index >= 0) {
                 storeOrders.remove(index);
                 numStoreOrder--;
+                orderNumberOffset++;
                 return true;
             }
             return false;
@@ -76,12 +98,12 @@ public class StoreOrders implements Customizable {
      */
     private int find(Order order) {
         int index = 0;
-        removeNulls();
+        this.removeNulls();
         for(int i = 0; i < storeOrders.size(); i++) {
-            if(storeOrders.get(i) == null) {
-                continue;
-            }
-            if(storeOrders.get(i).equals(order)) {
+
+            if(storeOrders.get(i).print().equals(order.print())
+            		&& order.getOrderNumber() == storeOrders.get(i).getOrderNumber()) 
+            {
                 index = i;
                 return index;
             }
@@ -102,15 +124,16 @@ public class StoreOrders implements Customizable {
      * @return	orders	String containing information about all orders.
      */
     public String print() {
-        String orders = "--STORE ORDERS--" + '\n';
-        removeNulls();
+        String orders = "--STORE ORDERS--" + '\n' + '\n';
+        this.removeNulls();
         for(Order order : storeOrders) {
-            orders += "Order #" + Integer.toString(order.getnumOrder()) + '\n';
+        	orders += "Order #: " + order.getOrderNumber() + '\n';
             orders += order.print() + '\n' + '\n';
         }
         orders += "--END STORE ORDERS.--";
         return orders;
     }
+
 
 
  

@@ -128,7 +128,8 @@ public class Donut extends MenuItem implements Customizable {
         DecimalFormat money = new DecimalFormat("$#,##0.00");
         String qualities;
         this.itemPrice();
-        qualities = super.print() + this.getFlavor().toString() 
+        qualities = super.print() + this.getFlavor().toString()
+        			+ " " + this.getClass().getSimpleName() 
         			+ " [ " + money.format(this.getPrice()) + " ]"; 	
 
         return qualities;

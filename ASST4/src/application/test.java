@@ -102,6 +102,9 @@ public class test {
         
         System.out.println(storeOrders.print());
         
+        storeOrders.remove(order);
+        System.out.println(storeOrders.print());
+        
         
         
 

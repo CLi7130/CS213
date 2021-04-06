@@ -84,11 +84,13 @@ public class OrderCoffeeController {
     	//currentOrder.add(currentCoffee);
     	//currentOrder.setOrderTotal(currentOrder.getOrderTotal() + currentCoffee.itemPrice());
     	
-    	Alerts.makeNewAlert("Coffee Order Confirmed" + '\n' 
-    						+ "Your Coffee Order: " + '\n' 
-    						+ currentCoffee.print(), 
-    						"Order Confirmation");
+    	String orderConfirm = currentCoffee.print();
     	resetFields();
+    	
+    	Alerts.makeNewAlert("Coffee Order Confirmed" + '\n' 
+				+ "Your Coffee Order: " + '\n' 
+				+ orderConfirm, 
+				"Order Confirmation");
     	 
     }
     /**
@@ -103,9 +105,15 @@ public class OrderCoffeeController {
     	milkCheckBox.setSelected(false);
     	caramelCheckBox.setSelected(false);
     	whippedCreamCheckBox.setSelected(false);
+    	
     	coffeeQuantityMenu.getSelectionModel().selectFirst();
     	coffeeSizeMenu.getSelectionModel().selectFirst();
-    	coffeeTotalField.clear();
+    	
+    	currentCoffee.setQuantity(coffeeQuantityMenu.getValue());
+    	currentCoffee.setSize(coffeeSizeMenu.getValue());
+    	currentCoffee.itemPrice();
+    	
+    	coffeeTotalField.setText(money.format(currentCoffee.getPrice()));
     }
     
     /**
@@ -146,7 +154,12 @@ public class OrderCoffeeController {
         }
         coffeeQuantityMenu.getSelectionModel().selectFirst();
         coffeeSizeMenu.getSelectionModel().selectFirst();
-        coffeeTotalField.setText("$0.00");
+        
+    	currentCoffee.setQuantity(coffeeQuantityMenu.getValue());
+    	currentCoffee.setSize(coffeeSizeMenu.getValue());
+    	
+    	currentCoffee.itemPrice();
+        coffeeTotalField.setText(money.format(currentCoffee.getPrice()));
         
         creamCheckBox.selectedProperty().addListener(
         		(ObservableValue<? extends Boolean> observed, Boolean oldVal, Boolean newVal) -> {
