@@ -4,21 +4,23 @@ import java.text.DecimalFormat;
 
 public class MenuItem implements Customizable {
 
+
+
     private int quantity;
-    final static double TAX = .06625;
-    MenuItem menuItem;
-    /**
-     * @return the quantity
-     */
-    public int getQuantity() {
-        return quantity;
-    }
+    private MenuItem menuItem;
 
     /**
      * @param quantity the quantity to set
      */
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+    
+    /**
+     * @return the quantity
+     */
+    public int getQuantity() {
+        return quantity;
     }
 
     @Override
@@ -33,19 +35,19 @@ public class MenuItem implements Customizable {
     @Override
     public boolean remove(Object obj) {
         if (obj instanceof MenuItem) {
-            menuItem = (MenuItem) obj;
+            menuItem = null;
             return true;
         }
         return false;
     }
 
     public double itemPrice() {
-        //return this.itemPrice() * quantity * TAX;
-        return 0;
+        return this.itemPrice() * quantity;
+        
     }
     
     public String print() {
-        DecimalFormat money = new DecimalFormat("#,###.##");
+        DecimalFormat money = new DecimalFormat("#,##0.00");
         return money.format(itemPrice());
     }
 }
