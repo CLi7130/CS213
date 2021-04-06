@@ -16,11 +16,8 @@ public class Coffee extends MenuItem implements Customizable{
     private static final int FAIL_CONDITION = -1;
     private static final int TOTAL_ADD_INS_POSSIBLE = 5;
 
-
-
-
     private COFFEE_SIZE size;
-    Coffee coffee;
+    private Coffee coffee;
     
     public int numAddIns = 0;
     public COFFEE_ADD_INS[] addins = new COFFEE_ADD_INS[TOTAL_ADD_INS_POSSIBLE];
@@ -117,18 +114,18 @@ public class Coffee extends MenuItem implements Customizable{
     public double itemPrice(){
         COFFEE_SIZE coffeeSize = coffee.size;
         double total = 0;
-        total += sizeCost[coffeeSize.ordinal() - 1];
+        total += sizeCost[coffeeSize.ordinal()];
         total += ADD_INS * numAddIns;
         return total;
     }
     
     public String print() {
-        DecimalFormat money = new DecimalFormat("#,###.##");
+        DecimalFormat money = new DecimalFormat("#,##0.00");
         String qualities;
         if(coffee == null) {
             return "";
         }
-        qualities = coffee.printAddins() + money.format(super.itemPrice());
+        qualities = "Coffee: " + coffee.printAddins() + " Quantity: " + super.getQuantity() + " Price: " + money.format(super.itemPrice());
         return qualities;
     }
 }
