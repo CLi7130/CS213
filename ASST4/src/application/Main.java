@@ -43,7 +43,7 @@ public class Main extends Application {
 	public static void main(String[] args) {
 		launch(args);
 	}
-	/*
+	/**
 	 * Returns the primary stage for the program.
 	 * @return PRIMARY_STAGE parent stage for the program (main menu in this assignment)
 	 */

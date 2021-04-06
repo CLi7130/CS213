@@ -16,15 +16,15 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #fec3c7;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.OrderDonutsController">
 	<children>
-		<ImageView fitHeight="400.0" layoutX="-87.0" pickOnBounds="true" preserveRatio="true">
+		<ImageView fitHeight="400.0" layoutX="-117.0" pickOnBounds="true" preserveRatio="true">
 			<image>
 				<Image url="@../Images/orderDonuts/orderDonutsBG.jpeg" />
 			</image>
 		</ImageView>
-				<GridPane alignment="CENTER" layoutX="214.0" layoutY="1.0" prefHeight="398.0" prefWidth="386.0">
+				<GridPane alignment="CENTER" layoutX="183.0" layoutY="1.0" prefHeight="398.0" prefWidth="417.0">
 					<columnConstraints>
-						<ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="212.0" minWidth="10.0" prefWidth="171.0" />
-						<ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="238.0" minWidth="10.0" prefWidth="215.0" />
+						<ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="212.0" minWidth="10.0" prefWidth="148.0" />
+						<ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="280.0" minWidth="10.0" prefWidth="269.0" />
 					</columnConstraints>
 					<rowConstraints>
 						<RowConstraints maxHeight="129.0" minHeight="10.0" prefHeight="77.0" vgrow="SOMETIMES" />
@@ -37,10 +37,10 @@
 								<Font name="System Bold" size="20.0" />
 							</font>
 						</Label>
-						<GridPane GridPane.columnSpan="2" GridPane.rowIndex="2">
+						<GridPane prefWidth="297.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
 							<columnConstraints>
-								<ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-								<ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+								<ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="188.0" minWidth="10.0" prefWidth="136.0" />
+								<ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="250.0" minWidth="10.0" prefWidth="250.0" />
 							</columnConstraints>
 							<rowConstraints>
 								<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -66,7 +66,7 @@
 										<Font name="System Bold" size="16.0" />
 									</font>
 								</Label>
-								<TextField fx:id="donutTotal" editable="false" promptText="\$0.00" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+								<TextField fx:id="donutTotal" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="99.0" promptText="\$0.00" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 								<Button fx:id="addToOrder" mnemonicParsing="false" onAction="#addToOrder" text="Add To Order" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 							</children>
 						</GridPane>
@@ -80,7 +80,7 @@
 								<RowConstraints maxHeight="56.0" minHeight="10.0" prefHeight="49.0" vgrow="SOMETIMES" />
 							</rowConstraints>
 							<children>
-								<ComboBox fx:id="donutChoicesMenu" onAction="#setDonutChoice" promptText="Donut Choices" GridPane.rowIndex="1" />
+								<ComboBox fx:id="donutFlavorsMenu" onAction="#setDonutFlavor" promptText="Donut Flavors" GridPane.rowIndex="1" />
 								<GridPane GridPane.rowIndex="2">
 									<columnConstraints>
 										<ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -102,7 +102,7 @@
 							</children>
 						</GridPane>
 						<ComboBox fx:id="donutTypeMenu" onAction="#changeDonutSelection" promptText="Donut Type" GridPane.columnIndex="1" />
-            <ListView fx:id="donutOrderDisplay" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <ListView fx:id="donutOrderDisplay" prefHeight="217.0" prefWidth="226.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 					</children>
 				</GridPane>
 	</children>

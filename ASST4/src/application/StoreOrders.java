@@ -1,61 +1,67 @@
 package application;
 
-
+import java.util.ArrayList;
+/**
+ * StoreOrder class that contains all information and methods to track store orders.
+ * @author Craig Li, Prerak Patel
+ *
+ */
 public class StoreOrders implements Customizable {
-
-    private Order[] storeOrders;
+	
+	private static ArrayList<Order> storeOrders;
     private int numStoreOrder;
-    private static final int GROW_AMOUNT = 4;
     private static final int FAIL_CONDITION = -1;
 
     /**
+     * Gets the storeOrders object.
      * @return the storeOrders
      */
-    public Order[] getStoreOrders() {
+    public ArrayList<Order> getStoreOrders() {
         return storeOrders;
     }
     
     /**
+     * Gets the Number of orders in the storeOrders object.
      * @return the numStoreOrder
      */
     public int getNumStoreOrder() {
         return numStoreOrder;
     }
-    
+    /**
+     * Constructor for a new StoreOrders object.
+     */
     public StoreOrders() {
         numStoreOrder = 0;
-        storeOrders = new Order[GROW_AMOUNT];
+        storeOrders = new ArrayList<Order>();
     }
 
-
+    /**
+     * Adds an object to the store Orders
+     * @param obj	object to be added
+     * @return true if successfully added, false if not.
+     */
     @Override
     public boolean add(Object obj) {
-        shiftArray();
+    	removeNulls();
         if(obj instanceof Order) {
             numStoreOrder++;
-            if(numStoreOrder > storeOrders.length) {
-                grow();
-            }
-            storeOrders[numStoreOrder -1] = (Order) obj;
+            storeOrders.add((Order) obj);
             return true;
         }
         return false;
     }
-    
-    private void grow() {
-        Order[] grow = new Order[storeOrders.length + GROW_AMOUNT];
-        for(int i = 0; i < storeOrders.length; i++) {
-            grow[i] = storeOrders[i];
-        }
-        storeOrders = grow;
-    }
-
+    /**
+     * Removes an order from the Store Orders
+     * @param obj	object to be removed
+     * @return true if successfully removed, false if not.
+     */
     @Override
     public boolean remove(Object obj) {
+    	removeNulls();
         if(obj instanceof Order) {
             final int index = find((Order) obj);
             if(index >= 0) {
-                storeOrders[index] = null;
+                storeOrders.remove(index);
                 numStoreOrder--;
                 return true;
             }
@@ -63,15 +69,19 @@ public class StoreOrders implements Customizable {
         }
         return false;
     }
-    
+    /**
+     * finds the index of an order in the storeOrders list.
+     * @param order		the order to search for.
+     * @return index	the index of the order, can be -1 if search failed.
+     */
     private int find(Order order) {
         int index = 0;
-        shiftArray();
-        for(int i = 0; i < storeOrders.length; i++) {
-            if(storeOrders[i] == null) {
+        removeNulls();
+        for(int i = 0; i < storeOrders.size(); i++) {
+            if(storeOrders.get(i) == null) {
                 continue;
             }
-            if(storeOrders[i].equals(order)) {
+            if(storeOrders.get(i).equals(order)) {
                 index = i;
                 return index;
             }
@@ -79,31 +89,26 @@ public class StoreOrders implements Customizable {
         index = FAIL_CONDITION;
         return index;
     }
-    
-    private void shiftArray() {
-        Order [] shiftedArray = new Order[storeOrders.length];
-        int count = 0;
-        for(int i = 0; i < storeOrders.length; i++) {
-            if(storeOrders[i] != null) {
-                shiftedArray[count] = storeOrders[i];
-            }
-            else{
-                count--;
-            }
-            count++;
-        }
-        storeOrders = shiftedArray;
+    /**
+     * Removes all null values from the storeOrders list.
+     */
+    private void removeNulls() {
+    	while(storeOrders.remove(null)){
+    		//removes all null entries from arraylist
+    	}
     }
-    
+    /**
+     * Creates a formatted String containing all storeOrder information.
+     * @return	orders	String containing information about all orders.
+     */
     public String print() {
-        String orders = "";
-        shiftArray();
+        String orders = "--STORE ORDERS--" + '\n';
+        removeNulls();
         for(Order order : storeOrders) {
-            if(order == null) {
-                continue;
-            }
-            orders += order.print() + '\n';
+            orders += "Order #" + Integer.toString(order.getnumOrder()) + '\n';
+            orders += order.print() + '\n' + '\n';
         }
+        orders += "--END STORE ORDERS.--";
         return orders;
     }
 

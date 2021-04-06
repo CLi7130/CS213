@@ -2,13 +2,13 @@ package application;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-/*
+/**
  * Creates alerts based on given user input
  * @author Craig Li, Prerak Patel
  */
 public class Alerts {
 	
-    /*
+    /**
      * Generates a confirmation alert/message
      * @params message	message to be displayed
      * 			windowTitle	title of the window of the alert.
@@ -20,7 +20,7 @@ public class Alerts {
     	alert.showAndWait();
     }
 
-    /*
+    /**
      * Generates a warning alert/message
      * @params message	message to be displayed
      * 			windowTitle	title of the window of the alert.

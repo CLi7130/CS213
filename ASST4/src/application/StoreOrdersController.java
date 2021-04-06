@@ -11,7 +11,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-
+/**
+ * Controller for the StoreOrders.fxml GUI
+ * @author Craig Li, Prerak Patel
+ *
+ */
 public class StoreOrdersController {
 
     @FXML // ResourceBundle that was given to the FXMLLoader
@@ -30,21 +34,39 @@ public class StoreOrdersController {
     private TextField totalDisplay; // Value injected by FXMLLoader
 
     @FXML // fx:id="orderNumberMenu"
-    private ComboBox<?> orderNumberMenu; // Value injected by FXMLLoader
+    private ComboBox<Integer> orderNumberMenu; // Value injected by FXMLLoader
 
     @FXML // fx:id="orderDisplay"
-    private ListView<?> orderDisplay; // Value injected by FXMLLoader
-
+    private ListView<String> orderDisplay; // Value injected by FXMLLoader
+    
+    protected StoreOrders storeOrders;
+    /**
+     * Allows main menu to transfer store order data to the store orders controller.
+     * @params storeOrder	store orders generated.
+     */
+	public void setStoreOrders(StoreOrders storeOrder) {
+		this.storeOrders = storeOrder;
+	}
+	
+	/**
+	 * Exports Orders to a text file
+	 * @param event	Trigger that causes this method.
+	 */
     @FXML
     void exportOrders(ActionEvent event) {
 
     }
-
+    /**
+     * Removes an Order from the storeOrders list.
+     * @param event	Trigger that causes this method.
+     */
     @FXML
     void removeOrder(ActionEvent event) {
 
     }
-
+    /**
+     * Initializes the GUI
+     */
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
         assert removeOrderButton != null : "fx:id=\"removeOrderButton\" was not injected: check your FXML file 'storeOrders.fxml'.";
@@ -55,5 +77,8 @@ public class StoreOrdersController {
 
         orderDisplay.setEditable(false);
         totalDisplay.setEditable(false);
+        StoreOrders tempOrder = new StoreOrders();
     }
+
+
 }

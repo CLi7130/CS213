@@ -39,6 +39,9 @@ public class MainMenuController {
     @FXML // fx:id="storeOrdersButton"
     private Button storeOrdersButton; // Value injected by FXMLLoader
     
+    protected static StoreOrders storeOrder;
+    protected static Order yourOrder;
+    
     /*
     Opens a new stage/scene based on the button pressed.
     @param event	 event of pressing a button, used to determine which window is opened.
@@ -63,28 +66,31 @@ public class MainMenuController {
     * @params fxID	String containing fxID of button pressed on main menu
     * 			stage	stage object to be modified.
     */
-    private Stage setStageParams(String fxID, Stage stage) {
+    private Stage setStageParams(String fxID, Stage stage){
     	String fileName = "";
     	String title = "";
-    	
-    	if(fxID.equals("orderCoffeeButton")) {
-    		fileName += "OrderCoffee.fxml";
-    		title += "Order Coffee";
-    	}
-    	else if(fxID.equals("orderDonutButton")) {
-    		fileName += "OrderDonuts.fxml";
-    		title += "Order Donuts";
-    	}
-    	else if(fxID.equals("currOrderButton")) {
-    		fileName += "CurrentOrder.fxml";
-    		title += "Current Order";
-    	}
-    	else if(fxID.equals("storeOrdersButton")) {
-    		fileName += "StoreOrders.fxml";
-    		title += "Store Orders";
-    	}
-    	
     	try {
+    	
+    	
+	    	if(fxID.equals("orderCoffeeButton")) {
+	    		fileName += "OrderCoffee.fxml";
+	    		title += "Order Coffee";	
+	    	}
+	    	else if(fxID.equals("orderDonutButton")) {
+	    		fileName += "OrderDonuts.fxml";
+	    		title += "Order Donuts";
+	    	}
+	    	else if(fxID.equals("currOrderButton")) {
+	    		fileName += "CurrentOrder.fxml";
+	    		title += "Current Order";
+	    	}
+	    	else if(fxID.equals("storeOrdersButton")) {
+	    		fileName += "StoreOrders.fxml";
+	    		title += "Store Orders";
+	    	}
+
+	    	//controllerTransfer(fileName);
+    	
 			Parent root = FXMLLoader.load(getClass().getResource(fileName));
 			stage.setScene(new Scene(root, 600, 400));
 			stage.setTitle(title);
@@ -95,9 +101,56 @@ public class MainMenuController {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			Alerts.makeNewWarning("IOException Generated, Invalid Input.", "Warning");
 		}
     	return stage;
     }
+    /**
+     * Function to transfer objects to another scene
+     * @param fileName	string containing a fileName to determine which
+     * 					controller to use.
+     */
+   /* private static void controllerTransfer(String fileName){
+
+	    	try {
+	        	
+	        	FXMLLoader loader = new FXMLLoader();
+	        	
+	        	//String path = "../" + fileName;
+	        	
+	        	String filePath = "src/application/" + fileName;
+	        	//System.out.println(path);
+	        	
+	        	
+	    		loader.setLocation(Main.class.getResource(filePath));
+	    		
+				if(fileName.equals("OrderCoffee.fxml")) {
+					OrderCoffeeController coffeeController = loader.getController();
+					coffeeController.setOrder(yourOrder);
+				}
+				else if(fileName.equals("OrderDonuts.fxml")) {
+					OrderDonutsController donutController = loader.getController();
+					donutController.setOrder(yourOrder);
+				}
+				else if(fileName.equals("CurrentOrder.fxml")) {
+					CurrentOrderController currOrderController = loader.getController();
+					currOrderController.setOrder(yourOrder);
+					currOrderController.setStoreOrders(storeOrder);
+				}
+				else if(fileName.equals("StoreOrders.fxml")) {
+					StoreOrdersController storeOrderController = loader.getController();
+					storeOrderController.setStoreOrders(storeOrder);
+					
+				}
+	    			
+    		} catch (NullPointerException e) {
+    			e.printStackTrace();
+    			Alerts.makeNewWarning("NullPointerException: Bad Address.", "Warning");
+    		} catch (Exception e) {
+    			e.printStackTrace();
+    		}
+	    	
+    }*/
 
     /*
     Initializes the GUI.
@@ -108,6 +161,9 @@ public class MainMenuController {
         assert orderDonutButton != null : "fx:id=\"orderDonutButton\" was not injected: check your FXML file 'MainMenu.fxml'.";
         assert currOrderButton != null : "fx:id=\"currOrderButton\" was not injected: check your FXML file 'MainMenu.fxml'.";
         assert storeOrdersButton != null : "fx:id=\"storeOrdersButton\" was not injected: check your FXML file 'MainMenu.fxml'.";
+        
+        yourOrder = new Order();
+        storeOrder = new StoreOrders();
 
     }
 }

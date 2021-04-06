@@ -1,5 +1,6 @@
 /**
- * Sample Skeleton for 'OrderCoffee.fxml' Controller Class
+ * Controller for the OrderCoffee.fxml GUI
+ * @author Craig Li, Prerak Patel
  */
 
 package application;
@@ -17,26 +18,21 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class OrderCoffeeController {
-	private static final int MIN_NUMBER_OF_ADD_INS = 1;
-	private static final int MAX_NUMBER_OF_ADD_INS = 5;
-	private static final double ADD_IN_COST = 0.20;
-	private static final double COFFEE_SIZE_INCREASE = 0.50;
-	private static final double COFFEE_BASE_COST = 1.99;
-	private static final int FAIL_CONDITION = -1;
-	private static final DecimalFormat money = new DecimalFormat("#,##0.00");
-	
-	private int currNumAddIns = 0;
-	private boolean[] testAddInBool = new boolean[5];
-	private String[] testPossibleAddIns = {"Cream", "Syrup", "Milk", "Caramel", "Whipped Cream"};
-	private ArrayList<String> testAddIns = new ArrayList<String>();
-	
-	
+	private static final int MIN_NUMBER_OF_COFFEES = 1;
+	private static final int MAX_NUMBER_OF_COFFEES = 10;
+
+	private static final DecimalFormat money = new DecimalFormat("$#,##0.00");
+	private Coffee currentCoffee;
+	protected Order currentOrder;
+
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
 
@@ -51,9 +47,9 @@ public class OrderCoffeeController {
 
     @FXML // fx:id="coffeeSizeMenu"
     private ComboBox<COFFEE_SIZE> coffeeSizeMenu; // Value injected by FXMLLoader
-    
-    @FXML // fx:id="addInQuantity"
-    private ComboBox<Integer> addInQuantity; // Value injected by FXMLLoader
+
+    @FXML // fx:id="coffeeQuantityMenu"
+    private ComboBox<Integer> coffeeQuantityMenu; // Value injected by FXMLLoader
 
     @FXML // fx:id="creamCheckBox"
     private CheckBox creamCheckBox; // Value injected by FXMLLoader
@@ -69,144 +65,158 @@ public class OrderCoffeeController {
 
     @FXML // fx:id="whippedCreamCheckBox"
     private CheckBox whippedCreamCheckBox; // Value injected by FXMLLoader
-
-    @FXML
-    void add(ActionEvent event) {
-    	/*
-    	 *1. get all fields, convert to string, add to order
-    	 *	1a. coffee size
-    	 *	1b. coffee add in selection
-    	 *	1c. coffee add in quantity
-    	 *	1d. total from total field
-    	 *2. clear all values
-    	 *	2a. set all checkboxes to null/unselected
-    	 *	2b. set add in quantity to 1
-    	 *	2c. set coffee size to short
-    	 *		
-    	 *		coffeeTotalField.clear();
-    	 *-when exporting, make consistent with donut order - include price with addins/etc
-    	 */
-    	
-    	Alerts.makeNewAlert("Coffee Order Confirmed", "Order Confirmation");
-    	//send information to current order
-    	resetFields();
-
-    	
-    }
     
+    /**
+     * Method that allows the main menu to set its order to the coffee Controller.
+     * Transfer of data between controllers.
+     * @params yourOrder	default order initialized in main menu.
+     */
+	public void setOrder(Order yourOrder) {
+		this.currentOrder = yourOrder;
+	}
+    /**
+     * Adds a coffee item to the current order.
+     * @param event		Trigger on the GUI for this method.
+     */
+    @FXML
+    void addToOrder(ActionEvent event) {
+    	
+    	//currentOrder.add(currentCoffee);
+    	//currentOrder.setOrderTotal(currentOrder.getOrderTotal() + currentCoffee.itemPrice());
+    	
+    	Alerts.makeNewAlert("Coffee Order Confirmed" + '\n' 
+    						+ "Your Coffee Order: " + '\n' 
+    						+ currentCoffee.print(), 
+    						"Order Confirmation");
+    	resetFields();
+    	 
+    }
+    /**
+     * Resets all GUI fields to a default/blank state
+     */
     private void resetFields() {
+    	
+    	currentCoffee = new Coffee();
     	
     	creamCheckBox.setSelected(false);
     	syrupCheckBox.setSelected(false);
     	milkCheckBox.setSelected(false);
     	caramelCheckBox.setSelected(false);
     	whippedCreamCheckBox.setSelected(false);
-    	addInQuantity.getSelectionModel().selectFirst();
+    	coffeeQuantityMenu.getSelectionModel().selectFirst();
     	coffeeSizeMenu.getSelectionModel().selectFirst();
-    	coffeeTotalField.setText("$" + money.format(COFFEE_BASE_COST));
+    	coffeeTotalField.clear();
     }
     
-    /*
+    /**
      * Reads add ins and sizes selected, then updates the coffeeTotalField in the GUI with the price
      * @params event event that causes the method on the GUI
      */
     @FXML
     void getTotal(ActionEvent event) {
     	
+    	currentCoffee.setSize(coffeeSizeMenu.getValue());
+    	currentCoffee.setQuantity(coffeeQuantityMenu.getValue());
     	
-    	double coffeeTotal = COFFEE_BASE_COST;
-    	double addInCost = 0;
+    	currentCoffee.itemPrice();
     	
-    	
-    	coffeeSizeMenu.setPromptText(coffeeSizeMenu.getValue().toString());
-    	coffeeSizeMenu.setPromptText(coffeeSizeMenu.getValue().toString());
-    	
-    	coffeeTotal += COFFEE_SIZE_INCREASE * getSizeMod(coffeeSizeMenu.getValue().toString());
-    	
-    	addInCost += (ADD_IN_COST * (double) getTypesOfAddIns()) * (double) addInQuantity.getValue();
-    	coffeeTotal += addInCost;
-    
-    	String totalString = "$" + money.format(coffeeTotal);
-    	coffeeTotalField.setText(totalString);
-    	
-    	//set totalString to coffeeTotalField
-    	//add to order, clear all checkboxes/reset size
+    	String totalString = money.format(currentCoffee.getPrice());
+    	coffeeTotalField.setText(totalString); 	 
     }
-    
-    private int getTypesOfAddIns() {
-    	int numAddIns = 0;
-    	
-    	if(creamCheckBox.isSelected()) {
-    		numAddIns++;
-    	}
-    	if(syrupCheckBox.isSelected()) {
-    		numAddIns++;
-    	}
-    	if(milkCheckBox.isSelected()) {
-    		numAddIns++;
-    	}
-    	if(caramelCheckBox.isSelected()) {
-    		numAddIns++;
-    	}
-    	if(whippedCreamCheckBox.isSelected()) {
-    		numAddIns++;
-    	}
-    	return numAddIns;
-    }
-    /*
-     * Gets the size increase of a coffee from the base size of SHORT
-     * @param size	string that has the selection on the coffeeSizeMenu
+    /**
+     * Initializes the GUI, also contains setup for listeners on checkboxes.
      */
-    private static int getSizeMod(String size) {
-    	int sizeMod = 0;
-    	for(COFFEE_SIZE enumValue : COFFEE_SIZE.values()) {
-    		
-    		if(size.equals(enumValue.toString())){
-    			return sizeMod;
-    		}
-    		sizeMod++;
-    	}
-    	sizeMod = FAIL_CONDITION; //returns -1 on error
-    	return sizeMod;
-    }
-
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
         assert coffeeTotalField != null : "fx:id=\"coffeeTotalField\" was not injected: check your FXML file 'OrderCoffee.fxml'.";
         assert addButton != null : "fx:id=\"addButton\" was not injected: check your FXML file 'OrderCoffee.fxml'.";
         assert coffeeSizeMenu != null : "fx:id=\"coffeeSizeMenu\" was not injected: check your FXML file 'OrderCoffee.fxml'.";
-        assert addInQuantity != null : "fx:id=\"addInQuantity\" was not injected: check your FXML file 'OrderCoffee.fxml'.";
-        assert creamCheckBox != null : "fx:id=\"CREAM\" was not injected: check your FXML file 'OrderCoffee.fxml'.";
-        assert syrupCheckBox != null : "fx:id=\"SYRUP\" was not injected: check your FXML file 'OrderCoffee.fxml'.";
-        assert milkCheckBox != null : "fx:id=\"MILK\" was not injected: check your FXML file 'OrderCoffee.fxml'.";
-        assert caramelCheckBox != null : "fx:id=\"CARAMEL\" was not injected: check your FXML file 'OrderCoffee.fxml'.";
-        assert whippedCreamCheckBox != null : "fx:id=\"WHIPPED_CREAM\" was not injected: check your FXML file 'OrderCoffee.fxml'.";
+        assert coffeeQuantityMenu != null : "fx:id=\"coffeeQuantityMenu\" was not injected: check your FXML file 'OrderCoffee.fxml'.";
+        assert creamCheckBox != null : "fx:id=\"creamCheckBox\" was not injected: check your FXML file 'OrderCoffee.fxml'.";
+        assert syrupCheckBox != null : "fx:id=\"syrupCheckBox\" was not injected: check your FXML file 'OrderCoffee.fxml'.";
+        assert milkCheckBox != null : "fx:id=\"milkCheckBox\" was not injected: check your FXML file 'OrderCoffee.fxml'.";
+        assert caramelCheckBox != null : "fx:id=\"caramelCheckBox\" was not injected: check your FXML file 'OrderCoffee.fxml'.";
+        assert whippedCreamCheckBox != null : "fx:id=\"whippedCreamCheckBox\" was not injected: check your FXML file 'OrderCoffee.fxml'.";
+        currentCoffee = new Coffee();
         
         coffeeSizeMenu.getItems().setAll(COFFEE_SIZE.values());
-        for(int i = MIN_NUMBER_OF_ADD_INS; i <= MAX_NUMBER_OF_ADD_INS; i++) {
-        	addInQuantity.getItems().add(i);
+        for(int i = MIN_NUMBER_OF_COFFEES; i <= MAX_NUMBER_OF_COFFEES; i++) {
+        	coffeeQuantityMenu.getItems().add(i);
         	//janky implementation, refactor later?
         }
-        //addInQuantity.setPromptText("Quantity");
-        //coffeeSizeMenu.setPromptText("Size");
-        addInQuantity.getSelectionModel().selectFirst();
+        coffeeQuantityMenu.getSelectionModel().selectFirst();
         coffeeSizeMenu.getSelectionModel().selectFirst();
-        coffeeTotalField.setText("$" + money.format(COFFEE_BASE_COST));
+        coffeeTotalField.setText("$0.00");
         
-        /*
-        	code for observable value for listener - use for checkboxes when implementing final code for 
-        	coffee objects.
-         * creamCheckBox.selectedProperty().addListener(
-        		(ObservableValue<? extends Boolean> obsVal, Boolean oldVal, Boolean newVal) -> {
+        creamCheckBox.selectedProperty().addListener(
+        		(ObservableValue<? extends Boolean> observed, Boolean oldVal, Boolean newVal) -> {
         			
-        			if(newVal) { //new value is TRUE
-        				//currentCoffee.add(COFFEE_ADD_INS.CREAM);
+        			if(newVal) {
+        				//new value is true
+        				currentCoffee.add(COFFEE_ADD_INS.CREAM);
+        				
         			}
         			else {//new value is false
-        				//currentCoffee.remove(COFFEE_ADD_INS.CREAM);
+        				currentCoffee.remove(COFFEE_ADD_INS.CREAM);
+        				
         			}
-        			currentTotal.setText(format.format(currentCoffee.itemPrice()));
         		});
-        */
+        syrupCheckBox.selectedProperty().addListener(
+        		(ObservableValue<? extends Boolean> observed, Boolean oldVal, Boolean newVal) -> {
+        			
+        			if(newVal) {
+        				//new value is true
+        				currentCoffee.add(COFFEE_ADD_INS.SYRUP);
+        			}
+        			else {//new value is false
+        				currentCoffee.remove(COFFEE_ADD_INS.SYRUP);
+        				
+        			}
+        		});
+        milkCheckBox.selectedProperty().addListener(
+        		(ObservableValue<? extends Boolean> observed, Boolean oldVal, Boolean newVal) -> {
+        			
+        			if(newVal) {
+        				//new value is true
+        				currentCoffee.add(COFFEE_ADD_INS.MILK);
+        				
+        			}
+        			else {//new value is false
+        				currentCoffee.remove(COFFEE_ADD_INS.MILK);
+        				
+        			}
+     
+        		});
+        caramelCheckBox.selectedProperty().addListener(
+        		(ObservableValue<? extends Boolean> observed, Boolean oldVal, Boolean newVal) -> {
+        			
+        			if(newVal) {
+        				//new value is true
+        				currentCoffee.add(COFFEE_ADD_INS.CARAMEL);
+        				
+        			}
+        			else {//new value is false
+        				currentCoffee.remove(COFFEE_ADD_INS.CARAMEL);
+        				
+        			}
+        		});
+        whippedCreamCheckBox.selectedProperty().addListener(
+        		(ObservableValue<? extends Boolean> observed, Boolean oldVal, Boolean newVal) -> {
+        			
+        			if(newVal) {
+        				//new value is true
+        				currentCoffee.add(COFFEE_ADD_INS.WHIPPED_CREAM);
+        				
+        			}
+        			else {//new value is false
+        				currentCoffee.remove(COFFEE_ADD_INS.WHIPPED_CREAM);
+        				
+        			}
+        		});
+		
+        
+        
+
     }
+
 }

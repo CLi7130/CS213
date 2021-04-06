@@ -2,14 +2,18 @@ package application;
 
 import java.text.DecimalFormat;
 
+/**
+ * MenuItem class containing all information and methods for a MenuItem object.
+ * @author Craig Li, Prerak Patel
+ */
 public class MenuItem implements Customizable {
 
 
-
+	private double price;
     private int quantity;
-    private MenuItem menuItem;
 
     /**
+     * Sets the item's quantity
      * @param quantity the quantity to set
      */
     public void setQuantity(int quantity) {
@@ -17,37 +21,69 @@ public class MenuItem implements Customizable {
     }
     
     /**
+     * Gets the item's quantity.
      * @return the quantity
      */
     public int getQuantity() {
         return quantity;
     }
-
+    /**
+     * Gets the item's price.
+     * @return the price of the item.
+     */
+    public double getPrice() {
+    	return this.price;
+    }
+    /**
+     * Sets the price of an Item.
+     * @param price	the value to set the price to.
+     */
+    public void setPrice(double price) {
+    	this.price = price;
+    }
+    
+    /**
+     * Adds a menuItem 
+     * @param obj	the object to be added.
+     * @return true if the object is a menuItem, false if not.
+     */
     @Override
     public boolean add(Object obj) {
         if (obj instanceof MenuItem) {
-            menuItem = (MenuItem) obj;
+        	MenuItem menuItem = (MenuItem) obj;
             return true;
         }
         return false;
     }
-
+    /**
+     * Removes a menuItem
+     * @param obj	the object to be removed.
+     * @return true if item is removed, false if not.
+     */
     @Override
     public boolean remove(Object obj) {
         if (obj instanceof MenuItem) {
-            menuItem = null;
+            MenuItem menuItem = null;
             return true;
         }
         return false;
     }
-
-    public double itemPrice() {
-        return this.itemPrice() * quantity;
-        
+    /**
+     * prints a formatted String containing the MenuItem's information.
+     * @return qualities	The menuItem's information.
+     */
+    public String print() {
+    	String qualities = "[QTY:" + Integer.toString(this.getQuantity()) 
+    						+ "] ";
+    	
+    	return qualities;
     }
     
-    public String print() {
-        DecimalFormat money = new DecimalFormat("#,##0.00");
-        return money.format(itemPrice());
-    }
+    /**
+     * Implemented similarly to calculatePayment in Project 2, actual Calculations
+     * are in children's implementations.
+     */
+	public void itemPrice() {
+		
+	}
 }
