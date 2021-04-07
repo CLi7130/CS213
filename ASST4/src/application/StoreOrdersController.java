@@ -3,7 +3,11 @@ package application;
  * Sample Skeleton for 'storeOrders.fxml' Controller Class
  */
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.util.ResourceBundle;
 
 import application.Enums.CAKE_DONUTS;
@@ -15,10 +19,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.ListView;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
+import javafx.stage.Stage;
 /**
  * Controller for the StoreOrders.fxml GUI
  * @author Craig Li, Prerak Patel
@@ -43,12 +51,14 @@ public class StoreOrdersController {
 
     @FXML // fx:id="orderNumberMenu"
     private ComboBox<Integer> orderNumberMenu; // Value injected by FXMLLoader
-
+    
     @FXML // fx:id="orderDisplay"
-    private ListView<String> orderDisplay; // Value injected by FXMLLoader
+    private TextArea orderDisplay; // Value injected by FXMLLoader
     
     protected StoreOrders storeOrders;
-    private ObservableList<String> formattedOrder = FXCollections.observableArrayList();
+    private ObservableList<Integer> orderNumbers = FXCollections.observableArrayList();
+    private DecimalFormat money = new DecimalFormat("$#,##0.00");
+    
     /**
      * Allows main menu to transfer store order data to the store orders controller.
      * @params storeOrder	store orders generated.
@@ -63,7 +73,31 @@ public class StoreOrdersController {
 	 */
     @FXML
     void exportOrders(ActionEvent event) {
-
+    	FileChooser chooser = new FileChooser();
+        
+        chooser.setTitle("Open Target File for the Export");
+        chooser.getExtensionFilters().addAll(new ExtensionFilter("Text Files", "*.txt"),
+                new ExtensionFilter("All Files", "*.*"));
+        Stage stage = new Stage();
+        File targetFile = chooser.showSaveDialog(stage); //get the reference of the target file
+        try {
+            PrintWriter pw = new PrintWriter(targetFile);
+            String text = "";
+            text += storeOrders.print();
+            pw.print(text);
+            pw.close();
+            Alerts.makeNewAlert("Orders Exported to " + targetFile, "Message");
+            
+        } catch (FileNotFoundException e) {
+        	Alerts.makeNewWarning("File Not Found.", "Warning");
+            
+        } catch (NullPointerException e) {
+        	Alerts.makeNewWarning("Please Choose a File to Export To.", "Warning");
+        }finally {
+        	Alerts.makeNewWarning("Export Error.", "Warning");
+        }
+        
+    
     }
     /**
      * Removes an Order from the storeOrders list.
@@ -71,33 +105,77 @@ public class StoreOrdersController {
      */
     @FXML
     void removeOrder(ActionEvent event) {
-    	
+    	 int orderNumber = orderNumberMenu.getValue();
+    	 int index = storeOrders.findOrder(orderNumber);
+    	 
+    	 Order removeThisOrder = storeOrders.getStoreOrders().get(index);
+    	 storeOrders.remove(removeThisOrder);
+    	 
+    	 for(int i = 0; i < orderNumbers.size(); i++) {
+    		 if(orderNumber == orderNumbers.get(i)) {
+    			 orderNumbers.remove(i);
+    			 orderNumberMenu.getItems().remove(i);
+    		 }
+    	 }
+    	 Alerts.makeNewAlert("Order Removed From Store Orders.", "Confirmation");
+    	 resetFields();
+    	 
+    }
+    /**
+     * Resets GUI fields to default values/next order
+     */
+    private void resetFields() {
+    	if(orderNumbers.isEmpty()) {
+    		exportOrdersButton.setDisable(true);
+    		removeOrderButton.setDisable(true);
+    		orderNumberMenu.setDisable(true);
+    		totalDisplay.setText(money.format(0));
+    		orderDisplay.clear();
+    		orderDisplay.setPromptText("There Are Currently No Store Orders.");
+    	}
+    	else {
+            orderNumberMenu.getSelectionModel().selectFirst();
+            setDisplay();
+    	}
     }
     /**
      * Sets the order Display to the corresponding order Number
      */
-    void setDisplay() {
-    	int orderNumber = orderNumberMenu.getSelectionModel().getSelectedItem();
-    	int index = storeOrders.findOrder(orderNumber);
+    @FXML
+    void updateDisplay(ActionEvent event) {
+    	setDisplay();
     	
-    	formattedOrder.add(storeOrders.getStoreOrders().get(index).print());
-    	
-    	
+    }
+    private void setDisplay() {
+    	if(orderNumbers.isEmpty()) {
+    		resetFields();
+    	}
+    	else {
+        	int orderNumber = orderNumberMenu.getValue();	
+        	int index = storeOrders.findOrder(orderNumber);
+        	
+        	Order displayOrder = storeOrders.getStoreOrders().get(index);
+        	
+        	orderDisplay.setText(displayOrder.print());
+        	
+        	double total = displayOrder.getOrderTax() + displayOrder.getSubtotal();
+        	totalDisplay.setText(money.format(total));
+    	}
+
     }
     /**
      * Initializes the GUI
      */
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
-        assert removeOrderButton != null : "fx:id=\"removeOrderButton\" was not injected: check your FXML file 'storeOrders.fxml'.";
-        assert exportOrdersButton != null : "fx:id=\"exportOrdersButton\" was not injected: check your FXML file 'storeOrders.fxml'.";
-        assert totalDisplay != null : "fx:id=\"totalDisplay\" was not injected: check your FXML file 'storeOrders.fxml'.";
-        assert orderNumberMenu != null : "fx:id=\"orderNumberMenu\" was not injected: check your FXML file 'storeOrders.fxml'.";
-        assert orderDisplay != null : "fx:id=\"orderDisplay\" was not injected: check your FXML file 'storeOrders.fxml'.";
+        assert removeOrderButton != null : "fx:id=\"removeOrderButton\" was not injected: check your FXML file 'StoreOrders.fxml'.";
+        assert exportOrdersButton != null : "fx:id=\"exportOrdersButton\" was not injected: check your FXML file 'StoreOrders.fxml'.";
+        assert totalDisplay != null : "fx:id=\"totalDisplay\" was not injected: check your FXML file 'StoreOrders.fxml'.";
+        assert orderNumberMenu != null : "fx:id=\"orderNumberMenu\" was not injected: check your FXML file 'StoreOrders.fxml'.";
+        assert orderDisplay != null : "fx:id=\"orderDisplay\" was not injected: check your FXML file 'StoreOrders.fxml'.";
 
-        orderDisplay.setEditable(false);
-        totalDisplay.setEditable(false);
-        StoreOrders storeOrders = new StoreOrders();
+        
+        storeOrders = new StoreOrders();//this needs to be set to the actual storeOrders
         
         
         //TESTING STARTS HERE - DELETE BEFORE SUBMISSION.
@@ -188,18 +266,19 @@ public class StoreOrdersController {
         
         storeOrders.add(order3);
         
-        System.out.println(storeOrders.print());
-        
+        //storeOrders.remove(order1);
         //TESTING ENDS HERE - DELETE BEFORE SUBMISSION.
         
         for(Order order : storeOrders.getStoreOrders()) {
-        	int orderNumber = order.getOrderNumber();
-        	orderNumberMenu.getItems().add(orderNumber);
-        	
-        	int index = storeOrders.findOrder(orderNumber);
-        	formattedOrder.add(storeOrders.getStoreOrders().get(index).print());
+        	orderNumbers.add(order.getOrderNumber());
         }
+        orderNumberMenu.getItems().addAll(orderNumbers);
+             
         orderNumberMenu.getSelectionModel().selectFirst();
+        setDisplay();
+        
+        
+        
         //add to formatted order
     }
 

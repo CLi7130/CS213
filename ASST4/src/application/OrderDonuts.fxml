@@ -32,6 +32,7 @@
 						<RowConstraints maxHeight="188.0" minHeight="10.0" prefHeight="104.0" vgrow="SOMETIMES" />
 					</rowConstraints>
 					<children>
+            <ListView fx:id="donutOrderDisplay" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 						<Label text="Order Donuts" wrapText="true">
 							<font>
 								<Font name="System Bold" size="20.0" />
@@ -102,7 +103,6 @@
 							</children>
 						</GridPane>
 						<ComboBox fx:id="donutTypeMenu" onAction="#changeDonutSelection" promptText="Donut Type" GridPane.columnIndex="1" />
-            <ListView fx:id="donutOrderDisplay" prefHeight="217.0" prefWidth="226.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 					</children>
 				</GridPane>
 	</children>

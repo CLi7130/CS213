@@ -175,14 +175,6 @@ public class Order implements Customizable {
             //totalTax += menuItems.itemPrice();
         }
         
-        double subtotal = this.getSubtotal();
-        double tax = this.getOrderTax();
-        double total = subtotal + tax;
-        
-        orders += '\n';
-        orders += ("Subtotal: " + money.format(subtotal)) + '\n';
-        orders += ("Tax: " + money.format(tax)) + '\n';
-        orders += ("Total: " + money.format(total));
         return orders;
     }
 

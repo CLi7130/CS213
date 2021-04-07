@@ -1,5 +1,6 @@
 package application;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 /**
  * StoreOrder class that contains all information and methods to track store orders.
@@ -12,6 +13,7 @@ public class StoreOrders implements Customizable {
     private int numStoreOrder;
     private int orderNumberOffset;
     private static final int FAIL_CONDITION = -1;
+    private static final DecimalFormat money = new DecimalFormat("$#,##0.00");
 
     /**
      * Gets the storeOrders object.
@@ -80,7 +82,8 @@ public class StoreOrders implements Customizable {
     public boolean remove(Object obj) {
     	this.removeNulls();
         if(obj instanceof Order) {
-            final int index = find((Order) obj);
+        	Order tempOrder = (Order) obj;
+            final int index = findOrder(tempOrder.getOrderNumber());
             if(index >= 0) {
                 storeOrders.remove(index);
                 numStoreOrder--;
@@ -90,26 +93,6 @@ public class StoreOrders implements Customizable {
             return false;
         }
         return false;
-    }
-    /**
-     * finds the index of an order in the storeOrders list.
-     * @param order		the order to search for.
-     * @return index	the index of the order, can be -1 if search failed.
-     */
-    private int find(Order order) {
-        int index = 0;
-        this.removeNulls();
-        for(int i = 0; i < storeOrders.size(); i++) {
-
-            if(storeOrders.get(i).print().equals(order.print())
-            		&& order.getOrderNumber() == storeOrders.get(i).getOrderNumber()) 
-            {
-                index = i;
-                return index;
-            }
-        }
-        index = FAIL_CONDITION;
-        return index;
     }
     /**
      * Removes all null values from the storeOrders list.
@@ -128,9 +111,22 @@ public class StoreOrders implements Customizable {
         this.removeNulls();
         for(Order order : storeOrders) {
         	orders += "Order #: " + order.getOrderNumber() + '\n';
-            orders += order.print() + '\n' + '\n';
+
+            orders += order.print(); 
+            		
+            double subtotal = order.getSubtotal();
+            double tax = order.getOrderTax();
+            double total = subtotal + tax;
+            
+            orders += '\n';
+            orders += ("Subtotal: " + money.format(subtotal)) + '\n';
+            orders += ("Tax: " + money.format(tax)) + '\n';
+            orders += ("Total: " + money.format(total)) + '\n';		
+	
+            orders += '\n';
+            
         }
-        orders += "--END STORE ORDERS.--";
+        orders += "--END STORE ORDERS.--" + '\n';
         return orders;
     }
 

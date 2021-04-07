@@ -36,12 +36,10 @@ public class OrderDonutsController {
 	private static final int MAX_DONUTS_PER_ORDER = 12;
 	private static final int MIN_DONUTS_PER_ORDER = 1;
 
-	private static final int ITEM_COST_LOCATION = 3;
-	private static final int ITEM_FLAVOR_LOCATION = 1;
 	private double currentOrderTotal = 0;
 	private static final DecimalFormat money = new DecimalFormat("$#,##0.00");
 	private ObservableList<String> formattedOrder = FXCollections.observableArrayList();
-	private ArrayList<Donut> donutControllerOrder = new ArrayList<>();
+	private ArrayList<Donut> donutControllerOrder = new ArrayList<Donut>();
 	
 	//protected Order donutOrder;
 	
@@ -130,8 +128,10 @@ public class OrderDonutsController {
     	donutTotal.setText(money.format(currentOrderTotal));
   
     	formattedOrder.add(currentDonut.print());
+    	
     	donutControllerOrder.add(currentDonut);//change this to actual order
     	
+    	System.out.println(formattedOrder.toString());
     	checkIfEmpty();
     	
     	currentDonut = null;

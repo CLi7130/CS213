@@ -14,6 +14,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.ListView;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Modality;
@@ -109,8 +110,8 @@ public class MainMenuController {
      * Function to transfer objects to another scene
      * @param fileName	string containing a fileName to determine which
      * 					controller to use.
-     */
-   /* private static void controllerTransfer(String fileName){
+     *//*
+    private static void controllerTransfer(String fileName){
 
 	    	try {
 	        	
