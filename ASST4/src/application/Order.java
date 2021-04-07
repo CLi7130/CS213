@@ -122,7 +122,7 @@ public class Order implements Customizable {
     		//removes all null entries from arraylist
     	}
     }
-    /*
+    /**
      * Gets the current Order subtotal.
      * @return	this.orderTotalCost	total cost of the order
      */
@@ -147,7 +147,7 @@ public class Order implements Customizable {
     }
     /**
      * Sets the current Order Total/Cost
-     * @params amount	double value to set order total to
+     * @param amount	double value to set order total to
      */
     public void setOrderTotal(double amount) {
     	this.orderSubtotal = amount;
