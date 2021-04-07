@@ -39,7 +39,7 @@ public class MainMenuController {
     protected static StoreOrders storeOrder;
     protected static Order yourOrder;
     
-    /*
+    /**
     Opens a new stage/scene based on the button pressed.
     @param event	 event of pressing a button, used to determine which window is opened.
     */
@@ -58,13 +58,14 @@ public class MainMenuController {
 		}
     	
     }
-    /*
+    /**
     * Sets Stage window title and fxml file for switching from main menu.
-    * @params fxID	String containing fxID of button pressed on main menu
-    * 			stage	stage object to be modified.
+    * @param fxID	String containing fxID of button pressed on main menu
+    * @param stage	stage object to be modified.
+    * @return   stage the stage to be generated
     */
     private Stage setStageParams(String fxID, Stage stage){
-    	String fileName = "";
+    	String fileName = "/";
     	String title = "";
     	try {
     	
@@ -124,7 +125,7 @@ public class MainMenuController {
     public static StoreOrders getStoreOrders() {
     	return storeOrder;
     }
-    /*
+    /**
     Initializes the GUI.
     */
     @FXML // This method is called by the FXMLLoader when initialization is complete
