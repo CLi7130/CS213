@@ -21,7 +21,7 @@ public class Coffee extends MenuItem implements Customizable{
     private static final int TOTAL_ADD_INS_POSSIBLE = 5;
     private COFFEE_SIZE size;
     
-    public int numAddIns = 0;
+    private int numAddIns = 0;
     public COFFEE_ADD_INS[] addIns = new COFFEE_ADD_INS[TOTAL_ADD_INS_POSSIBLE];
     
     /**

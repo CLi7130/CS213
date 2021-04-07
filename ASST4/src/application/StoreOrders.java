@@ -129,9 +129,4 @@ public class StoreOrders implements Customizable {
         orders += "--END STORE ORDERS.--" + '\n';
         return orders;
     }
-
-
-
- 
-
 }

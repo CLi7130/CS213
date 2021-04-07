@@ -1,8 +1,4 @@
 package application;
-/**
- * Sample Skeleton for 'storeOrders.fxml' Controller Class
- */
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
@@ -55,17 +51,10 @@ public class StoreOrdersController {
     @FXML // fx:id="orderDisplay"
     private TextArea orderDisplay; // Value injected by FXMLLoader
     
-    protected StoreOrders storeOrders;
+    private StoreOrders storeOrders;
     private ObservableList<Integer> orderNumbers = FXCollections.observableArrayList();
     private DecimalFormat money = new DecimalFormat("$#,##0.00");
     
-    /**
-     * Allows main menu to transfer store order data to the store orders controller.
-     * @params storeOrder	store orders generated.
-     */
-	public void setStoreOrders(StoreOrders storeOrder) {
-		this.storeOrders = storeOrder;
-	}
 	
 	/**
 	 * Exports Orders to a text file
@@ -93,9 +82,8 @@ public class StoreOrdersController {
             
         } catch (NullPointerException e) {
         	Alerts.makeNewWarning("Please Choose a File to Export To.", "Warning");
-        }finally {
-        	Alerts.makeNewWarning("Export Error.", "Warning");
         }
+        
         
     
     }
@@ -139,13 +127,17 @@ public class StoreOrdersController {
     	}
     }
     /**
-     * Sets the order Display to the corresponding order Number
+     * Sets the order Display to the corresponding order Number.
+     * Used to continuously update the order based on user action in the GUI.
      */
     @FXML
     void updateDisplay(ActionEvent event) {
     	setDisplay();
     	
     }
+    /**
+     * sets the Currently selected order display the the corresponding order
+     */
     private void setDisplay() {
     	if(orderNumbers.isEmpty()) {
     		resetFields();
@@ -175,9 +167,9 @@ public class StoreOrdersController {
         assert orderDisplay != null : "fx:id=\"orderDisplay\" was not injected: check your FXML file 'StoreOrders.fxml'.";
 
         
-        storeOrders = new StoreOrders();//this needs to be set to the actual storeOrders
+        storeOrders = MainMenuController.getStoreOrders();//this needs to be set to the actual storeOrders
         
-        
+        /*
         //TESTING STARTS HERE - DELETE BEFORE SUBMISSION.
         //Order 1
         Order order1 = new Order();
@@ -267,7 +259,7 @@ public class StoreOrdersController {
         storeOrders.add(order3);
         
         //storeOrders.remove(order1);
-        //TESTING ENDS HERE - DELETE BEFORE SUBMISSION.
+        //TESTING ENDS HERE - DELETE BEFORE SUBMISSION.*/
         
         for(Order order : storeOrders.getStoreOrders()) {
         	orderNumbers.add(order.getOrderNumber());
@@ -276,10 +268,6 @@ public class StoreOrdersController {
              
         orderNumberMenu.getSelectionModel().selectFirst();
         setDisplay();
-        
-        
-        
-        //add to formatted order
     }
 
 

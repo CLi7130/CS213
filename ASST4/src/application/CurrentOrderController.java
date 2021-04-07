@@ -1,9 +1,5 @@
 package application;
 
-/*
- * Controller class for the OrderCoffee.fxml GUI
- * @author Craig Li, Prerak Patel
- */
 
 import java.net.URL;
 import java.text.DecimalFormat;
@@ -22,7 +18,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-
+/**
+ * Controller for the OrderCoffee.fxml GUI
+ * @author Craig Li, Prerak Patel
+ */
 public class CurrentOrderController {
 	
     @FXML // ResourceBundle that was given to the FXMLLoader
@@ -52,7 +51,7 @@ public class CurrentOrderController {
     
     private Order currentOrder;
     private StoreOrders storeOrders;
-    DecimalFormat money = new DecimalFormat("$#,##0.00");
+    private DecimalFormat money = new DecimalFormat("$#,##0.00");
     /**
      * Clears all fields on GUI
      * 
@@ -86,8 +85,9 @@ public class CurrentOrderController {
 	 */
     @FXML
     void addToStoreOrders(ActionEvent event) {
-    	//storeOrders.add(currentOrder);
-    	//actually need to add to store orders
+    	storeOrders.add(currentOrder);
+    	currentOrder = new Order();
+    	MainMenuController.setCurrentOrder(currentOrder);
     	
     	//FIXME
     	
@@ -131,7 +131,6 @@ public class CurrentOrderController {
      * Checks to see if the order is empty, disables buttons if order is empty.
      * 
      */
-    
     private void checkIfEmpty() {
     	if(formattedOrder.isEmpty()) {
     		removeOrderItem.setDisable(true);
@@ -166,52 +165,16 @@ public class CurrentOrderController {
         assert removeOrderItem != null : "fx:id=\"removeOrderItem\" was not injected: check your FXML file 'currentOrder.fxml'.";
         assert orderDisplay != null : "fx:id=\"orderDisplay\" was not injected: check your FXML file 'currentOrder.fxml'.";
         
-        currentOrder = new Order();
+        currentOrder = MainMenuController.getCurrentOrder();
+        storeOrders = MainMenuController.getStoreOrders();
         
-        
-        
-        //START TESTING - DELETE BEFORE SUBMISSION
-        Coffee coffeeO2 = new Coffee();
-        Donut donutO2_1 = new Donut();
-        Donut donutO2_2 = new Donut();
-        
-        coffeeO2.setSize(COFFEE_SIZE.VENTI);
-        coffeeO2.setQuantity(5);
-        coffeeO2.add(COFFEE_ADD_INS.CARAMEL);
-        coffeeO2.add(COFFEE_ADD_INS.CREAM);
-        coffeeO2.add(COFFEE_ADD_INS.MILK);
-        coffeeO2.add(COFFEE_ADD_INS.SYRUP);
-        coffeeO2.itemPrice();
-        
-        donutO2_1.setFlavor(YEAST_DONUTS.MARBLE_FROSTED.toString());
-        donutO2_1.setQuantity(3);
-        donutO2_1.setType(DONUT_TYPES.YEAST_DONUTS);
-        donutO2_1.itemPrice();
-        
-        donutO2_2.setFlavor(CAKE_DONUTS.BOSTON_CREME.toString());
-        donutO2_2.setQuantity(1);
-        donutO2_2.setType(DONUT_TYPES.CAKE_DONUTS);
-        donutO2_2.itemPrice();
-        
-        currentOrder.add(donutO2_1);
-        currentOrder.add(donutO2_2);
-        currentOrder.add(coffeeO2);
-        
-        double subTotal = currentOrder.updateOrderTotal();
-        double orderTax = currentOrder.getOrderTax();
-        double orderTotal = subTotal + orderTax;
-        currOrderSubtotal.setText(money.format(subTotal));
-        currOrderSalesTax.setText(money.format(orderTax));
-        currOrderTotal.setText(money.format(orderTotal));
-        
-        //END TESTING - DELETE BEFORE SUBMISSION
         orderDisplay.setItems(formattedOrder);
+        updateCosts();
         
         for(MenuItem item : currentOrder.getOrderList()) {
         	formattedOrder.add(item.print());
         }
         checkIfEmpty();
-        //ArrayList<MenuItem> orderList = currentOrder.getOrderList();
         
     }
         

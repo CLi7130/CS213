@@ -1,7 +1,4 @@
-/**
- * Controller for the OrderCoffee.fxml GUI
- * @author Craig Li, Prerak Patel
- */
+
 
 package application;
 
@@ -24,7 +21,10 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
+/**
+ * Controller for the OrderCoffee.fxml GUI
+ * @author Craig Li, Prerak Patel
+ */
 public class OrderCoffeeController {
 	private static final int MIN_NUMBER_OF_COFFEES = 1;
 	private static final int MAX_NUMBER_OF_COFFEES = 10;
@@ -81,8 +81,8 @@ public class OrderCoffeeController {
     @FXML
     void addToOrder(ActionEvent event) {
     	
-    	//currentOrder.add(currentCoffee);
-    	//currentOrder.setOrderTotal(currentOrder.getOrderTotal() + currentCoffee.itemPrice());
+    	currentCoffee.itemPrice();
+    	currentOrder.add(currentCoffee);
     	
     	String orderConfirm = currentCoffee.print();
     	resetFields();
@@ -150,7 +150,6 @@ public class OrderCoffeeController {
         coffeeSizeMenu.getItems().setAll(COFFEE_SIZE.values());
         for(int i = MIN_NUMBER_OF_COFFEES; i <= MAX_NUMBER_OF_COFFEES; i++) {
         	coffeeQuantityMenu.getItems().add(i);
-        	//janky implementation, refactor later?
         }
         coffeeQuantityMenu.getSelectionModel().selectFirst();
         coffeeSizeMenu.getSelectionModel().selectFirst();
@@ -160,6 +159,8 @@ public class OrderCoffeeController {
     	
     	currentCoffee.itemPrice();
         coffeeTotalField.setText(money.format(currentCoffee.getPrice()));
+        
+        currentOrder = MainMenuController.getCurrentOrder();
         
         creamCheckBox.selectedProperty().addListener(
         		(ObservableValue<? extends Boolean> observed, Boolean oldVal, Boolean newVal) -> {
@@ -226,9 +227,6 @@ public class OrderCoffeeController {
         				
         			}
         		});
-		
-        
-        
 
     }
 

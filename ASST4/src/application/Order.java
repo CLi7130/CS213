@@ -15,8 +15,6 @@ public class Order implements Customizable {
     private static final int FAIL_CONDITION = -1;
     final static double TAX = 0.06625;
     private double orderSubtotal;
-    DecimalFormat money = new DecimalFormat("$#,##0.00");
-
 
     /**
      * Gets the order number
@@ -172,7 +170,6 @@ public class Order implements Customizable {
         
         for(MenuItem menuItems : orderList) {
             orders += menuItems.print() + '\n';
-            //totalTax += menuItems.itemPrice();
         }
         
         return orders;

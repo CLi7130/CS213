@@ -1,7 +1,4 @@
-/**
- * Donut controller for OrderDonuts.fxml GUI
- * @author Craig Li, Prerak Patel
- */
+
 
 package application;
 
@@ -31,7 +28,10 @@ import application.Enums.COFFEE_SIZE;
 import application.Enums.YEAST_DONUTS;
 import application.Enums.DONUT_HOLES;
 import application.Enums.DONUT_TYPES;
-
+/**
+ * Donut controller for OrderDonuts.fxml GUI
+ * @author Craig Li, Prerak Patel
+ */
 public class OrderDonutsController {
 	private static final int MAX_DONUTS_PER_ORDER = 12;
 	private static final int MIN_DONUTS_PER_ORDER = 1;
@@ -40,9 +40,7 @@ public class OrderDonutsController {
 	private static final DecimalFormat money = new DecimalFormat("$#,##0.00");
 	private ObservableList<String> formattedOrder = FXCollections.observableArrayList();
 	private ArrayList<Donut> donutControllerOrder = new ArrayList<Donut>();
-	
-	//protected Order donutOrder;
-	
+	private Order currentOrder;
 	private Donut currentDonut;
 	
     @FXML // ResourceBundle that was given to the FXMLLoader
@@ -77,19 +75,7 @@ public class OrderDonutsController {
    
     @FXML // fx:id="previewImage"
     private ImageView previewImage; // Value injected by FXMLLoader
-    
-    
-    /**
-     * Method that allows the main menu to set its order to the donut Controller.
-     * Transfer of data between controllers.
-     * @params yourOrder	default order initialized in main menu.
-     */
-    /*
-	public void setOrder(Order yourOrder) {
-		this.donutOrder = yourOrder;
-	}
-	*/
-    
+
     /**
      * Resets Donut GUI default/blank values, and updates the image to correspond.
      */
@@ -131,7 +117,6 @@ public class OrderDonutsController {
     	
     	donutControllerOrder.add(currentDonut);//change this to actual order
     	
-    	System.out.println(formattedOrder.toString());
     	checkIfEmpty();
     	
     	currentDonut = null;
@@ -144,8 +129,6 @@ public class OrderDonutsController {
      */
     @FXML
     void remove(ActionEvent event) {
-    	//check for invalid quantities to remove, or item isn't in order
-    	//update Price in listview
     	
     	try {
     		Object donut = donutOrderDisplay.getSelectionModel().getSelectedItem();
@@ -176,8 +159,6 @@ public class OrderDonutsController {
     		}
     	}
     }
-    
-    
     //FIXME not yet implemented
     
     /**
@@ -192,14 +173,12 @@ public class OrderDonutsController {
 		else {
 			
 	    	for(Donut donut : donutControllerOrder) {
-	    		//donutOrder.add(donut);
-	    		//add all donuts/items to current order.
-	    		//FIXME - need to fix importation of current Order from main menu.
+	    		donut.itemPrice();
+	    		currentOrder.add(donut);
 	    	}
 	    	
 	    	Alerts.makeNewAlert("Donut Order Confirmed", "Order Confirmation");
 		}
-		//make sure order information is transferred before doing this.
 		formattedOrder.removeAll(formattedOrder);
 		donutControllerOrder.removeAll(donutControllerOrder);
 		
@@ -254,7 +233,8 @@ public class OrderDonutsController {
     }
 
     /**
-     * Changes the donut choices available based on the donut type (yeast donuts are different than cake donuts).
+     * Changes the donut choices available based on the donut type 
+     * (yeast donuts are different than cake donuts).
      * @params event	event caused by a selection of different donut type.
      */
     @FXML
@@ -297,7 +277,8 @@ public class OrderDonutsController {
         assert donutOrderDisplay != null : "fx:id=\"donutOrderDisplay\" was not injected: check your FXML file 'OrderDonuts.fxml'.";
         
         currentDonut = new Donut();
-        
+	        
+        currentOrder = MainMenuController.getCurrentOrder();
         
         donutFlavorsMenu.setDisable(true);
         donutQuantityMenu.setDisable(true);

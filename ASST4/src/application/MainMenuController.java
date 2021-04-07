@@ -1,10 +1,3 @@
-
-
-/**
- * Main menu controller for Project, allows opening different scenes based on activity.
- * @author Craig Li, Prerak Patel
- */
-
 package application;
 
 import java.io.IOException;
@@ -19,7 +12,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-
+/**
+ * Main menu controller for Project, allows opening different scenes based on activity.
+ * @author Craig Li, Prerak Patel
+ */
 public class MainMenuController {
 
     @FXML // ResourceBundle that was given to the FXMLLoader
@@ -106,53 +102,28 @@ public class MainMenuController {
 		}
     	return stage;
     }
+
     /**
-     * Function to transfer objects to another scene
-     * @param fileName	string containing a fileName to determine which
-     * 					controller to use.
-     *//*
-    private static void controllerTransfer(String fileName){
-
-	    	try {
-	        	
-	        	FXMLLoader loader = new FXMLLoader();
-	        	
-	        	//String path = "../" + fileName;
-	        	
-	        	String filePath = "src/application/" + fileName;
-	        	//System.out.println(path);
-	        	
-	        	
-	    		loader.setLocation(Main.class.getResource(filePath));
-	    		
-				if(fileName.equals("OrderCoffee.fxml")) {
-					OrderCoffeeController coffeeController = loader.getController();
-					coffeeController.setOrder(yourOrder);
-				}
-				else if(fileName.equals("OrderDonuts.fxml")) {
-					OrderDonutsController donutController = loader.getController();
-					donutController.setOrder(yourOrder);
-				}
-				else if(fileName.equals("CurrentOrder.fxml")) {
-					CurrentOrderController currOrderController = loader.getController();
-					currOrderController.setOrder(yourOrder);
-					currOrderController.setStoreOrders(storeOrder);
-				}
-				else if(fileName.equals("StoreOrders.fxml")) {
-					StoreOrdersController storeOrderController = loader.getController();
-					storeOrderController.setStoreOrders(storeOrder);
-					
-				}
-	    			
-    		} catch (NullPointerException e) {
-    			e.printStackTrace();
-    			Alerts.makeNewWarning("NullPointerException: Bad Address.", "Warning");
-    		} catch (Exception e) {
-    			e.printStackTrace();
-    		}
-	    	
-    }*/
-
+     * Gets the current Order established in the main menu
+     * @return yourOrder	the current order
+     */
+    public static Order getCurrentOrder() {
+    	return yourOrder;
+    }
+    /**
+     * Sets the current order in the main menu. (used when adding to store orders)
+     * @param order	the order to set to be the current order.
+     */
+    public static void setCurrentOrder(Order order) {
+    	yourOrder = order;
+    }
+    /**
+     * Gets the Store Orders
+     * @return storeOrder	the current Store Orders.
+     */
+    public static StoreOrders getStoreOrders() {
+    	return storeOrder;
+    }
     /*
     Initializes the GUI.
     */
