@@ -83,9 +83,7 @@ public class StoreOrdersController {
         } catch (NullPointerException e) {
         	Alerts.makeNewWarning("Please Choose a File to Export To.", "Warning");
         }
-        
-        
-    
+
     }
     /**
      * Removes an Order from the storeOrders list.
@@ -97,14 +95,19 @@ public class StoreOrdersController {
     	 int index = storeOrders.findOrder(orderNumber);
     	 
     	 Order removeThisOrder = storeOrders.getStoreOrders().get(index);
+    	 
     	 storeOrders.remove(removeThisOrder);
     	 
     	 for(int i = 0; i < orderNumbers.size(); i++) {
     		 if(orderNumber == orderNumbers.get(i)) {
     			 orderNumbers.remove(i);
     			 orderNumberMenu.getItems().remove(i);
+    			 
+    			 orderNumberMenu.getSelectionModel().selectFirst();
     		 }
     	 }
+    	 
+    	 
     	 Alerts.makeNewAlert("Order Removed From Store Orders.", "Confirmation");
     	 resetFields();
     	 
@@ -122,7 +125,7 @@ public class StoreOrdersController {
     		orderDisplay.setPromptText("There Are Currently No Store Orders.");
     	}
     	else {
-            orderNumberMenu.getSelectionModel().selectFirst();
+    		orderNumberMenu.getSelectionModel().selectFirst();
             setDisplay();
     	}
     }
@@ -143,15 +146,35 @@ public class StoreOrdersController {
     		resetFields();
     	}
     	else {
-        	int orderNumber = orderNumberMenu.getValue();	
-        	int index = storeOrders.findOrder(orderNumber);
-        	
-        	Order displayOrder = storeOrders.getStoreOrders().get(index);
-        	
-        	orderDisplay.setText(displayOrder.print());
-        	
-        	double total = displayOrder.getOrderTax() + displayOrder.getSubtotal();
-        	totalDisplay.setText(money.format(total));
+    		try {
+            	int orderNumber = orderNumberMenu.getValue();//HOW IS THIS NULL WTF	
+            	int index = storeOrders.findOrder(orderNumber);
+            	
+            	Order displayOrder = storeOrders.getStoreOrders().get(index);
+            	
+            	orderDisplay.setText(displayOrder.print());
+            	
+            	double total = displayOrder.getOrderTax() + displayOrder.getSubtotal();
+            	totalDisplay.setText(money.format(total));	
+    		}
+    		catch (NullPointerException e) {
+    			/*
+    			 * Somehow initialization of orderNumber in this method generates an NPE
+    			 * But then the rest of the method generates correctly, and to generate correctly
+    			 * it needs the correct orderNumber value. So how is it throwing an NPE? 
+    			 * The value of orderNumberMenu needs to be null, however, this NPE is generated
+    			 * when the first available order number is removed (first in list from combobox)
+    			 * When remove() is called, it removes the specified 
+    			 * order number from the orderNumbers List,
+    			 * and the orderNumber from the orderNumberMenu, then calls resetFields(),
+    			 * WHICH SELECTS THE FIRST ITEM FROM THE COMBOBOX, SO IT'S NOT NULL
+    			 * THERE'S A VALUE IN THE COMBOBOX, BUT IT SAYS IT'S NULL AAAAAHHHHHH
+    			 * 
+    			 * try/catch fixes this, but it's bad coding practice as opposed to finding the
+    			 * actual solution.
+    			 */
+    		}
+
     	}
 
     }
@@ -166,9 +189,8 @@ public class StoreOrdersController {
         assert orderNumberMenu != null : "fx:id=\"orderNumberMenu\" was not injected: check your FXML file 'StoreOrders.fxml'.";
         assert orderDisplay != null : "fx:id=\"orderDisplay\" was not injected: check your FXML file 'StoreOrders.fxml'.";
 
-        
         storeOrders = MainMenuController.getStoreOrders();
-        
+
         for(Order order : storeOrders.getStoreOrders()) {
         	orderNumbers.add(order.getOrderNumber());
         }

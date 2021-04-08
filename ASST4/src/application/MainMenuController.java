@@ -65,8 +65,8 @@ public class MainMenuController {
     * @return   stage the stage to be generated
     */
     private Stage setStageParams(String fxID, Stage stage){
-    	String fileName = "/";
-    	String title = "";
+    	String fileName = new String();
+    	String title = new String();
     	try {
     	
     	
@@ -86,8 +86,6 @@ public class MainMenuController {
 	    		fileName += "StoreOrders.fxml";
 	    		title += "Store Orders";
 	    	}
-
-	    	//controllerTransfer(fileName);
     	
 			Parent root = FXMLLoader.load(getClass().getResource(fileName));
 			stage.setScene(new Scene(root, 600, 400));
@@ -97,8 +95,6 @@ public class MainMenuController {
 			stage.setResizable(false);
 			
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 			Alerts.makeNewWarning("IOException Generated, Invalid Input.", "Warning");
 		}
     	return stage;
