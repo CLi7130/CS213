@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CurrentOrderActivity">
+
+    <ListView
+        android:id="@+id/currOrderDisplay"
+        android:layout_width="409dp"
+        android:layout_height="273dp"
+        android:layout_marginTop="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addOrderToStoreOrders"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/currOrderTitle"
+        android:layout_width="283dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="116dp"
+        android:gravity="center"
+        android:text="@string/current_order"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/currOrderSubtotal"
+        android:layout_width="118dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="156dp"
+        android:text="@string/subtotal"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/currOrderSubtotalDisplay"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/currOrderSubtotalDisplay"
+        android:layout_width="196dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="156dp"
+        android:layout_marginEnd="36dp"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/addOrderToStoreOrders"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="276dp"
+        android:text="@string/add_to_store_orders"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/currOrderTax"
+        android:layout_width="118dp"
+        android:layout_height="38dp"
+        android:text="@string/tax"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/currOrderSubtotalDisplay"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/currOrderSubtotal" />
+
+    <TextView
+        android:id="@+id/currOrderTotal"
+        android:layout_width="118dp"
+        android:layout_height="38dp"
+        android:text="@string/total"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/currOrderSubtotalDisplay"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/currOrderTax" />
+
+    <TextView
+        android:id="@+id/currOrderTaxDisplay"
+        android:layout_width="196dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="36dp"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/currOrderSubtotalDisplay" />
+
+    <TextView
+        android:id="@+id/currOrderTotalDisplay"
+        android:layout_width="196dp"
+        android:layout_height="36dp"
+        android:layout_marginEnd="36dp"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/currOrderTaxDisplay" />
+
+    <ImageView
+        android:id="@+id/currOrderHeader"
+        android:layout_width="422dp"
+        android:layout_height="97dp"
+        android:contentDescription="@string/currorderheader"
+        android:src="@drawable/your_order_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.818"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</android.support.constraint.ConstraintLayout>

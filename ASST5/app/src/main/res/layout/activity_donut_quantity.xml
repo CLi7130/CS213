@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:foregroundGravity="center_vertical"
+    tools:context=".DonutQuantityActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="236dp"
+        android:foregroundGravity="center_vertical"
+        android:text="@string/select_donut_quantity"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/flavorDisplay"
+        android:layout_width="345dp"
+        android:layout_height="69dp"
+        android:layout_marginTop="12dp"
+        android:foregroundGravity="center_vertical"
+        android:gravity="center"
+        android:hint="@string/flavor"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <Spinner
+        android:id="@+id/quantityMenu"
+        android:layout_width="134dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="16dp"
+        android:foregroundGravity="center_vertical"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/flavorDisplay" />
+
+    <Button
+        android:id="@+id/addToOrderBTN"
+        android:layout_width="150dp"
+        android:layout_height="82dp"
+        android:layout_marginBottom="40dp"
+        android:foregroundGravity="center_vertical"
+        android:text="@string/add_to_order"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/SubtotalPrompt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="50dp"
+        android:hint="@string/subtotal"
+        android:text="@string/subtotal"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toTopOf="@+id/addToOrderBTN"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.301"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/quantityMenu"
+        app:layout_constraintVertical_bias="0.148" />
+
+    <TextView
+        android:id="@+id/subtotal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="50dp"
+        android:hint="@string/subtotal"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toTopOf="@+id/addToOrderBTN"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.009"
+        app:layout_constraintStart_toEndOf="@+id/SubtotalPrompt"
+        app:layout_constraintTop_toBottomOf="@+id/quantityMenu"
+        app:layout_constraintVertical_bias="0.148" />
+
+    <ImageView
+        android:id="@+id/donut_quantity_img"
+        android:layout_width="411dp"
+        android:layout_height="207dp"
+        android:contentDescription="@string/donut_quantity_img"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/donut_quantity" />
+
+</android.support.constraint.ConstraintLayout>

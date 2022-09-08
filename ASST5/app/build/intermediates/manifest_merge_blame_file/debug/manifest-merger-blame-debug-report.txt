@@ -1,0 +1,91 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.example.asst5"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="27"
+8-->C:\Users\Craig\AndroidStudioProjects\ASST5\app\src\main\AndroidManifest.xml
+9        android:targetSdkVersion="32" />
+9-->C:\Users\Craig\AndroidStudioProjects\ASST5\app\src\main\AndroidManifest.xml
+10
+11    <application
+11-->C:\Users\Craig\AndroidStudioProjects\ASST5\app\src\main\AndroidManifest.xml:5:5-40:19
+12        android:allowBackup="true"
+12-->C:\Users\Craig\AndroidStudioProjects\ASST5\app\src\main\AndroidManifest.xml:6:9-35
+13        android:appComponentFactory="android.support.v4.app.CoreComponentFactory"
+13-->[com.android.support:support-compat:28.0.0] C:\Users\Craig\.gradle\caches\transforms-3\9e531ed48fff4ec0bab341ce146590e4\transformed\support-compat-28.0.0\AndroidManifest.xml:22:18-91
+14        android:debuggable="true"
+15        android:extractNativeLibs="false"
+16        android:icon="@mipmap/ic_launcher"
+16-->C:\Users\Craig\AndroidStudioProjects\ASST5\app\src\main\AndroidManifest.xml:7:9-43
+17        android:label="@string/app_name"
+17-->C:\Users\Craig\AndroidStudioProjects\ASST5\app\src\main\AndroidManifest.xml:8:9-41
+18        android:roundIcon="@mipmap/ic_launcher_round"
+18-->C:\Users\Craig\AndroidStudioProjects\ASST5\app\src\main\AndroidManifest.xml:9:9-54
+19        android:supportsRtl="true"
+19-->C:\Users\Craig\AndroidStudioProjects\ASST5\app\src\main\AndroidManifest.xml:10:9-35
+20        android:testOnly="true"
+21        android:theme="@style/Theme.ASST5" >
+21-->C:\Users\Craig\AndroidStudioProjects\ASST5\app\src\main\AndroidManifest.xml:11:9-43
+22        <activity
+22-->C:\Users\Craig\AndroidStudioProjects\ASST5\app\src\main\AndroidManifest.xml:12:9-15:58
+23            android:name="com.example.asst5.StoreOrdersActivity"
+23-->C:\Users\Craig\AndroidStudioProjects\ASST5\app\src\main\AndroidManifest.xml:13:13-48
+24            android:label="@string/store_orders_title"
+24-->C:\Users\Craig\AndroidStudioProjects\ASST5\app\src\main\AndroidManifest.xml:14:13-55
+25            android:parentActivityName="com.example.asst5.MainActivity" />
+25-->C:\Users\Craig\AndroidStudioProjects\ASST5\app\src\main\AndroidManifest.xml:15:13-55
+26        <activity
+26-->C:\Users\Craig\AndroidStudioProjects\ASST5\app\src\main\AndroidManifest.xml:16:9-19:58
+27            android:name="com.example.asst5.CurrentOrderActivity"
+27-->C:\Users\Craig\AndroidStudioProjects\ASST5\app\src\main\AndroidManifest.xml:17:13-49
+28            android:label="@string/current_order_title"
+28-->C:\Users\Craig\AndroidStudioProjects\ASST5\app\src\main\AndroidManifest.xml:18:13-56
+29            android:parentActivityName="com.example.asst5.MainActivity" />
+29-->C:\Users\Craig\AndroidStudioProjects\ASST5\app\src\main\AndroidManifest.xml:19:13-55
+30        <activity
+30-->C:\Users\Craig\AndroidStudioProjects\ASST5\app\src\main\AndroidManifest.xml:20:9-23:58
+31            android:name="com.example.asst5.OrderCoffeeActivity"
+31-->C:\Users\Craig\AndroidStudioProjects\ASST5\app\src\main\AndroidManifest.xml:21:13-48
+32            android:label="@string/order_coffee_title"
+32-->C:\Users\Craig\AndroidStudioProjects\ASST5\app\src\main\AndroidManifest.xml:22:13-55
+33            android:parentActivityName="com.example.asst5.MainActivity" />
+33-->C:\Users\Craig\AndroidStudioProjects\ASST5\app\src\main\AndroidManifest.xml:23:13-55
+34        <activity
+34-->C:\Users\Craig\AndroidStudioProjects\ASST5\app\src\main\AndroidManifest.xml:24:9-27:58
+35            android:name="com.example.asst5.OrderDonutActivity"
+35-->C:\Users\Craig\AndroidStudioProjects\ASST5\app\src\main\AndroidManifest.xml:25:13-47
+36            android:label="@string/order_donuts_title"
+36-->C:\Users\Craig\AndroidStudioProjects\ASST5\app\src\main\AndroidManifest.xml:26:13-55
+37            android:parentActivityName="com.example.asst5.MainActivity" />
+37-->C:\Users\Craig\AndroidStudioProjects\ASST5\app\src\main\AndroidManifest.xml:27:13-55
+38        <activity
+38-->C:\Users\Craig\AndroidStudioProjects\ASST5\app\src\main\AndroidManifest.xml:28:9-31:64
+39            android:name="com.example.asst5.DonutQuantityActivity"
+39-->C:\Users\Craig\AndroidStudioProjects\ASST5\app\src\main\AndroidManifest.xml:29:13-50
+40            android:label="@string/donut_quantity_title"
+40-->C:\Users\Craig\AndroidStudioProjects\ASST5\app\src\main\AndroidManifest.xml:30:13-57
+41            android:parentActivityName="com.example.asst5.OrderDonutActivity" />
+41-->C:\Users\Craig\AndroidStudioProjects\ASST5\app\src\main\AndroidManifest.xml:31:13-61
+42        <activity
+42-->C:\Users\Craig\AndroidStudioProjects\ASST5\app\src\main\AndroidManifest.xml:32:9-39:20
+43            android:name="com.example.asst5.MainActivity"
+43-->C:\Users\Craig\AndroidStudioProjects\ASST5\app\src\main\AndroidManifest.xml:32:19-47
+44            android:exported="true" >
+44-->C:\Users\Craig\AndroidStudioProjects\ASST5\app\src\main\AndroidManifest.xml:33:13-36
+45            <intent-filter>
+45-->C:\Users\Craig\AndroidStudioProjects\ASST5\app\src\main\AndroidManifest.xml:34:13-38:29
+46                <action android:name="android.intent.action.MAIN" />
+46-->C:\Users\Craig\AndroidStudioProjects\ASST5\app\src\main\AndroidManifest.xml:35:17-69
+46-->C:\Users\Craig\AndroidStudioProjects\ASST5\app\src\main\AndroidManifest.xml:35:25-66
+47
+48                <category android:name="android.intent.category.LAUNCHER" />
+48-->C:\Users\Craig\AndroidStudioProjects\ASST5\app\src\main\AndroidManifest.xml:37:17-77
+48-->C:\Users\Craig\AndroidStudioProjects\ASST5\app\src\main\AndroidManifest.xml:37:27-74
+49            </intent-filter>
+50        </activity>
+51    </application>
+52
+53</manifest>
